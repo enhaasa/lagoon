@@ -1,8 +1,11 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 // Contexts
 import { UIContext } from "@contexts/UI";
+
+// Config
+import navbar from "@config/navbar";
 
 const PAGE_NAVIGATION_DELAY = 500;
 const EXTERNAL_LINK_TRIGGERS = [
@@ -10,11 +13,24 @@ const EXTERNAL_LINK_TRIGGERS = [
     'http://'
 ];
 
-export default function useNavigation() {
-    const { offCanvas, page } = useContext(UIContext);
+export interface IUseNavigation {
+    currentPageIndex: {
+        get: number;
+        set: React.Dispatch<React.SetStateAction<number>>
+    },
+    isCurrentPath: (T: string) => boolean;
+    internalNavigate: (T: string) => void;
+    externalNavigate: (T: string, R: boolean) => void;
+    dynamicNavigate: (T: string, R: boolean) => void;
+    getPageIndexByPath: (T: string) => number;
+}
 
+export default function useNavigation() {
     const navigate = useNavigate();
     const location = useLocation();
+
+    const { offCanvas, page } = useContext(UIContext);
+    const [ currentPageIndex, setCurrentPageIndex ] = useState(getPageIndexByPath(location.pathname));
 
     function isExternalLink(path: string) {
         let isExternal = false;
@@ -29,14 +45,20 @@ export default function useNavigation() {
         return isExternal;
     }
 
+    function isCurrentPath(path: string) {
+        return (location.pathname === `/${path}` || location.pathname === path);
+    }
+
+    function getPageIndexByPath(path: string) {
+        return navbar.findIndex((item) => (item.target === path));
+    }
+
     function internalNavigate(path: string) {
         offCanvas.hide();
 
-        if (
-            location.pathname === `/${path}` 
-            || location.pathname === path
-        ) return;
+        if (isCurrentPath(path)) return;
         
+        setCurrentPageIndex(getPageIndexByPath(path));
         page.hide();
 
         setTimeout(() => {
@@ -62,8 +84,14 @@ export default function useNavigation() {
     }
 
     return {
+        currentPageIndex: {
+            get: currentPageIndex,
+            set: setCurrentPageIndex
+        },
+        isCurrentPath,
         internalNavigate,
         externalNavigate,
-        dynamicNavigate
+        dynamicNavigate,
+        getPageIndexByPath
     }
 }

@@ -4,4 +4,8 @@
     all: unset;
     display: inline-block;
     @include mixins.button('primary', 'md');
+
+    &.active {
+        color: red;
+    }
 }

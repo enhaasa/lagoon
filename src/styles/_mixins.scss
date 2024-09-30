@@ -4,6 +4,7 @@
 
 @mixin button($size: 'md', $background: 'true') {
     all:unset;
+    user-select: none;
     border: decorations.border-width('standard');
     border-radius: decorations.border-radius('lg');
     color: colors.text('primary');

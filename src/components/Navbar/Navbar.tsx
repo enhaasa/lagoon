@@ -1,5 +1,5 @@
 import styles from './Navbar.module.scss';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 
 // Components
 import NavList from '@components/NavList/NavList';
@@ -8,6 +8,7 @@ import Button from '../Button/Button';
 
 // Contexts
 import { UIContext } from '@contexts/UI';
+import { PageContext } from '@contexts/Page';
 
 // Icons
 import IconBurgerMenu from '../../assets/icons/burger-menu.svg';
@@ -17,12 +18,18 @@ import navbar from '@config/navbar';
 
 export default function Navbar() {
     const { offCanvas } = useContext(UIContext);
+    const { navigator } = useContext(PageContext);
 
-    function showOffCanvas() {
-
+    function openMenu() {
         offCanvas.openWithContent(
             <NavList items={navbar} />
         );
+    }
+
+    function getIsCurrentPathByIndex(path: string) {
+        const result = (navigator.currentPageIndex.get === navigator.getPageIndexByPath(path));
+
+        return result;
     }
     
     return (
@@ -32,7 +39,7 @@ export default function Navbar() {
                     <Button 
                         icon={IconBurgerMenu}
                         background={false}
-                        onClick={showOffCanvas} 
+                        onClick={openMenu} 
                     />
                 }
             </span>
@@ -43,6 +50,7 @@ export default function Navbar() {
                         key={`NavbarItem${index}`}
                         name={item.name}
                         target={item.target}
+                        isActive={getIsCurrentPathByIndex(item.target)}
                     />
                 )) }
             </span>

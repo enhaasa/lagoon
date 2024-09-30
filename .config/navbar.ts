@@ -2,6 +2,7 @@ export type NavItem = {
     name: string;
     target: string;
     isNewTab?: boolean;
+    isActive?: boolean;
 }
 
 const navbar: NavItem[] = [
@@ -11,11 +12,11 @@ const navbar: NavItem[] = [
     },
     {
         name: 'Menu',
-        target: 'menu'
+        target: '/menu'
     },
     {
         name: 'Services',
-        target: 'services'
+        target: '/services'
     }
 ]
 

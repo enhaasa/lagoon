@@ -23,16 +23,18 @@ export default function OffCanvas() {
     useLayoutEffect(() => {
         if (!ref.current) return;
 
-        if (offCanvas.isShow) {
-            animate.slideIn(ref, 'left', { 
+        const animation = offCanvas.isShow
+            ? animate.slideIn(ref, 'left', { 
+                duration: AnimationDuration.Fast,
+                distance: '100%'
+            })
+            : animate.slideOut(ref, 'left', { 
                 duration: AnimationDuration.Fast,
                 distance: '100%'
             });
-        } else {
-            animate.slideOut(ref, 'left', { 
-                duration: AnimationDuration.Fast,
-                distance: '100%'
-            });
+
+        return () => {
+            animation?.kill();
         }
     }, [offCanvas.isShow]);
 

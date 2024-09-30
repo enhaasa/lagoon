@@ -1,11 +1,18 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
+// Contexts
+import { UIContext } from "@contexts/UI";
+
+const PAGE_NAVIGATION_DELAY = 600;
 const EXTERNAL_LINK_TRIGGERS = [
     'https://',
     'http://'
-]
+];
 
 export default function useNavigation() {
+    const { page } = useContext(UIContext);
+
     const navigate = useNavigate();
 
     function isExternalLink(path: string) {
@@ -22,7 +29,12 @@ export default function useNavigation() {
     }
 
     function internalNavigate(path: string) {
-        navigate(path);
+        page.hide();
+
+        setTimeout(() => {
+            navigate(path);
+            page.show();
+        }, PAGE_NAVIGATION_DELAY)
     }
 
     function externalNavigate(path: string, isNewTab: boolean = false) {

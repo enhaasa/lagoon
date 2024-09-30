@@ -23,9 +23,6 @@ export default function OffCanvas() {
     useLayoutEffect(() => {
         if (!ref.current) return;
 
-
-        console.log(hasMounted.current)
-
         if (!hasMounted.current) {
             hasMounted.current = true;
             return;

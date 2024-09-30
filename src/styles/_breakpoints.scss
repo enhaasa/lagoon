@@ -1,0 +1,9 @@
+$screen-sizes: (
+    "phone": 360px,
+    "tablet": 768px,
+    "desktop": 1024px,
+);
+
+@function screen($device) {
+    @return map-get($screen-sizes, $device);
+}

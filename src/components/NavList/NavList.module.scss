@@ -1,0 +1,6 @@
+@use '@styles/dimensions.scss' as dimensions;
+
+.container {
+    display: grid;
+    gap: dimensions.margin('sm');
+}

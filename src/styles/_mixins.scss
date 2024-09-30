@@ -1,0 +1,31 @@
+@use '@styles/dimensions.scss' as dimensions;
+@use '@styles/decorations.scss' as decorations; 
+@use '@styles/colors.scss' as colors;
+
+@mixin button($size: 'md', $background: 'true') {
+    all:unset;
+    border: decorations.border-width('standard');
+    border-radius: decorations.border-radius('lg');
+    color: colors.text('primary');
+    
+    @if $size == 'sm' {
+        padding: dimensions.padding('sm') dimensions.padding('sm');
+        font-size: dimensions.font-size('sm');
+    } @else if $size == 'md' {
+        padding: dimensions.padding('md') dimensions.padding('md');
+    }
+
+    &:visited {
+        color: colors.text('primary');
+    }
+
+    &:hover {
+        filter: contrast(0.5);
+        cursor: pointer;
+    }
+}
+
+@mixin sqsize($size) {
+    width: $size;
+    height: $size;
+}

@@ -1,0 +1,34 @@
+@use '@styles/mixins.scss' as mixins;
+@use '@styles/colors.scss' as colors;
+
+.container {
+
+    &.sm {
+        @include mixins.button('sm');
+    }
+    
+    &.md {
+        @include mixins.button('md');
+    }
+
+    &.lg {
+        @include mixins.button('lg');
+    }
+
+
+    &.primary {
+        background-color: colors.bg('primary');
+    }
+
+    &.secondary {
+        background-color: colors.bg('secondary');
+    }
+
+    &.tertiary {
+        background-color: colors.bg('tertiary');
+    }
+
+    &.quartenary {
+        background-color: colors.bg('quartenary');
+    }
+}

@@ -1,0 +1,28 @@
+$foreground-colors: (
+    "primary": #688085,
+    "secondary": #495a5d,
+    "tertiary": #85687b,
+    "quartenary": #5d4956
+);
+
+@function fg($name) {
+    @return map-get($foreground-colors, $name);
+};
+
+$background-colors: (
+    "primary": #2c2c2c,
+    "secondary": #0e0e0e
+);
+
+@function bg($name) {
+    @return map-get($background-colors, $name);
+};
+
+$text-colors: (
+    "primary": #d8d8d8,
+    "secondary": #999999
+);
+
+@function text($name) {
+    @return map-get($text-colors, $name);
+};

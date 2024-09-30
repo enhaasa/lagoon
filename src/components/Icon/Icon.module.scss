@@ -1,0 +1,15 @@
+@use '@styles/mixins.scss' as mixins;
+
+.container {
+    &.sm {
+        @include mixins.sqsize(14px);
+    }
+
+    &.md {
+        @include mixins.sqsize(22px);
+    }
+
+    &.lg {
+        @include mixins.sqsize(32px);
+    }
+}

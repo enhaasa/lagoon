@@ -1,0 +1,26 @@
+@use '@styles/dimensions.scss' as dimensions;
+@use '@styles/breakpoints.scss' as breakpoints;
+
+.container {
+    & .burger {
+        display: none;
+        z-index: 0;
+    }
+
+    & .nav {
+        display: flex;
+        justify-content: center;
+        gap: dimensions.padding('md');
+        padding: dimensions.padding('md');
+    }
+
+    @media (max-width: breakpoints.screen("tablet")) {
+        & .burger {
+            display: flex;
+        }
+
+        & .nav {
+            display: none;
+        }
+    }
+}

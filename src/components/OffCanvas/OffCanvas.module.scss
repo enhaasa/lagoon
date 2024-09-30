@@ -1,0 +1,21 @@
+@use '@styles/colors.scss' as colors;
+@use '@styles/dimensions.scss' as dimensions;
+
+.container {
+    position: fixed;
+    background-color: colors.bg('primary');
+    width: 100%;
+    height: 100%;
+    left: -100%;
+    z-index: 1;
+
+    & .navbar {
+        display: flex;
+        justify-content: end;
+        padding: dimensions.padding('md');
+    }
+
+    & .content {
+        padding: dimensions.padding('md');
+    }
+}

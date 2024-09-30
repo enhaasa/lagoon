@@ -1,0 +1,24 @@
+$border-widths: (
+    "xxs": 1px,
+    "xs": 2px,
+    "sm": 5px,
+    "md": 10px,
+    "lg": 25px,
+    "xl": 50px 
+);
+
+@function border-width($name) {
+    @return map-get($border-widths, $name);
+}
+
+$border-radiuses: (
+    "sm": 5px,
+    "md": 10px,
+    "lg": 50px,
+    "full": 100%
+);
+
+@function border-radius($name) {
+    @return map-get($border-radiuses, $name);
+}
+

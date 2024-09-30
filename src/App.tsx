@@ -8,9 +8,8 @@ import { PageContextProvider } from '@contexts/Page';
 import Header from './components/Header/Header';
 import OffCanvas from '@components/OffCanvas/OffCanvas';
 
-// Pages
-import Home from './pages/Home/Home';
-import Menu from './pages/Menu/Menu';
+// Config
+import navbar from '@config/navbar';
 
 function App() {
   return (
@@ -20,8 +19,11 @@ function App() {
           <OffCanvas />
           <Header />
           <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/menu' element={<Menu />} />
+            {
+              navbar.map((item, index) => (
+                <Route key={`Route-${index}`} path={item.target} element={item.component} />
+              ))
+            }
           </Routes>
           </PageContextProvider>
       </UIContextProvider>

@@ -1,5 +1,5 @@
 import styles from './Navbar.module.scss';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 
 // Components
 import NavList from '@components/NavList/NavList';

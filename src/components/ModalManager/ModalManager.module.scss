@@ -8,9 +8,8 @@
 
     display: grid;
     place-items: center;
-    background: rgba(0, 0, 0, 0.521);
 
-    & .modal-display {
+    & .modalDisplay {
         position: absolute;
     }
 }

@@ -91,8 +91,39 @@ function slide(ref: Ref, start: Start, direction: AnimationDirection, options?: 
     }
 }
 
+interface IDarkenOptions {
+    duration?: AnimationDuration
+}
+function darkenBgIn(ref: Ref, options: IDarkenOptions) {
+    darkenBg(ref, 'in', options);
+}
+
+function darkenBgOut(ref: Ref, options: IDarkenOptions) {
+    darkenBg(ref, 'out', options);
+}
+
+function darkenBg(ref: Ref, direction: AnimationDirection, options: IDarkenOptions) {
+    const duration = options?.duration || AnimationDuration.Medium;
+
+    let from: any = {};
+    let to: any = {};
+
+    from = { background: 'rgba(0, 0, 0, 0)' }
+    to = { background: 'rgba(0, 0, 0, 0.5)' }
+
+    if (direction === 'in') {
+        to.duration = duration;
+        return animate(ref, from, to);
+    } else {
+        from.duration = duration;
+        return animate(ref, to, from);
+    }
+}
+
 
 export default {
     slideIn,
-    slideOut
+    slideOut,
+    darkenBgIn,
+    darkenBgOut
 }

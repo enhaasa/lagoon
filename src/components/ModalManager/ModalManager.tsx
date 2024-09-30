@@ -1,15 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import styles from './ModalManager.module.scss';
-import { useContext } from "react"
+import { useContext, useLayoutEffect, useRef, useState } from "react"
 
 // Contexts
 import { UIContext } from "@contexts/UI";
 
+// Animations
+import animate, { AnimationDuration } from '@utils/animate';
 
 export default function ModalManager() {
     const {
         modals
     } = useContext(UIContext);
+
+    const [ show, setShow ] = useState(false);
+    const ref = useRef(null);
 
     const reversedModals = modals.get.slice().reverse();
 
@@ -19,16 +24,36 @@ export default function ModalManager() {
         return index === 0;
     }
 
+    useLayoutEffect(() => {
+        console.log(ref.current)
+        if (!ref.current) return;
+
+        if (modals.get.length > 0) {
+            setShow(true);
+            animate.darkenBgIn(ref);
+        } else {
+            animate.darkenBgOut(ref, { duration: AnimationDuration.Fast});
+            setTimeout(() => {
+                setShow(false);
+            }, 300)
+        }
+    }, [modals.get]);
+    
+
     return (
         <>
             {
-            modals.get.length > 0 &&
-                <div className={styles.container} onClick={modals.closeCurrent}>
+                <div 
+                    ref={ref} 
+                    className={styles.container}
+                    onClick={modals.closeCurrent}
+                    style={{ display: show ? 'grid' : 'none'}}
+                >
 
                     {reversedModals.map((modal: any, index: number) => (
                         <div 
-                            className={`modal-display ${shouldBlur(index) ? 'blurred' : ''}`}
-                            key={`Modal${index}`} 
+                            className={`${styles.modalDisplay} ${shouldBlur(index) ? 'blurred' : ''}`}
+                            key={`Modal-${index}`} 
                         >
                             {modal.component}
                         </div>

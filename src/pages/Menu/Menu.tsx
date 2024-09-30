@@ -1,10 +1,15 @@
 import styles from './Menu.module.scss';
 
+// Components
+import Page from '@components/Page/Page';
+
 export default function Menu() {
 
     return (
-        <div className={styles.container}>
-            Menu page
-        </div>    
+        <Page>
+            <div className={styles.container}>
+                Menu page
+            </div>
+        </Page>    
     );
 }

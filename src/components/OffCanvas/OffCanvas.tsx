@@ -6,7 +6,8 @@ import { useContext, useLayoutEffect, useRef } from 'react';
 import { UIContext } from '@contexts/UI';
 
 // Animations
-import gsap from 'gsap';
+import animate from '@utils/animate';
+import { AnimationDuration } from '@utils/animate';
 
 // Components
 import Button from '@components/Button/Button';
@@ -23,14 +24,23 @@ export default function OffCanvas() {
         if (!ref.current) return;
 
         if (offCanvas.isShow) {
-            gsap.to(ref.current, {left: '0', duration: 0.3});
+            animate.slideIn(ref, 'left', { 
+                duration: AnimationDuration.Fast,
+                distance: '100%'
+            });
         } else {
-            gsap.to(ref.current, {left: '-100%', duration: 0.3});
+            animate.slideOut(ref, 'left', { 
+                duration: AnimationDuration.Fast,
+                distance: '100%'
+            });
         }
     }, [offCanvas.isShow]);
 
     function close() {
-        gsap.to(ref.current, {left: '-100%', duration: 0.3});
+        animate.slideOut(ref, 'left', { 
+            duration: AnimationDuration.Fast,
+            distance: '100%'
+        });
         setTimeout(() => offCanvas.hide(), 300);
     }
 

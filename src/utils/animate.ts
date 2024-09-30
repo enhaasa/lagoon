@@ -94,15 +94,15 @@ function slide(ref: Ref, start: Start, direction: AnimationDirection, options?: 
 interface IDarkenOptions {
     duration?: AnimationDuration
 }
-function darkenBgIn(ref: Ref, options: IDarkenOptions) {
+function darkenBgIn(ref: Ref, options?: IDarkenOptions) {
     darkenBg(ref, 'in', options);
 }
 
-function darkenBgOut(ref: Ref, options: IDarkenOptions) {
+function darkenBgOut(ref: Ref, options?: IDarkenOptions) {
     darkenBg(ref, 'out', options);
 }
 
-function darkenBg(ref: Ref, direction: AnimationDirection, options: IDarkenOptions) {
+function darkenBg(ref: Ref, direction: AnimationDirection, options?: IDarkenOptions) {
     const duration = options?.duration || AnimationDuration.Medium;
 
     let from: any = {};

@@ -30,12 +30,13 @@ export default function useNavigation() {
     }
 
     function internalNavigate(path: string) {
+        offCanvas.hide();
+
         if (
             location.pathname === `/${path}` 
             || location.pathname === path
         ) return;
-
-        offCanvas.hide();
+        
         page.hide();
 
         setTimeout(() => {

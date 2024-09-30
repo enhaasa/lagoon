@@ -26,7 +26,7 @@ const navbar: NavItem[] = [
         name: 'Services',
         target: '/services',
         component: <Services />
-    }
+    },
 ]
 
 export default navbar;

@@ -7,6 +7,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    user-select: none;
     padding: dimensions.padding('sm') dimensions.padding('md');
     border-radius: decorations.border-radius('md');
 

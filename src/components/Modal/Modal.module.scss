@@ -1,0 +1,39 @@
+@use '@styles/colors' as colors;
+@use '@styles/dimensions' as dimensions;
+@use '@styles/decorations' as decorations;
+
+.container {
+    display: grid;
+    position: relative;
+    gap: dimensions.margin('sm');
+    padding: dimensions.padding('xs') dimensions.padding('md');
+    border-radius: decorations.border-radius('md');
+    background: colors.bg('primary');
+
+    & .content {
+        max-height: 75vh;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    & input, & textarea {
+        border-radius: decorations.border-radius('md');
+    }
+
+    & .header {
+        display: flex;
+        font-weight: bold;
+        text-align: center;
+        align-items: center;
+        gap: dimensions.margin('md');
+    }
+
+    & .message {
+        text-align: center;
+    }
+
+    & .options {
+        display: flex;
+        justify-content: space-between;
+    }
+}

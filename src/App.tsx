@@ -7,6 +7,7 @@ import { PageContextProvider } from '@contexts/Page';
 // Components
 import Header from './components/Header/Header';
 import OffCanvas from '@components/OffCanvas/OffCanvas';
+import ModalManager from '@components/ModalManager/ModalManager';
 
 // Config
 import navbar from '@config/navbar';
@@ -16,6 +17,7 @@ function App() {
     <Router>
       <UIContextProvider>
         <PageContextProvider>
+          <ModalManager />
           <OffCanvas />
           <Header />
           <Routes>

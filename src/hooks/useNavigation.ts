@@ -1,19 +1,20 @@
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 // Contexts
 import { UIContext } from "@contexts/UI";
 
-const PAGE_NAVIGATION_DELAY = 600;
+const PAGE_NAVIGATION_DELAY = 500;
 const EXTERNAL_LINK_TRIGGERS = [
     'https://',
     'http://'
 ];
 
 export default function useNavigation() {
-    const { page } = useContext(UIContext);
+    const { offCanvas, page } = useContext(UIContext);
 
     const navigate = useNavigate();
+    const location = useLocation();
 
     function isExternalLink(path: string) {
         let isExternal = false;
@@ -29,6 +30,12 @@ export default function useNavigation() {
     }
 
     function internalNavigate(path: string) {
+        if (
+            location.pathname === `/${path}` 
+            || location.pathname === path
+        ) return;
+
+        offCanvas.hide();
         page.hide();
 
         setTimeout(() => {

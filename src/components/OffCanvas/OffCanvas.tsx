@@ -16,14 +16,22 @@ import Button from '@components/Button/Button';
 import XIcon from '@assets/icons/x.svg';
 
 export default function OffCanvas() {
-
     const { offCanvas } = useContext(UIContext);
     const ref = useRef(null);
+    const hasMounted = useRef(false);
 
     useLayoutEffect(() => {
         if (!ref.current) return;
 
-        const animation = offCanvas.isShow
+
+        console.log(hasMounted.current)
+
+        if (!hasMounted.current) {
+            hasMounted.current = true;
+            return;
+        }
+
+        const animation = offCanvas.isShown
             ? animate.slideIn(ref, 'left', { 
                 duration: AnimationDuration.Fast,
                 distance: '100%'
@@ -36,21 +44,16 @@ export default function OffCanvas() {
         return () => {
             animation?.kill();
         }
-    }, [offCanvas.isShow]);
+    }, [ offCanvas.isShown ]);
 
     function close() {
-        animate.slideOut(ref, 'left', { 
-            duration: AnimationDuration.Fast,
-            distance: '100%'
-        });
-        setTimeout(() => offCanvas.hide(), 300);
+        offCanvas.hide();
     }
 
     return (
         <div 
             className={styles.container} 
             ref={ref}
-            style={{ display: offCanvas.isShow ? 'block' : 'none' }}
         >
             <div className={styles.navbar}>
                 <Button 

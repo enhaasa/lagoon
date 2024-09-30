@@ -4,13 +4,13 @@ import { useState } from 'react';
 export interface IUseOffCanvas {
     show: () => void;
     hide: () => void;
-    isShow: boolean;
+    setIsShown: boolean;
     content: JSX.Element | null;
     openWithContent: (T: any) => void;
 }
 
 export default function useOffCanvas() {
-    const [ isShow, setIsShow ] = useState<boolean>(false);
+    const [ isShown, setIsShown ] = useState(false);
     const [ content, setContent ] = useState<JSX.Element | null>(null);
 
     function openWithContent(content: any) {
@@ -19,19 +19,19 @@ export default function useOffCanvas() {
     }
 
     function show() {
-        setIsShow(true);
+        setIsShown(true);
     }
 
     function hide() {
-        setIsShow(false);
+        setIsShown(false);
     }
 
     return {
-        isShow: isShow,
+        isShown,
         show,
         hide,
         content,
-        openWithContent
+        openWithContent,
     }
 }
 

@@ -11,7 +11,7 @@ import useNavigation from '@hooks/useNavigation';
 
 interface INavListItem {
     item: NavItem,
-    callback: AnyFunction;
+    callback?: AnyFunction;
 }
 
 export default function NavListItem({ item }: INavListItem) {

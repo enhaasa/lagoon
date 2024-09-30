@@ -6,7 +6,7 @@ import useNavigation from './../../hooks/useNavigation';
 interface ILinkButton {
     name: string;
     target: string;
-    isNewTab: boolean;
+    isNewTab?: boolean;
 }
 
 export default function LinkButton({ name, target, isNewTab = false }: ILinkButton ) {

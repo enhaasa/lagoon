@@ -25,7 +25,6 @@ export default function ModalManager() {
     }
 
     useLayoutEffect(() => {
-        console.log(ref.current)
         if (!ref.current) return;
 
         if (modals.get.length > 0) {
@@ -39,28 +38,21 @@ export default function ModalManager() {
         }
     }, [modals.get]);
     
-
     return (
-        <>
-            {
+        <div 
+            ref={ref} 
+            className={styles.container}
+            onClick={modals.closeCurrent}
+            style={{ display: show ? 'grid' : 'none'}}
+        >
+            {reversedModals.map((modal: any, index: number) => (
                 <div 
-                    ref={ref} 
-                    className={styles.container}
-                    onClick={modals.closeCurrent}
-                    style={{ display: show ? 'grid' : 'none'}}
+                    className={`${styles.modalDisplay} ${shouldBlur(index) ? 'blurred' : ''}`}
+                    key={`Modal-${index}`} 
                 >
-
-                    {reversedModals.map((modal: any, index: number) => (
-                        <div 
-                            className={`${styles.modalDisplay} ${shouldBlur(index) ? 'blurred' : ''}`}
-                            key={`Modal-${index}`} 
-                        >
-                            {modal.component}
-                        </div>
-                    ))}
+                    {modal.component}
                 </div>
-            }
-        </>
-
+            ))}
+        </div>
     )
 }

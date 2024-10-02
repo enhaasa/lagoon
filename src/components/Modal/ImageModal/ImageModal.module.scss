@@ -1,0 +1,5 @@
+@use '@styles/dimensions.scss' as dimensions;
+
+.container {
+    padding: dimensions.padding('md') 0;
+}

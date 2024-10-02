@@ -11,7 +11,7 @@ import { UIContext } from "@contexts/UI";
 import animate, { AnimationDuration } from "@utils/animate";
 
 // Icons
-import XIcon from '@assets/icons/x.svg';
+import icon from "@utils/icon";
 
 interface IModal {
     id?: number;
@@ -52,10 +52,9 @@ export default function Modal({
         if (id === undefined) return;
         
         if (!modals.lifeSupportList.includes(id)) {
-            const animation = animate.slideOut(ref, 'top', {fade: true, duration: AnimationDuration.Fast});
+            animate.slideOut(ref, 'top', {fade: true, duration: AnimationDuration.Fast});
 
             setTimeout(()=> {
-                animation?.kill();
                 modals.kill(id);
             }, 300);
         }
@@ -68,7 +67,7 @@ export default function Modal({
                 style={{justifyContent: `${closable ? 'space-between' : 'center'}`}}
             >
                 <span>{headline}</span>
-                {closable && <Button icon={XIcon} onClick={handleClose} />}
+                {closable && <Button icon={icon.close} onClick={handleClose} />}
             </div>
             <div className={styles.message}>{message}</div>
             <div className={styles.content}>

@@ -7,3 +7,8 @@ body {
 .nobg {
   background: none;
 }
+
+img {
+  vertical-align: middle;
+  user-select: none;
+}

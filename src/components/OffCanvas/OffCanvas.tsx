@@ -12,8 +12,8 @@ import { AnimationDuration } from '@utils/animate';
 // Components
 import Button from '@components/Button/Button';
 
-// Icons
-import XIcon from '@assets/icons/x.svg';
+// Utils
+import icon from '@utils/icon';
 
 export default function OffCanvas() {
     const { offCanvas } = useContext(UIContext);
@@ -54,7 +54,7 @@ export default function OffCanvas() {
         >
             <div className={styles.navbar}>
                 <Button 
-                    icon={XIcon}
+                    icon={icon.close}
                     onClick={close}
                 />
             </div>

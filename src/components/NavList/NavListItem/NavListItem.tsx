@@ -5,7 +5,7 @@ import { useContext } from 'react';
 import { NavItem } from '@config/navbar';
 
 // Icons
-import ChevronIcon from '@assets/icons/chevron-right.svg';
+import icon from '@utils/icon';
 
 // Contexts
 import { PageContext } from '@contexts/Page';
@@ -25,7 +25,7 @@ export default function NavListItem({ item }: INavListItem) {
         >
             <span className={styles.name}>{ item.name }</span>
             <span className={styles.icon}>
-                <img src={ChevronIcon} />
+                <img src={icon.chevronRight} />
             </span>
         </button>    
     );

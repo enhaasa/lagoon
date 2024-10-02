@@ -8,21 +8,31 @@ interface ILinkButton {
     name: string;
     target: string;
     isNewTab?: boolean;
-    isActive?: boolean
+    isActive?: boolean;
+    isExternalLink?: boolean;
 }
 
 export default function LinkButton({ 
     name, 
     target, 
     isNewTab = false, 
-    isActive = false 
+    isActive = false,
+    isExternalLink
 }: ILinkButton ) {
     const { navigator } = useContext(PageContext);
+
+    function handleClick() {
+        if (isExternalLink) {
+            navigator.externalNavigate(target, isNewTab);
+        } else {
+            navigator.dynamicNavigate(target, isNewTab);
+        }
+    }
 
     return (
         <button 
             className={`${styles.container} ${isActive ? styles.active : ''}`} 
-            onClick={() => navigator.dynamicNavigate(target, isNewTab)}
+            onClick={handleClick}
         >
             { name }
         </button>

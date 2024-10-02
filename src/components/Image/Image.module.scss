@@ -1,0 +1,22 @@
+@use '@styles/decorations.scss' as decorations;
+
+.container {
+    position: relative;
+    display: inline-block;
+
+    & .image {
+       position: block;
+       width: 100%;
+       height: auto;
+
+       &.rounded {
+            border-radius: decorations.border-radius('md');
+       }
+    }
+
+    & .overlay {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+}

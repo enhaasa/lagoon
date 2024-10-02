@@ -27,6 +27,8 @@ export default function Navbar() {
     }
 
     function getIsCurrentPathByIndex(path: string) {
+        if (!navigator) return false;
+
         const result = (navigator.currentPageIndex.get === navigator.getPageIndexByPath(path));
 
         return result;

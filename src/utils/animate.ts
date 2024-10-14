@@ -5,7 +5,7 @@ import gsap from "gsap";
 type Ref = RefObject<HTMLElement>;
 
 type VerticalStart = 'top' | 'bottom';
-type HorizontalStart = 'left' | 'right';
+type HorizontalStart = HorizontalDirection;
 type Start = VerticalStart | HorizontalStart;
 
 export enum AnimationDuration {
@@ -49,29 +49,29 @@ function slide(ref: Ref, start: Start, direction: AnimationDirection, options?: 
 
     switch (start) {
         case 'bottom': {
-            from = { bottom: `-${distance}` };
-            to = { bottom: 0 };
+            from = { y: `-${distance}` };
+            to = { y: 0 };
 
             break;
         };
 
         case 'top': {
-            from = { top: `-${distance}` };
-            to = { top: 0 };
+            from = { y: `-${distance}` };
+            to = { y: 0 };
 
             break;
         }
 
         case 'left': {
-            from = { left: `-${distance}` };
-            to = { left: 0 }
+            from = { x: `-${distance}` };
+            to = { x: 0 }
 
             break;
         }
 
         case 'right': {
-            from = { right: `-${distance}` };
-            to = { right: 0 }
+            from = { x: `-${distance}` };
+            to = { x: 0 }
 
             break;
         }
@@ -119,7 +119,6 @@ function darkenBg(ref: Ref, direction: AnimationDirection, options?: IDarkenOpti
         return animate(ref, to, from);
     }
 }
-
 
 export default {
     slideIn,

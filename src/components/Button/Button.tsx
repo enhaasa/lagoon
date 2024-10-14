@@ -14,6 +14,7 @@ interface IButton {
     icon?: string;
     iconSize?: Size;
     background?: Background | false;
+    disabled?: boolean;
     onClick: any;
 }
 
@@ -22,12 +23,14 @@ export default function Button({
     size = 'md',
     icon, 
     background = 'primary',
-    onClick
+    onClick,
+    disabled = false
 }: IButton) {
     return (
         <button 
             className={`${styles.container} ${background || 'nobg'} ${styles[size]}`} 
             onClick={onClick}
+            disabled={disabled}
         >
             {icon &&
                 <span className={styles.icon}>

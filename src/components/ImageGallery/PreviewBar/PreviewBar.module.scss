@@ -1,0 +1,80 @@
+@use '@styles/dimensions.scss' as dimensions;
+@use '@styles/decorations.scss' as decoration;
+@use '@styles/colors.scss' as colors;
+
+.container {    
+    display: grid;
+    gap: dimensions.margin('md');
+
+    & .dotNav {
+        display: flex;
+        justify-content: center;
+        gap: dimensions.margin('sm');
+        flex-wrap: wrap;
+
+        & .dot {
+            all: unset;
+            cursor: pointer;
+            width: 8px;
+            height: 8px;
+            background: colors.fg('secondary');
+            border-radius: 100%;
+
+            &.active {
+                background: colors.fg('primary');
+            }
+        }
+    }
+
+    & .imageNav {
+        display: flex;
+        justify-content: center;
+        gap: dimensions.margin('md');
+        flex-wrap: wrap;
+
+        & .navButton {
+            &.disabled {
+                opacity: 0.2;
+                pointer-events: none;
+            }
+        }
+
+        & .item {
+            background: colors.bg('secondary');
+            width: 80px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            
+            &.first {
+                border-radius:
+                    decoration.border-radius('md')
+                    0
+                    0
+                    decoration.border-radius('md');
+            }
+    
+            &.last {
+                border-radius:
+                    0
+                    decoration.border-radius('md')
+                    decoration.border-radius('md')
+                    0;
+            }
+    
+            &:hover {
+                cursor: pointer;
+                outline: decoration.border-width('xs') solid colors.fg('secondary');
+            }
+    
+            &.active {
+                outline: decoration.border-width('xs') solid colors.fg('primary');
+            }
+    
+            & .previewImage {
+                height: 40px;
+            }
+        }
+    }
+
+}

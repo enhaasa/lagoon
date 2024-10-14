@@ -13,9 +13,10 @@ interface IImage {
     src: string;
     fullscreenable?: boolean;
     rounded?: boolean;
+    className?: string;
 }
 
-export default function Image({ src, fullscreenable = true, rounded = true }: IImage) {
+export default function Image({ src, fullscreenable = true, rounded = true, className }: IImage) {
     const navigator = useNavigation();
 
     function onFullscreen() {
@@ -24,7 +25,11 @@ export default function Image({ src, fullscreenable = true, rounded = true }: II
 
     return (
         <div className={styles.container}>
-            <img src={src} className={`${styles.image} ${rounded ? styles.rounded : ''}`} draggable={false} />
+            <img 
+                src={src} 
+                className={`${styles.image} ${rounded ? styles.rounded : ''} ${className ? className : ''}`} 
+                draggable={false} 
+            />
 
             {fullscreenable &&
                 <div className={styles.overlay}>

@@ -1,9 +1,11 @@
-@use '@styles/colors' as colors;
-@use '@styles/dimensions' as dimensions;
-@use '@styles/decorations' as decorations;
+@use '@styles/colors.scss' as colors;
+@use '@styles/dimensions.scss' as dimensions;
+@use '@styles/decorations.scss' as decorations;
+@use '@styles/breakpoints.scss' as breakpoints;
 
 .container {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     position: relative;
     gap: dimensions.margin('sm');
     padding: dimensions.padding('xs') dimensions.padding('md');
@@ -11,7 +13,11 @@
     background: colors.bg('primary');
 
     & .content {
-        max-height: 75vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
         overflow-x: hidden;
         overflow-y: auto;
     }
@@ -35,5 +41,10 @@
     & .options {
         display: flex;
         justify-content: space-between;
+    }
+
+    @media (max-width: breakpoints.screen("tablet")) {
+        width: 95vw;
+        height: 95vh;
     }
 }

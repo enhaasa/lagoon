@@ -24,6 +24,7 @@ export default function ImageGallery({ images }: IImageGallery) {
     const [ selectedIndex, setSelectedIndex ] = useState(0);
     const [ imageWidth, setImageWidth ] = useState(-1);
     const [ imageMaxHeight, setImageMaxHeight ] = useState(-1);
+    const [ windowHeight, setWindowHeight ] = useState(-1);
     
     const ref = useRef<HTMLDivElement>(null);
     const slideBoardContainerRef = useRef<HTMLSpanElement>(null);
@@ -75,7 +76,7 @@ export default function ImageGallery({ images }: IImageGallery) {
             gsap.to(slideBoardRef.current, { marginLeft: margin });
         }
 
-    }, [ selectedIndex, imageWidth ]);
+    }, [ selectedIndex, imageWidth, windowHeight ]);
 
     useLayoutEffect(() => {
         gsap.set(ref.current, { opacity: 0 });
@@ -84,6 +85,7 @@ export default function ImageGallery({ images }: IImageGallery) {
             setTimeout(() => {
                 if (slideBoardContainerRef.current && carouselRef.current) {
                     setImageWidth(slideBoardContainerRef.current.getBoundingClientRect().width);
+                    setWindowHeight(window.innerHeight);
                 }
             }, 0);
         }

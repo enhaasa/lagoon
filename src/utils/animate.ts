@@ -56,7 +56,7 @@ function slide(ref: Ref, start: Start, direction: AnimationDirection, options?: 
         };
 
         case 'top': {
-            from = { y: `-${distance}` };
+            from = { y: distance };
             to = { y: 0 };
 
             break;
@@ -70,7 +70,7 @@ function slide(ref: Ref, start: Start, direction: AnimationDirection, options?: 
         }
 
         case 'right': {
-            from = { x: `-${distance}` };
+            from = { x: distance };
             to = { x: 0 }
 
             break;

@@ -20,8 +20,8 @@ export default function Page({ children }: IPage) {
         if (!ref.current) return;
 
         const animation = page.isShow 
-            ? animate.slideIn(ref, 'bottom', {fade: true})
-            : animate.slideOut(ref, 'bottom', {fade: true})
+            ? animate.slideIn(ref, 'top', {fade: true})
+            : animate.slideOut(ref, 'top', {fade: true})
 
         return () => {
             animation?.kill();

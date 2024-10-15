@@ -123,8 +123,9 @@ export default function ImageGallery({ images, isModal = false }: IImageGallery)
                 <span ref={slideBoardContainerRef} className={styles.slideBoardContainer}>
                     <span ref={slideBoardRef} className={styles.slideBoard}>
                          {
-                            images.map(image => (
+                            images.map((image, index) => (
                                 <span ref={imageContainerRef} 
+                                    key={`GalleryImage-${index}`}
                                     className={styles.imageContainer} 
                                     style={{ width: imageWidth, height: isModal ? imageMaxHeight : 'auto' }}
                                 >

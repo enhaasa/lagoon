@@ -77,14 +77,14 @@ export default function PreviewBar({
 
             <div className={styles.dotNav}>
                 {
-                    paginatedImages.map(image => (
+                    paginatedImages.map((image, index) => (
                         <button 
+                            key={`PaginatedPreviewImage-${index}`}
                             className={`${styles.dot} ${image.index === selectedIndex ? styles.active : ''}`} 
                             onClick={() => navigateIndex(image.index)}
                         />
                     ))
                 }
-
             </div>
 
             <div className={styles.imageNav}>

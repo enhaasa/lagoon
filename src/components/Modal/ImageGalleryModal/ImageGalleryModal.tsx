@@ -1,7 +1,7 @@
 import styles from './ImageGalleryModal.module.scss';
 
 // Components
-import Modal from '../Modal';
+import TransparentModal from '../TransparentModal/TransparentModal';
 import ImageGallery, { GalleryImage } from '@components/ImageGallery/ImageGallery';
 
 export interface IImageGalleryModal {
@@ -13,7 +13,7 @@ export interface IImageGalleryModal {
 export default function ImageGalleryModal({ id, headline, images }: IImageGalleryModal) {
 
     return (
-        <Modal
+        <TransparentModal
             id={id}
             headline={headline}
         >
@@ -22,6 +22,6 @@ export default function ImageGalleryModal({ id, headline, images }: IImageGaller
                     images={images}
                 />
             </div>
-        </Modal> 
+        </TransparentModal> 
     );
 }

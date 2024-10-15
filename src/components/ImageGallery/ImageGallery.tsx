@@ -22,11 +22,15 @@ interface IImageGallery {
 
 export default function ImageGallery({ images }: IImageGallery) {
     const [ selectedIndex, setSelectedIndex ] = useState(0);
-    const [ imageWidth, setImageWidth ] = useState(0);
+    const [ imageWidth, setImageWidth ] = useState(-1);
+    const [ imageMaxHeight, setImageMaxHeight ] = useState(-1);
     
+    const ref = useRef<HTMLDivElement>(null);
     const slideBoardContainerRef = useRef<HTMLSpanElement>(null);
     const slideBoardRef = useRef<HTMLSpanElement>(null);
-    const imageContainerRef = useRef(null);
+    const navigationRef = useRef<HTMLDivElement>(null);
+    const imageContainerRef = useRef<HTMLDivElement>(null);
+    const carouselRef = useRef<HTMLDivElement>(null);
     const previousImageWidth = useRef(0);
 
     function canNavigate(direction: HorizontalDirection) {
@@ -46,10 +50,23 @@ export default function ImageGallery({ images }: IImageGallery) {
     }
 
     useEffect(() => {
-        if (!slideBoardContainerRef.current) return;
+        if (!slideBoardContainerRef.current 
+            || !carouselRef.current 
+            || !navigationRef.current 
+            || !imageContainerRef.current
+        ) return;
         
         const width = slideBoardContainerRef.current.getBoundingClientRect().width;
         const margin = -(width * selectedIndex);
+
+        setTimeout(() => {
+            const windowHeight = window.innerHeight;
+            const navigationHeight = navigationRef.current!.getBoundingClientRect().height;
+            const windowPosY = imageContainerRef.current!.getBoundingClientRect().top;
+            const maxHeight = windowHeight - navigationHeight - windowPosY -20;
+    
+            setImageMaxHeight(maxHeight);
+        }, 300);
 
         if (imageWidth !== previousImageWidth.current) {
             gsap.set(slideBoardRef.current, { marginLeft: margin });
@@ -61,16 +78,22 @@ export default function ImageGallery({ images }: IImageGallery) {
     }, [ selectedIndex, imageWidth ]);
 
     useLayoutEffect(() => {
+        gsap.set(ref.current, { opacity: 0 });
+
         function updateWidth() {
             setTimeout(() => {
-                if (slideBoardContainerRef.current) {
-                    setImageWidth(slideBoardContainerRef.current.getBoundingClientRect().width)
+                if (slideBoardContainerRef.current && carouselRef.current) {
+                    setImageWidth(slideBoardContainerRef.current.getBoundingClientRect().width);
                 }
-            }, 0)
+            }, 0);
         }
 
         updateWidth();
         window.addEventListener('resize', updateWidth);
+
+        setTimeout(() => {
+            gsap.to(ref.current, { opacity: 1, duration: 2.5 });
+        }, 400);
 
         return(() => {
             window.removeEventListener('resize', updateWidth);
@@ -82,8 +105,8 @@ export default function ImageGallery({ images }: IImageGallery) {
     }
 
     return (
-        <div className={styles.container}>
-            <div className={styles.carousel}>
+        <div className={styles.container} ref={ref}>
+            <div className={styles.carousel} ref={carouselRef}>
                 <span className={`${styles.navButton} ${!canNavigate('left') && styles.disabled}`}>
                     <Button 
                         icon={icon.chevronLeft} 
@@ -96,8 +119,11 @@ export default function ImageGallery({ images }: IImageGallery) {
                     <span ref={slideBoardRef} className={styles.slideBoard}>
                          {
                             images.map(image => (
-                                <span ref={imageContainerRef} className={styles.imageContainer} style={{ width: imageWidth }}>
-                                    <Image src={image.src} className={styles.image} />
+                                <span ref={imageContainerRef} 
+                                    className={styles.imageContainer} 
+                                    style={{ width: imageWidth, height: imageMaxHeight }}
+                                >
+                                    <Image src={image.src} className={styles.image} style={{ maxHeight: imageMaxHeight }} />
                                 </span>
                             ))
                          }
@@ -113,7 +139,7 @@ export default function ImageGallery({ images }: IImageGallery) {
                 </span>
             </div>
 
-            <nav className={styles.navigation}>
+            <nav className={styles.navigation} ref={navigationRef}>
                 <PreviewBar 
                     images={images}
                     navigateIndex={navigateIndex}

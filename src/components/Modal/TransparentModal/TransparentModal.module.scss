@@ -1,0 +1,40 @@
+@use '@styles/colors.scss' as colors;
+@use '@styles/dimensions.scss' as dimensions;
+@use '@styles/decorations.scss' as decorations;
+@use '@styles/breakpoints.scss' as breakpoints;
+
+.container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: dimensions.padding('xs') dimensions.padding('md');
+    width: 100vw;
+    height: 100vh;
+    
+    & .header {
+        display: flex;
+        font-weight: bold;
+        text-align: center;
+        align-items: center;
+        gap: dimensions.margin('md');
+    }
+
+    & .content {
+        height: 100%;
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    & input, & textarea {
+        border-radius: decorations.border-radius('md');
+    }
+
+    & .message {
+        text-align: center;
+    }
+
+    & .options {
+        display: flex;
+        justify-content: space-between;
+    }
+}

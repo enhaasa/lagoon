@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { forwardRef } from 'react';
 import styles from './Image.module.scss';
 
 // Components
@@ -14,31 +16,40 @@ interface IImage {
     fullscreenable?: boolean;
     rounded?: boolean;
     className?: string;
+    style?: any;
 }
 
-export default function Image({ src, fullscreenable = true, rounded = true, className }: IImage) {
-    const navigator = useNavigation();
+const Image = forwardRef<HTMLImageElement, IImage>(
+    ({ src, fullscreenable = true, rounded = true, className, style }: IImage, ref) => {
+        const navigator = useNavigation();
 
-    function onFullscreen() {
-        navigator.externalNavigate(src, true);
+        function onFullscreen() {
+            navigator.externalNavigate(src, true);
+        }
+
+        return (
+            <div className={styles.container}>
+                <img 
+                    src={src} 
+                    className={`${styles.image} ${rounded ? styles.rounded : ''} ${className ? className : ''}`} 
+                    style={style}
+                    draggable={false} 
+                    ref={ref}
+                />
+
+                {fullscreenable &&
+                    <div className={styles.overlay}>
+                        <Button 
+                            icon={icon.externalLink}                  
+                            onClick={onFullscreen}
+                        />
+                    </div>
+                }
+            </div>    
+        );
     }
+);
 
-    return (
-        <div className={styles.container}>
-            <img 
-                src={src} 
-                className={`${styles.image} ${rounded ? styles.rounded : ''} ${className ? className : ''}`} 
-                draggable={false} 
-            />
+Image.displayName = 'Image';
 
-            {fullscreenable &&
-                <div className={styles.overlay}>
-                    <Button 
-                        icon={icon.externalLink}                  
-                        onClick={onFullscreen}
-                    />
-                </div>
-            }
-        </div>    
-    );
-}
+export default Image;

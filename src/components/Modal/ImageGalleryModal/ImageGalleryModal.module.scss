@@ -1,17 +1,6 @@
 @use '@styles/breakpoints.scss' as breakpoints;
 @use '@styles/dimensions.scss' as dimensions;
 
-.container {
+.container {    
     display: grid;
-    align-content: center;
-
-    width: 90vw;
-    height: 85vh;
-
-    padding: dimensions.padding('lg') 0;
-
-    @media (max-width: breakpoints.screen("tablet")) {
-        max-height: 100%;
-        width: 100%;
-    }
 }

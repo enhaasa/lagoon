@@ -12,28 +12,29 @@
         display: flex;
         justify-content: space-between;
         height: 400px;
+        overflow-x: hidden;
 
-        & .displayImageContainer {
+        & .slideBoardContainer {
             display: flex;
             position: relative;
-            justify-content: center;
-            align-items: center;
             width: 100%;
             overflow-x: hidden;
+            
+            & .slideBoard {
+                display: flex;
+                overflow-x: hidden;
 
-            & .displayImage {
-                max-height: 400px;
-                width: 100%;
-            }
+                & .imageContainer {
+                    display: flex;
+                    flex-shrink: 0;
+                    justify-content: center;
+                    align-items: center;
+                    //width: 1836px;
 
-            & .nextImage {
-                position: absolute;
-                left: 50%;
-                transform: translateX(-50%);
-                opacity: 0;
-
-                & .nextImageImg {
-                    max-height: 400px;
+                    & .image {
+                        max-height: 400px;
+                        //width: 100%;
+                    }
                 }
             }
         }

@@ -1,5 +1,5 @@
 import styles from './ImageGallery.module.scss';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useLayoutEffect } from 'react';
 
 // Components
 import Image from '@components/Image/Image';
@@ -22,12 +22,12 @@ interface IImageGallery {
 
 export default function ImageGallery({ images }: IImageGallery) {
     const [ selectedIndex, setSelectedIndex ] = useState(0);
-    const [ nextIndex, setNextIndex ] = useState<number | null>(null);
-    const [ showDisplayImage, setShowDisplayImage ] = useState(true);
+    const [ imageWidth, setImageWidth ] = useState(0);
     
-    const displayImageContainerRef = useRef(null);
-    const displayImageRef = useRef(null);
-    const nextImageRef = useRef<HTMLSpanElement>(null);
+    const slideBoardContainerRef = useRef<HTMLSpanElement>(null);
+    const slideBoardRef = useRef<HTMLSpanElement>(null);
+    const imageContainerRef = useRef(null);
+    const previousImageWidth = useRef(0);
 
     function canNavigate(direction: HorizontalDirection) {
         if (direction === 'left') {
@@ -39,53 +39,46 @@ export default function ImageGallery({ images }: IImageGallery) {
 
     function navigateDirection(direction: HorizontalDirection) {
         if (direction === 'left' && canNavigate('left')) {
-            setNextIndex(selectedIndex -1);
+            setSelectedIndex(selectedIndex -1);
         } else if (direction === 'right' && canNavigate('right')) {
-            setNextIndex(selectedIndex +1); 
+            setSelectedIndex(selectedIndex +1); 
         }
     }
 
     useEffect(() => {
-        if (nextIndex === null) return;
+        if (!slideBoardContainerRef.current) return;
+        
+        const width = slideBoardContainerRef.current.getBoundingClientRect().width;
+        const margin = -(width * selectedIndex);
 
-        // Slide next image
-        (() => {
-            if (nextIndex > selectedIndex) {
-                const from = {opacity: '0', left: '100%'}
-                const to = {opacity: '1', left: '50%'}
-                gsap.fromTo(nextImageRef.current, from, to);
-            } else {
-                const from = {opacity: '0', left: '0'}
-                const to = {opacity: '1', left: '50%'}
-                gsap.fromTo(nextImageRef.current, from, to);
-            }
-        })();
+        if (imageWidth !== previousImageWidth.current) {
+            gsap.set(slideBoardRef.current, { marginLeft: margin });
+            previousImageWidth.current = imageWidth;
+        } else {
+            gsap.to(slideBoardRef.current, { marginLeft: margin });
+        }
 
-        // Slide current image
-        (() => {
-            if (nextIndex > selectedIndex) {
-                const from = {opacity: '1', marginLeft: '0'}
-                const to = {opacity: '0', marginLeft: '-100vw'}
-                gsap.fromTo(displayImageRef.current, from, to);
-            } else {
-                const from = {opacity: '1', marginRight: '0'}
-                const to = {opacity: '0', marginRight: '-100vw'}
-                gsap.fromTo(displayImageRef.current, from, to);
-            }
-        })();                
+    }, [ selectedIndex, imageWidth ]);
 
-        setTimeout(() => {
-            gsap.set(displayImageRef.current, {marginLeft: 0, marginRight: 0, opacity: 1});
-            gsap.set(nextImageRef.current, {opacity: 0});
+    useLayoutEffect(() => {
+        function updateWidth() {
+            setTimeout(() => {
+                if (slideBoardContainerRef.current) {
+                    setImageWidth(slideBoardContainerRef.current.getBoundingClientRect().width)
+                }
+            }, 0)
+        }
 
-            setSelectedIndex(nextIndex);
-            setShowDisplayImage(true);
-            setNextIndex(null);
-        }, 600);
-    }, [ nextIndex, selectedIndex ]);
+        updateWidth();
+        window.addEventListener('resize', updateWidth);
+
+        return(() => {
+            window.removeEventListener('resize', updateWidth);
+        });
+    }, []);
 
     function navigateIndex(index: number) {
-        setNextIndex(index);
+        setSelectedIndex(index);
     }
 
     return (
@@ -99,18 +92,16 @@ export default function ImageGallery({ images }: IImageGallery) {
                     />
                 </span>
                 
-                <span className={styles.displayImageContainer} ref={displayImageContainerRef}>
-                    
-                    <span ref={displayImageRef} style={{ opacity: showDisplayImage ? '1': '0'}}>
-                        <Image src={images[selectedIndex].src} className={styles.displayImage} />
+                <span ref={slideBoardContainerRef} className={styles.slideBoardContainer}>
+                    <span ref={slideBoardRef} className={styles.slideBoard}>
+                         {
+                            images.map(image => (
+                                <span ref={imageContainerRef} className={styles.imageContainer} style={{ width: imageWidth }}>
+                                    <Image src={image.src} className={styles.image} />
+                                </span>
+                            ))
+                         }
                     </span>
-
-                    {
-                        nextIndex !== null &&
-                        <span className={styles.nextImage} ref={nextImageRef}>
-                            <Image src={images[nextIndex].src} className={styles.nextImageImg} />
-                        </span>
-                    }
                 </span>
 
                 <span className={`${styles.navButton} ${!canNavigate('right') && styles.disabled}`}>

@@ -1,4 +1,5 @@
 @use '@styles/mixins.scss' as mixins;
+@use '@styles/colors.scss' as colors;
 
 .container {
     all: unset;
@@ -6,6 +7,6 @@
     @include mixins.button('primary', 'md');
 
     &.active {
-        color: red;
+        color: colors.fg('primary');
     }
 }

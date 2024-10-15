@@ -17,6 +17,7 @@
         text-align: center;
         align-items: center;
         gap: dimensions.margin('md');
+        padding: dimensions.padding('md');
     }
 
     & .content {

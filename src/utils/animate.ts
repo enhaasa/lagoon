@@ -49,28 +49,28 @@ function slide(ref: Ref, start: Start, direction: AnimationDirection, options?: 
 
     switch (start) {
         case 'bottom': {
-            from = { y: `-${distance}` };
+            from = { y: distance };
             to = { y: 0 };
 
             break;
         };
 
         case 'top': {
-            from = { y: distance };
+            from = { y: `-${distance}` };
             to = { y: 0 };
 
             break;
         }
 
         case 'left': {
-            from = { x: `-${distance}` };
-            to = { x: 0 }
+            from = { left: `-${distance}` };
+            to = { left: 0 }
 
             break;
         }
 
         case 'right': {
-            from = { x: distance };
+            from = { x: `-${distance}` };
             to = { x: 0 }
 
             break;

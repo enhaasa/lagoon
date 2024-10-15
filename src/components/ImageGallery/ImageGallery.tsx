@@ -17,10 +17,11 @@ export type GalleryImage = {
 }
 
 interface IImageGallery {
-    images: GalleryImage[]
+    images: GalleryImage[];
+    isModal?: boolean;
 }
 
-export default function ImageGallery({ images }: IImageGallery) {
+export default function ImageGallery({ images, isModal = false }: IImageGallery) {
     const [ selectedIndex, setSelectedIndex ] = useState(0);
     const [ imageWidth, setImageWidth ] = useState(-1);
     const [ imageMaxHeight, setImageMaxHeight ] = useState(-1);
@@ -85,7 +86,9 @@ export default function ImageGallery({ images }: IImageGallery) {
             setTimeout(() => {
                 if (slideBoardContainerRef.current && carouselRef.current) {
                     setImageWidth(slideBoardContainerRef.current.getBoundingClientRect().width);
-                    setWindowHeight(window.innerHeight);
+                    if (isModal) {
+                        setWindowHeight(window.innerHeight);
+                    }
                 }
             }, 0);
         }
@@ -100,7 +103,7 @@ export default function ImageGallery({ images }: IImageGallery) {
         return(() => {
             window.removeEventListener('resize', updateWidth);
         });
-    }, []);
+    }, [ isModal ]);
 
     function navigateIndex(index: number) {
         setSelectedIndex(index);
@@ -123,9 +126,13 @@ export default function ImageGallery({ images }: IImageGallery) {
                             images.map(image => (
                                 <span ref={imageContainerRef} 
                                     className={styles.imageContainer} 
-                                    style={{ width: imageWidth, height: imageMaxHeight }}
+                                    style={{ width: imageWidth, height: isModal ? imageMaxHeight : 'auto' }}
                                 >
-                                    <Image src={image.src} className={styles.image} style={{ maxHeight: imageMaxHeight }} />
+                                    <Image 
+                                        src={image.src} 
+                                        className={styles.image} 
+                                        style={{ maxHeight: isModal ? imageMaxHeight : 'auto' }} 
+                                    />
                                 </span>
                             ))
                          }

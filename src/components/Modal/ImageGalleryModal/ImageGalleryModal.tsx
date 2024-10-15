@@ -20,6 +20,7 @@ export default function ImageGalleryModal({ id, headline, images }: IImageGaller
             <div className={styles.container}>
                 <ImageGallery 
                     images={images}
+                    isModal={true}
                 />
             </div>
         </TransparentModal> 

@@ -97,7 +97,7 @@ export default function ImageGallery({ images, isModal = false }: IImageGallery)
         window.addEventListener('resize', updateWidth);
 
         setTimeout(() => {
-            gsap.to(ref.current, { opacity: 1, duration: 2.5 });
+            gsap.to(ref.current, { opacity: 1, duration: 0.5 });
         }, 400);
 
         return(() => {

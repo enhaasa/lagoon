@@ -1,5 +1,5 @@
 import styles from './PreviewBar.module.scss';
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo, useState, useEffect, useLayoutEffect } from 'react';
 
 // Components
 import Image from '@components/Image/Image';
@@ -54,7 +54,7 @@ export default function PreviewBar({
 
     useEffect(() => {
         setPage(paginatedImages[selectedIndex].page);
-    }, [ selectedIndex, paginatedImages ])
+    }, [ selectedIndex, paginatedImages ]);
 
     function canPageNavigate(direction: HorizontalDirection) {
         if (direction === 'left') {

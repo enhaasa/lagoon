@@ -1,0 +1,11 @@
+@use '@styles/dimensions.scss' as dimensions;
+@use '@styles/fonts.scss' as fonts;
+
+.container {
+    .headline {
+        margin: 0;
+        font-family: fonts.family('Handwritten');
+        font-size: fonts.size('xl');
+    }
+
+}

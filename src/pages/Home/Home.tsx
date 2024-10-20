@@ -5,7 +5,6 @@ import { useContext } from 'react';
 import Page from '@components/Page/Page';
 import ContentModal from '@components/Modal/ContentModal';
 import ImageModal from '@components/Modal/ImageModal/ImageModal';
-import ImageGallery from '@components/ImageGallery/ImageGallery';
 import Column from '@components/Column/Column';
 import ImageGalleryModal from '@components/Modal/ImageGalleryModal/ImageGalleryModal';
 
@@ -20,6 +19,8 @@ import ManImg from '@assets/images/man.webp';
 import ShrekImg from '@assets/images/shrex.png';
 import Lagoon1Img from '@assets/images/lagoon1.png';
 import Lagoon2Img from '@assets/images/lagoon2.png';
+import Title from '@components/Title/Title';
+
 
 const images = [
     {src: CatImg},
@@ -84,9 +85,7 @@ export default function Home() {
                 </button>
 
                 <Column>
-                    <ImageGallery 
-                        images={images}
-                    />
+                    <Title headline="wedding reception" />
                 </Column>
 
             </div>

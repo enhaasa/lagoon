@@ -1,6 +1,7 @@
 @use '@styles/dimensions.scss' as dimensions;
 @use '@styles/decorations.scss' as decorations; 
 @use '@styles/colors.scss' as colors;
+@use '@styles/fonts.scss' as fonts;
 
 @mixin button($size: 'md', $background: 'true') {
     all:unset;
@@ -11,11 +12,11 @@
     
     @if $size == 'sm' {
         padding: dimensions.padding('sm') dimensions.padding('sm');
-        font-size: dimensions.font-size('sm');
+        font-size: fonts.size('sm');
     } @else if $size == 'md' {
         padding: dimensions.padding('md') dimensions.padding('md');
     } @else if $size == 'xl' {
-        font-size: dimensions.font-size('xl');
+        font-size: fonts.size('xl');
     }
 
     &:visited {

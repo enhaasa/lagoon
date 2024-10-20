@@ -1,0 +1,34 @@
+$fonts: (
+    'Handwritten': 'Spanish Signature'
+);
+
+@function family($name) {
+    @return map-get($fonts, $name);
+}
+
+// South Castle
+@font-face {
+    font-family: "Spanish Signature";
+    src: 
+        url("../fonts/SpanishSignatureRegular.otf"),
+        url("../fonts/SpanishSignatureRegular.ttf");
+    font-weight: normal;
+}
+@font-face {
+    font-family: "South Castle";
+    src: 
+        url("../fonts/SouthCastle.ttf");
+    font-weight: lighter;
+}
+
+$sizes: (
+    "sm": 14px,
+    "md": 16px,
+    "lg": 24px,
+    "xl": 64px,
+    "xxl": 128px
+);
+
+@function size($name) {
+    @return map-get($sizes, $name);
+}

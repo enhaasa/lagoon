@@ -8,4 +8,5 @@
 
     display: flex;
     justify-content: space-between;
+    gap: dimensions.margin('md');
 }

@@ -1,0 +1,21 @@
+@use '@styles/colors.scss' as colors;
+@use '@styles/dimensions.scss' as dimensions;
+
+.container {
+    min-width: 200px;
+
+    & .row {
+        display: flex;
+        justify-content: space-between;
+
+        & .column {
+            display: flex;
+            align-items: center;
+            gap: dimensions.margin('sm');
+        }
+    }
+
+    & .server {
+        color: colors.text('secondary');
+    }
+}

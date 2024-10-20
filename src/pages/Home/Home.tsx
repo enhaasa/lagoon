@@ -26,6 +26,7 @@ import Sample3 from '@assets/images/sample_2.png';
 // Components
 import ImageGalleryButton from '@components/ImageGalleryButton/ImageGalleryButton';
 import Row from '@components/Row/Row';
+import Location from '@components/Location/Location';
 
 
 const allImages = [
@@ -92,34 +93,18 @@ export default function Home() {
     return (
         <Page>
             <div className={styles.container}>
-                Home page
-
-                <button onClick={handleContentModal}>
-                    create content modal
-                </button>
-
-                <button onClick={handleImageModal}>
-                    create image modal
-                </button>
-
-                <button onClick={handleImageGalleryModal}>
-                    create imageGallery modal
-                </button>
-
                 <Row>
-                    <Column>
-                        Colomn 1
-                    </Column>
-
-                    <Column>
-                        Colomn 2
-                    </Column>
+                    <Location 
+                        server='Odin'
+                        area='The Goblet'          
+                        ward={27}       
+                        plot={19}   
+                    />
 
                     <Column>
                         Column 3
                     </Column>
                 </Row>
-
             </div>
         </Page>    
     );

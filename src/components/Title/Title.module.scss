@@ -1,10 +1,17 @@
 @use '@styles/dimensions.scss' as dimensions;
 @use '@styles/fonts.scss' as fonts;
+@use '@styles/colors.scss' as colors;
 
 .container {
-    .headline {
+    & .headline {
         margin: 0;
-        font-size: fonts.size('lg');
+        font-size: fonts.size('xxl');
     }
 
+    & .subline {
+        margin: 0;
+        color: colors.text('secondary');
+        text-align: center;
+        font-size: fonts.size('md');
+    }
 }

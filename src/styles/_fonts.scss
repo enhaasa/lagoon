@@ -23,10 +23,10 @@ $fonts: (
 
 $sizes: (
     "sm": 14px,
-    "md": 16px,
+    "md": 18px,
     "lg": 24px,
-    "xl": 64px,
-    "xxl": 128px
+    "xl": 42px,
+    "xxl": 64px
 );
 
 @function size($name) {

@@ -12,9 +12,10 @@ export default function Title({ headline, subline }: ITitle) {
             <h1 className={styles.headline}>
                 { headline }
             </h1>
+
             {subline &&
                 <h3 className={styles.subline}>
-                    {subline}
+                    { subline }
                 </h3>
             }
         </div>    

@@ -1,0 +1,26 @@
+.container {
+    position: relative;
+    height: 400px;
+    
+
+    & .image, & .text {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+    
+    & .image {
+        background-size: cover;
+        z-index: 1;
+        filter: brightness(0.6);
+    }
+
+    & .text {
+        display: grid;
+        place-items: center;
+        height: 100%;
+        z-index: 2;
+    }
+}

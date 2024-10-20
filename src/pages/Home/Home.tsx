@@ -27,6 +27,8 @@ import Sample3 from '@assets/images/sample_2.png';
 import ImageGalleryButton from '@components/ImageGalleryButton/ImageGalleryButton';
 import Row from '@components/Row/Row';
 import Location from '@components/Location/Location';
+import Hero from '@components/Hero/Hero';
+import Title from '@components/Title/Title';
 
 
 const allImages = [
@@ -93,18 +95,14 @@ export default function Home() {
     return (
         <Page>
             <div className={styles.container}>
-                <Row>
-                    <Location 
-                        server='Odin'
-                        area='The Goblet'          
-                        ward={27}       
-                        plot={19}   
+                <Hero 
+                    image={Lagoon1Img}
+                >
+                    <Title                     
+                        headline='Welcome'
+                        subline='This is the lagoon'
                     />
-
-                    <Column>
-                        Column 3
-                    </Column>
-                </Row>
+                </Hero>
             </div>
         </Page>    
     );

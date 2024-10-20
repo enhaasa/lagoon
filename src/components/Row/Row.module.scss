@@ -1,0 +1,11 @@
+@use '@styles/dimensions.scss' as dimensions;
+
+.container {
+    width: 100%;
+    margin:
+        dimensions.margin('lg')
+        0;
+
+    display: flex;
+    justify-content: space-between;
+}

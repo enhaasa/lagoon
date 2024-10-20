@@ -25,6 +25,7 @@ import Sample3 from '@assets/images/sample_2.png';
 
 // Components
 import ImageGalleryButton from '@components/ImageGalleryButton/ImageGalleryButton';
+import Row from '@components/Row/Row';
 
 
 const allImages = [
@@ -105,11 +106,23 @@ export default function Home() {
                     create imageGallery modal
                 </button>
 
-                <Column>
-                    <ImageGalleryButton images={images.sampleHorizontal}/>
-                </Column>
+                <Row>
+                    <Column>
+                        Colomn 1
+                    </Column>
+
+                    <Column>
+                        Colomn 2
+                    </Column>
+
+                    <Column>
+                        Column 3
+                    </Column>
+                </Row>
 
             </div>
         </Page>    
     );
 }
+
+// <ImageGalleryButton images={images.sampleHorizontal}/>

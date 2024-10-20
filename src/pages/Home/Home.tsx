@@ -29,6 +29,7 @@ import Row from '@components/Row/Row';
 import Location from '@components/Location/Location';
 import Hero from '@components/Hero/Hero';
 import Title from '@components/Title/Title';
+import LagoonTeaser from '@components/lagoon/LagoonTeaser/LagoonTeaser';
 
 
 const allImages = [
@@ -98,10 +99,7 @@ export default function Home() {
                 <Hero 
                     image={Lagoon1Img}
                 >
-                    <Title                     
-                        headline='Welcome'
-                        subline='This is the lagoon'
-                    />
+                    <LagoonTeaser />
                 </Hero>
             </div>
         </Page>    

@@ -1,6 +1,6 @@
 @use '@styles/colors.scss' as colors;
 @use '@styles/dimensions.scss' as dimensions; 
-@use '@styles/decorations.scss' as decoration;
+@use '@styles/decorations.scss' as decorations;
 
 .container {
     all: unset;
@@ -30,7 +30,7 @@
             background-size: cover;
             transition: 200ms;
             opacity: 1;
-            box-shadow: decoration.box-shadow('sm');
+            box-shadow: decorations.box-shadow('sm');
             
             &.second {
                 transform: rotate(2deg);

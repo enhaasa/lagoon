@@ -1,7 +1,9 @@
 @use '@styles/mixins.scss' as mixins;
 @use '@styles/colors.scss' as colors;
+@use '@styles/decorations.scss' as decorations;
 
 .container {
+    box-shadow: decorations.box-shadow('sm');
 
     &.sm {
         @include mixins.button('sm');
@@ -21,18 +23,18 @@
 
 
     &.primary {
-        background-color: colors.bg('primary');
+        background-color: colors.fg('primary');
     }
 
     &.secondary {
-        background-color: colors.bg('secondary');
+        background-color: colors.fg('secondary');
     }
 
-    &.tertiary {
-        background-color: colors.bg('tertiary');
+    &.accent {
+        background-color: colors.fg('accent');
     }
 
-    &.quartenary {
-        background-color: colors.bg('quartenary');
+    &.neutral {
+        border: 1px solid colors.neutral('white');
     }
 }

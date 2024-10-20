@@ -1,0 +1,64 @@
+@use '@styles/fonts.scss' as fonts;
+@use '@styles/colors.scss' as colors;
+@use '@styles/dimensions.scss' as dimensions;
+@use '@styles/breakpoints.scss' as breakpoints;
+
+.container {
+    display: grid;
+    gap: dimensions.margin('xxl');
+    width: 100%;
+
+    & .teaser {
+        display: grid;
+        gap: dimensions.margin('xl');
+     
+        & .typed {
+            font-family: fonts.family('typed');
+            font-size: fonts.size('lg');
+            text-align: center;
+    
+            &.lower {
+                margin-top: dimensions.margin('md');
+            }
+    
+            & .textImage {
+                width: 200px;
+                pointer-events: none;
+            }
+        }
+    
+        & .handwritten {
+            font-size: fonts.size('xxl');
+            font-family: fonts.family('handwritten');
+            transform: rotate(-3deg);
+            margin-bottom: dimensions.margin('md');
+            text-align: center;
+            opacity: 1;
+        }
+        
+        @media (max-width: breakpoints.screen("tablet")) {
+            gap: dimensions.margin('md');
+    
+            & .handwritten {
+                font-size: fonts.size('xl');
+            }
+    
+            & .typed{
+                & .textImage {
+                    width: 150px;
+                }
+            }
+        }
+    }
+
+    & .navContainer {
+        display: flex;
+        justify-content: center;
+
+        & .nav {
+            display: flex;
+            justify-content: space-between;
+            gap: dimensions.margin('lg');
+        }
+    }
+}

@@ -5,7 +5,7 @@ import styles from './Button.module.scss';
 import Icon from '../Icon/Icon';
 
 // Types
-import { Background } from '@utils/colors';
+import { Foreground } from '@utils/colors';
 import { Size } from '@utils/sizes';
 
 interface IButton {
@@ -13,7 +13,7 @@ interface IButton {
     size?: Size;
     icon?: string;
     iconSize?: Size;
-    background?: Background | false;
+    style?: Foreground | 'neutral' | false;
     disabled?: boolean;
     onClick: any;
 }
@@ -22,13 +22,13 @@ export default function Button({
     name, 
     size = 'md',
     icon, 
-    background = 'primary',
+    style = 'primary',
     onClick,
     disabled = false
 }: IButton) {
     return (
         <button 
-            className={`${styles.container} ${background || 'nobg'} ${styles[size]}`} 
+            className={`${styles.container} ${style ? styles[style] : 'nobg'} ${styles[size]}`} 
             onClick={onClick}
             disabled={disabled}
         >

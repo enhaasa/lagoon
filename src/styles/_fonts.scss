@@ -1,12 +1,22 @@
 $fonts: (
-    'Handwritten': 'Spanish Signature'
+    'typed': "Roboto",
+    'handwritten': 'Spanish Signature',
 );
 
 @function family($name) {
     @return map-get($fonts, $name);
 }
 
-// South Castle
+
+@font-face {
+    font-family: "Roboto";
+    src: url("../fonts/Roboto/Roboto-Light.ttf");
+}
+@font-face {
+   font-family: "Sparky Garden";
+   src: url("../fonts/SparkyGarden.otf");
+   font-weight: lighter;
+}
 @font-face {
     font-family: "Spanish Signature";
     src: 
@@ -16,8 +26,7 @@ $fonts: (
 }
 @font-face {
     font-family: "South Castle";
-    src: 
-        url("../fonts/SouthCastle.ttf");
+    src: url("../fonts/SouthCastle.ttf");
     font-weight: lighter;
 }
 

@@ -11,10 +11,10 @@
     color: colors.text('primary');
     
     @if $size == 'sm' {
-        padding: dimensions.padding('sm') dimensions.padding('sm');
+        padding: dimensions.padding('sm') dimensions.padding('md');
         font-size: fonts.size('sm');
     } @else if $size == 'md' {
-        padding: dimensions.padding('md') dimensions.padding('md');
+        padding: dimensions.padding('md') dimensions.padding('lg');
     } @else if $size == 'xl' {
         font-size: fonts.size('xl');
     }
@@ -24,7 +24,7 @@
     }
 
     &:hover {
-        filter: contrast(0.5);
+        filter: contrast(0.8);
         cursor: pointer;
     }
 }

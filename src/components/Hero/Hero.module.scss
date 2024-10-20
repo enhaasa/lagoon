@@ -1,7 +1,6 @@
 .container {
     position: relative;
-    height: 400px;
-    
+    height: 500px;
 
     & .image, & .text {
         position: absolute;
@@ -14,7 +13,7 @@
     & .image {
         background-size: cover;
         z-index: 1;
-        filter: brightness(0.6);
+        filter: brightness(0.5);
     }
 
     & .text {

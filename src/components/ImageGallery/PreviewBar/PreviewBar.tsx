@@ -1,5 +1,5 @@
 import styles from './PreviewBar.module.scss';
-import { useMemo, useState, useEffect, useLayoutEffect } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 
 // Components
 import Image from '@components/Image/Image';
@@ -74,7 +74,6 @@ export default function PreviewBar({
 
     return (
         <div className={styles.container}>
-
             <div className={styles.dotNav}>
                 {
                     paginatedImages.map((image, index) => (
@@ -96,35 +95,35 @@ export default function PreviewBar({
                         onClick={() => navigatePageDirection('left')} 
                     />
                 </span>
-                    {
-                        paginatedImages.filter(i => i.page === page).map((image, index) => (
+                {
+                    paginatedImages.filter(i => i.page === page).map((image, index) => (
 
-                            <span 
-                                key={`PreviewImage-${index}`}
-                                className={`
-                                    ${styles.item} ${image.index === selectedIndex ? styles.active : ''} 
-                                    ${image.index === 0 ? styles.first : ''}
-                                    ${image.index === paginatedImages.length -1 ? styles.last : ''}
-                                `} 
-                                onClick={() => navigateIndex(image.index)}
-                            >
-                                <Image 
-                                    className={styles.previewImage}
-                                    src={image.src} 
-                                    fullscreenable={false}
-                                    rounded={false}
-                                />
-                            </span>
-                        ))
-                    }
-                    <span className={`${styles.navButton} ${!canPageNavigate('right') && styles.disabled}`}>
-                        <Button 
-                            size={'sm'}
-                            icon={icon.chevronRight} 
-                            disabled={!canPageNavigate('right')}
-                            onClick={() => navigatePageDirection('right')} 
-                        /> 
-                    </span>
+                        <span 
+                            key={`PreviewImage-${index}`}
+                            className={`
+                                ${styles.item} ${image.index === selectedIndex ? styles.active : ''} 
+                                ${image.index === 0 ? styles.first : ''}
+                                ${image.index === paginatedImages.length -1 ? styles.last : ''}
+                            `} 
+                            onClick={() => navigateIndex(image.index)}
+                        >
+                            <Image 
+                                className={styles.previewImage}
+                                src={image.src} 
+                                fullscreenable={false}
+                                rounded={false}
+                            />
+                        </span>
+                    ))
+                }
+                <span className={`${styles.navButton} ${!canPageNavigate('right') && styles.disabled}`}>
+                    <Button 
+                        size={'sm'}
+                        icon={icon.chevronRight} 
+                        disabled={!canPageNavigate('right')}
+                        onClick={() => navigatePageDirection('right')} 
+                    /> 
+                </span>
             </div>
         </div>    
     );

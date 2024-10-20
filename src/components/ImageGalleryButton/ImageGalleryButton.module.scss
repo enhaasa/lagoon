@@ -1,0 +1,66 @@
+@use '@styles/colors.scss' as colors;
+@use '@styles/dimensions.scss' as dimensions; 
+@use '@styles/decorations.scss' as decoration;
+
+.container {
+    all: unset;
+    position: relative;
+    cursor: pointer;
+
+    & .images {
+        position: absolute;
+        top: 0;
+        display: grid;
+        place-items: center;
+    
+        margin-top: dimensions.margin('lg');
+        margin:
+            dimensions.margin('lg')
+            dimensions.margin('md')
+            dimensions.margin('md')
+            dimensions.margin('md');
+    
+        transition: 200ms;
+
+        & .image {
+            position: absolute;
+            left: 0;
+            top: 0;
+            
+            background-size: cover;
+            transition: 200ms;
+
+            opacity: 1;
+    
+            box-shadow: decoration.box-shadow('sm');
+            
+            &.second {
+                transform: rotate(2deg);
+                margin-top: -5px;
+                filter:brightness(0.6);
+            }
+            &.third {
+                transform: rotate(4deg);
+                margin-top: -10px;
+                filter:brightness(0.4);
+            }
+        }
+    
+        &:hover {
+            & .image {
+                transform: scale(1.02);
+                
+                &.second {
+                    transform: scale(1.05);
+                    transform: rotate(3deg);
+                    margin-top: -10px;
+                }
+                &.third {
+                    transform: scale(1.05);
+                    transform: rotate(8deg);
+                    margin-top: -15px;
+                }
+            }
+        }
+    }
+}

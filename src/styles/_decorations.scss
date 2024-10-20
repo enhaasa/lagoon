@@ -22,3 +22,14 @@ $border-radiuses: (
     @return map-get($border-radiuses, $name);
 }
 
+$box-shadow: (
+    "sm": "0 1px 2px rgba(0, 0, 0, 0.5)",
+    "md": "0 4px 6px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.2)",
+    "lg": "0 10px 15px rgba(0, 0, 0, 0.5), 0 4px 6px rgba(0, 0, 0, 0.2)",
+    "xl": "0 20px 25px rgba(0, 0, 0, 0.8), 0 10px 10px rgba(0, 0, 0, 0.4)",
+);
+
+@function box-shadow($name) {
+    @return unquote(map-get($box-shadow, $name));
+}
+

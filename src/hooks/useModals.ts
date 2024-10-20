@@ -12,7 +12,7 @@ export interface IUseModals {
     get: TModal[];
     killAll: any;
     lifeSupportList: number[];
-    add: (modalComponent: TModalComponent) => void;
+    add: (modalComponent: TModalComponent) => number;
     kill: (id: number) => void;
     remove: (id: number) => void;
     closeCurrent: () => void;
@@ -30,7 +30,9 @@ export default function useModals() {
             id,
             component: ModalWithId
         }, ...prev]);
-        setLifeSupportList(prev => [...prev, id])
+        setLifeSupportList(prev => [...prev, id]);
+
+        return id;
     }
 
     function kill(id: number) {

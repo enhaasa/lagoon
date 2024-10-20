@@ -9,6 +9,7 @@ type HorizontalStart = HorizontalDirection;
 type Start = VerticalStart | HorizontalStart;
 
 export enum AnimationDuration {
+    VeryFast = 0.1,
     Fast = 0.3,
     Medium = 0.5,
     Slow = 0.8
@@ -29,7 +30,8 @@ function animate(ref: Ref, from: object, to: object) {
 interface ISlideOptions {
     duration?: AnimationDuration, 
     distance?: string,
-    fade?: boolean
+    fade?: boolean,
+    ease?: string,
 }
 function slideIn(ref: Ref, start: Start, options?: ISlideOptions) {
     return slide(ref, start, 'in', options)

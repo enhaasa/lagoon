@@ -1,8 +1,7 @@
 $foreground-colors: (
     "primary": #688085,
     "secondary": #495a5d,
-    "tertiary": #85687b,
-    "quartenary": #5d4956
+    "accent": #85687b,
 );
 
 @function fg($name) {
@@ -25,4 +24,13 @@ $text-colors: (
 
 @function text($name) {
     @return map-get($text-colors, $name);
+};
+
+$neutral-colors: (
+    "white": rgb(228, 228, 220),
+    "black": rgb(15, 15, 15)
+);
+
+@function neutral($name) {
+    @return map-get($neutral-colors, $name);
 };

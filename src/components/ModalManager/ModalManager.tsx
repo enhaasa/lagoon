@@ -36,7 +36,7 @@ export default function ModalManager() {
                 setShow(false);
             }, 300)
         }
-    }, [modals.get]);
+    }, [ modals.get ]);
     
     return (
         <div 

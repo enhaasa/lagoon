@@ -22,6 +22,7 @@ import Lagoon2Img from '@assets/images/lagoon2.png';
 import Sample1 from '@assets/images/sample_1.png';
 import Sample2 from '@assets/images/sample_3.png';
 import Sample3 from '@assets/images/sample_2.png';
+import LagoonImg from '@assets/images/teaser_bg.png';
 
 // Components
 import ImageGalleryButton from '@components/ImageGalleryButton/ImageGalleryButton';
@@ -95,12 +96,8 @@ export default function Home() {
 
     return (
         <Page>
-            <div className={styles.container}>
-                <Hero 
-                    image={Lagoon1Img}
-                >
-                    <LagoonTeaser />
-                </Hero>
+            <div className={styles.container} style={{ backgroundImage: `url("${LagoonImg}")` }} >
+                <LagoonTeaser />
             </div>
         </Page>    
     );

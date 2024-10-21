@@ -10,6 +10,7 @@ interface ILinkButton {
     isNewTab?: boolean;
     isActive?: boolean;
     isExternalLink?: boolean;
+    isUnderlined?: boolean;
 }
 
 export default function LinkButton({ 
@@ -17,7 +18,8 @@ export default function LinkButton({
     target, 
     isNewTab = false, 
     isActive = false,
-    isExternalLink
+    isExternalLink,
+    isUnderlined = false
 }: ILinkButton ) {
     const { navigator } = useContext(PageContext);
 
@@ -32,6 +34,7 @@ export default function LinkButton({
     return (
         <button 
             className={`${styles.container} ${isActive ? styles.active : ''}`} 
+            style={{ textDecoration: isUnderlined ? 'underline' : ''}}
             onClick={handleClick}
         >
             { name }

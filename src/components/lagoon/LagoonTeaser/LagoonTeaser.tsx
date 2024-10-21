@@ -1,5 +1,8 @@
 import styles from './LagoonTeaser.module.scss';
-import { useState, useLayoutEffect, useRef } from 'react';
+import { useState, useLayoutEffect, useRef, useContext } from 'react';
+
+// Contexts
+import { PageContext } from '@contexts/Page';
 
 // Animations
 import gsap from 'gsap';
@@ -24,6 +27,8 @@ const ANIMATION_DELAY = 800;
 const DISPLAY_DURATION = 5000;
 
 export default function LagoonTeaser() {
+
+    const { navigator } = useContext(PageContext);
 
     const [ eventIndex, setEventIndex ] = useState(0);
     const handwrittenRef = useRef(null);
@@ -71,8 +76,8 @@ export default function LagoonTeaser() {
 
             <div className={styles.navContainer}>
                 <nav className={styles.nav}>
-                    <Button style='neutral' name='Check out the venue' onClick={() => {}}/>
-                    <Button style='accent' name='Book an event' onClick={() => {}}/>
+                    <Button style='neutral' name='Check out the venue' onClick={() => {navigator.internalNavigate('/venue')}}/>
+                    <Button style='accent' name='Book an event' onClick={() => {navigator.internalNavigate('/services')}}/>
                 </nav>
             </div>
         </div>    

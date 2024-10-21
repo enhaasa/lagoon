@@ -40,7 +40,8 @@ const Image = forwardRef<HTMLImageElement, IImage>(
                 {fullscreenable &&
                     <div className={styles.overlay}>
                         <Button 
-                            icon={icon.externalLink}                  
+                            style={false}
+                                icon={icon.externalLink}                  
                             onClick={onFullscreen}
                         />
                     </div>

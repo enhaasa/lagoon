@@ -1,3 +1,7 @@
-.container {
+@use '@styles/colors.scss' as colors;
 
+.container {
+    background: colors.bg('secondary');
+    height: 42px;
+    z-index: 2;
 }

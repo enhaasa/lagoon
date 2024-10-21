@@ -21,15 +21,12 @@ export default function Navbar() {
     const { navigator } = useContext(PageContext);
 
     function openMenu() {
-        console.log('clicked')
-
         offCanvas.openWithContent(
             <NavList items={navbar} />
         );
     }
 
     function getIsCurrentPathByIndex(path: string) {
-
         if (!navigator) return false;
 
         const result = (navigator.currentPageIndex.get === navigator.getPageIndexByPath(path));
@@ -43,7 +40,7 @@ export default function Navbar() {
                 {
                     <Button 
                         icon={IconBurgerMenu}
-                        background={false}
+                        style={false}
                         onClick={openMenu} 
                     />
                 }

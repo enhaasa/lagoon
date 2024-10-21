@@ -67,7 +67,7 @@ export default function Modal({
                 style={{justifyContent: `${closable ? 'space-between' : 'center'}`}}
             >
                 <span>{headline}</span>
-                {closable && <Button icon={icon.close} onClick={handleClose} />}
+                {closable && <Button style={false} icon={icon.close} onClick={handleClose} />}
             </div>
             <div className={styles.message}>{message}</div>
             <div className={styles.content}>

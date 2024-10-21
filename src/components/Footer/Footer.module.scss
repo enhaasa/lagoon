@@ -1,0 +1,19 @@
+@use '@styles/dimensions.scss' as dimensions;
+@use '@styles/colors.scss' as colors;
+
+.container {
+    background: colors.bg('secondary');
+    width: 100%;
+    //position: fixed;
+    //bottom: 0;
+    //left: 0;
+    z-index: 2;
+
+    & .nav {
+        display: flex;
+        justify-content: center;
+        gap: dimensions.margin('md');
+        padding: dimensions.padding('md');
+        color: colors.text('secondary');
+    }
+}

@@ -2,6 +2,7 @@
 import Home from "@pages/Home/Home";
 import Menu from "@pages/Menu/Menu";
 import Services from "@pages/Services/Services";
+import TheVenue from "@pages/TheVenue/TheVenue";
 
 export type NavItem = {
     name: string;
@@ -18,14 +19,19 @@ const navbar: NavItem[] = [
         component: <Home />
     },
     {
-        name: 'Menu',
-        target: '/menu',
-        component: <Menu />
+        name: 'Venue',
+        target: '/venue',
+        component: <TheVenue />
     },
     {
         name: 'Services',
         target: '/services',
         component: <Services />
+    },
+    {
+        name: 'Menu',
+        target: '/menu',
+        component: <Menu />
     },
 ]
 

@@ -114,6 +114,7 @@ export default function ImageGallery({ images, isModal = false }: IImageGallery)
             <div className={styles.carousel} ref={carouselRef}>
                 <span className={`${styles.navButton} ${!canNavigate('left') && styles.disabled}`}>
                     <Button 
+                        style={false}
                         icon={icon.chevronLeft} 
                         disabled={!canNavigate('left')}
                         onClick={() => navigateDirection('left')} 
@@ -142,6 +143,7 @@ export default function ImageGallery({ images, isModal = false }: IImageGallery)
 
                 <span className={`${styles.navButton} ${!canNavigate('right') && styles.disabled}`}>
                     <Button 
+                        style={false}
                         icon={icon.chevronRight} 
                         disabled={!canNavigate('right')}
                         onClick={() => navigateDirection('right')} 

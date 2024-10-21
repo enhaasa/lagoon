@@ -65,7 +65,7 @@ export default function TransparentModal({
                 style={{justifyContent: 'space-between'}}
             >
                 <span>{headline}</span>
-                <Button icon={icon.close} onClick={handleClose} size={'lg'} />
+                <Button style={false} icon={icon.close} onClick={handleClose} size={'lg'} />
             </div>
             <div className={styles.message}>{message}</div>
             <div className={styles.content}>

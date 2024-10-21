@@ -89,6 +89,7 @@ export default function PreviewBar({
             <div className={styles.imageNav}>
                 <span className={`${styles.navButton} ${!canPageNavigate('left') && styles.disabled}`}>
                     <Button 
+                        style={false}
                         size={'sm'}
                         icon={icon.chevronLeft} 
                         disabled={!canPageNavigate('left')}
@@ -118,6 +119,7 @@ export default function PreviewBar({
                 }
                 <span className={`${styles.navButton} ${!canPageNavigate('right') && styles.disabled}`}>
                     <Button 
+                        style={false}
                         size={'sm'}
                         icon={icon.chevronRight} 
                         disabled={!canPageNavigate('right')}

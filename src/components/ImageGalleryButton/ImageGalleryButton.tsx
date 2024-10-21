@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useContext, useRef, useCallback, useEffect } from 'react';
 import styles from './ImageGalleryButton.module.scss';
 
@@ -13,23 +14,31 @@ import { UIContext } from '@contexts/UI';
 // Animations
 import gsap from 'gsap';
 
+type GalleryButtonSize = 'sm' | 'md' | 'lg' | 'xl' | 'full';
+
 interface IImageGalleryButton {
     images: GalleryImage[];
     orientation?: Orientation;
+    size?: GalleryButtonSize;
 }
 
-const verticalStyle = { height: '220px', width: '150px' };
-const horizontalStyle = { height: '150px', width: '250px' };
+const verticalStyle = { 
+    sm: { height: '220px', width: '150px' },
+    md: { height: '120px', width: '250px' },
+};
+const horizontalStyle = { 
+    sm: { height: '150px', width: '250px' },
+    md: { height: '250px', width: '350px' },
+    full: { height: '100%', width: '100%' }
+ };
 
-export default function ImageGalleryButton({ images, orientation = 'horizontal' }: IImageGalleryButton) {
+export default function ImageGalleryButton({ images, orientation = 'horizontal', size = 'sm' }: IImageGalleryButton) {
     const { modals } = useContext(UIContext);
     const modalId = useRef<null | number>(null);
 
     const firstRef = useRef(null);
     const secondRef = useRef(null);
     const thirdRef = useRef(null);
-
-    const firstRender = useRef(true);
 
     function handleClick() {
        slide('out');
@@ -38,7 +47,7 @@ export default function ImageGalleryButton({ images, orientation = 'horizontal' 
     const slide = useCallback((direction: 'in' | 'out') => {
         if (!firstRef.current || !secondRef.current || !thirdRef.current) return;
     
-        const refs = [thirdRef, secondRef, firstRef];
+        const refs = [firstRef, secondRef, thirdRef];
         const delay = 150;
     
         refs.forEach((ref, index) => {
@@ -67,36 +76,31 @@ export default function ImageGalleryButton({ images, orientation = 'horizontal' 
     
     useEffect(() => {
         if (!modals.get.find(modal => modal.id === modalId.current)) {
-            if (firstRender.current === true) {
-                firstRender.current = false;
-                return;
-            }
-
             slide('in');
         }
     }, [modals.get, slide]); 
 
     return (
-        <button className={styles.container} onClick={handleClick} style={{ position: 'relative'}}>
+        <button className={styles.container} onClick={handleClick} style={{ position: 'relative', ..._orientationStyle(orientation, size) }}>
             <div className={styles.images}>
                 {images.length > 2 &&
                     <div 
                         ref={thirdRef}
                         className={`${styles.image} ${styles.third}`} 
-                        style={{ backgroundImage: _urlify(images[2].src), ..._orientationStyle(orientation) }}
+                        style={{ backgroundImage: _urlify(images[2].src), ..._orientationStyle(orientation, size) }}
                     /> 
                 }
                 {images.length > 1 &&
                     <div 
                         ref={secondRef}
                         className={`${styles.image} ${styles.second}`} 
-                        style={{ backgroundImage: _urlify(images[1].src), ..._orientationStyle(orientation) }}
+                        style={{ backgroundImage: _urlify(images[1].src), ..._orientationStyle(orientation, size) }}
                     />
                 }
                 <div 
                     ref={firstRef}
                     className={`${styles.image} ${styles.first}`} 
-                    style={{ backgroundImage: _urlify(images[0].src), ..._orientationStyle(orientation) }}
+                    style={{ backgroundImage: _urlify(images[0].src), ..._orientationStyle(orientation, size) }}
                 />
             </div>
         </button>
@@ -107,6 +111,6 @@ function _urlify( image: string ) {
     return `url("${image}")`;
 }
 
-function _orientationStyle(orientation: Orientation) {
-    return orientation === 'vertical' ? verticalStyle : horizontalStyle;
+function _orientationStyle(orientation: Orientation, size: GalleryButtonSize) {
+    return orientation === 'vertical' ? (verticalStyle as any)[size] : (horizontalStyle as any)[size];
 }

@@ -3,6 +3,7 @@ import styles from './Location.module.scss';
 // Components
 import Title from '@components/Title/Title';
 import Icon from '@components/Icon/Icon';
+import Text from '@components/Text/Text';
 
 // Icons
 import icon from '@utils/icon';
@@ -19,13 +20,15 @@ interface ILocation {
     area: Area;
     ward: number;
     plot: number;
+    closestAetheryte?: string;
 }
 
 export default function Location({
     server,
     area,
     ward,
-    plot
+    plot,
+    closestAetheryte
 }: ILocation) {
 
     return (
@@ -33,37 +36,54 @@ export default function Location({
             <div className={styles.row}>
                 <span className={styles.column}>
                     <span className={styles.server}>
-                        { server }
+                        <Text>{ server }</Text>
                     </span>
                 </span>
             </div>
 
-            <div className={styles.row}>
-                <span className={styles.column}>
-                    <Title headline={area} />
-                </span>
-            </div>
+            <div className={styles.items}>
+                <div className={styles.row}>
+                    <span className={styles.column}>
+                        <Title headline={area} />
+                    </span>
+                </div>
 
-            <div className={styles.row}>
-                <span className={styles.column}>
-                    <Icon icon={icon.ward} />
-                    Ward:
-                </span>
+                <div className={styles.row}>
+                    <span className={styles.column}>
+                        <Icon icon={icon.ward} />
+                        <Text>Ward:</Text>
+                    </span>
 
-                <span className={styles.column}>
-                    { ward }
-                </span>
-            </div>
+                    <span className={styles.column}>
+                        <Text>{ ward }</Text>
+                    </span>
+                </div>
 
-            <div className={styles.row}>
-                <span className={styles.column}>
-                    <Icon icon={icon.plot} />
-                    Plot:
-                </span>
+                <div className={styles.row}>
+                    <span className={styles.column}>
+                        <Icon icon={icon.plot} />
+                        <Text>Plot:</Text>
+                    </span>
 
-                <span className={styles.column}>
-                    { plot }
-                </span>
+                    <span className={styles.column}>
+                        <Text>{ plot }</Text>
+                    </span>
+                </div>
+                
+                {closestAetheryte &&
+                    <div className={styles.row}>
+                        <span className={styles.column}>
+                            <Icon icon={icon.aetheryte} />
+                            <Text>Aetheryte</Text>
+                        </span>
+                        
+                        <span className={styles.column}>
+                            <span className={styles.aetheryte}>
+                                <Text>"{ closestAetheryte }"</Text>
+                            </span>
+                        </span>
+                    </div>
+                }
             </div>
         </div>    
     );

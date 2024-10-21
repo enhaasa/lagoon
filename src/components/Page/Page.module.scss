@@ -3,4 +3,6 @@
 .container {
     position: relative;
     margin: 0 dimensions.margin('md');
+    overflow-y: auto;
+    overflow-x: hidden;
 }

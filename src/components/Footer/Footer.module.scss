@@ -4,16 +4,20 @@
 .container {
     background: colors.bg('secondary');
     width: 100%;
-    //position: fixed;
-    //bottom: 0;
-    //left: 0;
     z-index: 2;
+    height: 42px;
 
     & .nav {
         display: flex;
         justify-content: center;
+        align-items: center;
         gap: dimensions.margin('md');
-        padding: dimensions.padding('md');
         color: colors.text('secondary');
+        height: 100%;
+
+        & span {
+            display: flex;
+            align-items: center;
+        }
     }
 }

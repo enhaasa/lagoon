@@ -4,6 +4,9 @@ import { useContext } from 'react';
 // Contexts
 import { PageContext } from '@contexts/Page';
 
+// Components
+import Text from '@components/Text/Text';
+
 interface ILinkButton {
     name: string;
     target: string;
@@ -37,7 +40,7 @@ export default function LinkButton({
             style={{ textDecoration: isUnderlined ? 'underline' : ''}}
             onClick={handleClick}
         >
-            { name }
+            <Text>{ name }</Text>
         </button>
     );
 }

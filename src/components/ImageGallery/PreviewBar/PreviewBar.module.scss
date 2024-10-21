@@ -17,7 +17,7 @@
             cursor: pointer;
             width: 8px;
             height: 8px;
-            background: colors.fg('secondary');
+            background: colors.bg('primary');
             border-radius: 100%;
 
             &.active {
@@ -34,7 +34,7 @@
 
         & .navButton {
             &.disabled {
-                opacity: 0.2;
+                opacity: 0;
                 pointer-events: none;
             }
         }

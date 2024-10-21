@@ -1,0 +1,13 @@
+@use '@styles/fonts.scss' as fonts;
+@use '@styles/breakpoints.scss' as breakpoints;
+
+.container {
+    font-size: fonts.size('md');
+
+    @media (max-width: breakpoints.screen("desktop")) {
+        font-size: fonts.size('sm');
+    }
+    @media (max-width: breakpoints.screen("tablet")) {
+        font-size: fonts.size('xs');
+    }
+}

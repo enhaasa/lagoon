@@ -2,6 +2,8 @@
 @use '@styles/breakpoints.scss' as breakpoints;
 
 .container {
+    height: 100%;
+
     & .burger {
         display: none;
         z-index: 0;
@@ -10,8 +12,9 @@
     & .nav {
         display: flex;
         justify-content: center;
+        align-items: center;
         gap: dimensions.padding('md');
-        padding: dimensions.padding('md');
+        height: 100%;
     }
 
     @media (max-width: breakpoints.screen("tablet")) {

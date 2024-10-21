@@ -1,0 +1,35 @@
+@use '@styles/dimensions.scss' as dimensions;
+@use '@styles/breakpoints.scss' as breakpoints;
+
+.container {
+    margin: dimensions.margin('md') 0;
+    gap: dimensions.margin('lg');
+
+    display: flex;
+
+    &:nth-child(odd) {
+        flex-direction: row-reverse;
+    }
+
+    & .column {
+        width: 50%;
+        display: grid;
+        align-content: center;
+
+        gap: dimensions.margin('lg');
+        margin: dimensions.margin('xxl');
+
+        @media (max-width: breakpoints.screen("desktop")) {
+            margin: dimensions.margin('md') 0;
+        }
+    }
+
+    @media (max-width: breakpoints.screen("tablet")) {
+        display: grid;
+        
+        & .column {
+            width: 100%;
+        }
+        
+    }
+}

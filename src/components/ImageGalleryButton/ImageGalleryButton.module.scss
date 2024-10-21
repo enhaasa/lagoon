@@ -6,6 +6,7 @@
     all: unset;
     position: relative;
     cursor: pointer;
+    margin-bottom: dimensions.margin('xl');
 
     & .images {
         position: absolute;

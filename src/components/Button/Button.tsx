@@ -3,6 +3,7 @@ import styles from './Button.module.scss';
 
 // Components
 import Icon from '../Icon/Icon';
+import Text from '@components/Text/Text';
 
 // Types
 import { Foreground } from '@utils/colors';
@@ -41,7 +42,7 @@ export default function Button({
                 </span>
             }
             <span className={styles.name}>
-                { name }
+                <Text>{ name }</Text>
             </span>
         </button>    
     );

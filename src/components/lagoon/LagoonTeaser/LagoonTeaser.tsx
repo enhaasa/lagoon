@@ -24,7 +24,7 @@ const events = [
 ];
 
 const ANIMATION_DELAY = 800;
-const DISPLAY_DURATION = 5000;
+const DISPLAY_DURATION = 3000;
 
 export default function LagoonTeaser() {
 

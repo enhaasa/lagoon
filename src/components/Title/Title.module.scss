@@ -15,6 +15,15 @@
         & .xxl {
             font-size: fonts.size('xxl');
         }
+
+        /* Fonts */
+        &.font-standard {
+            font-family: fonts.family('standard');
+        }
+        &.font-handwritten {
+            font-family: fonts.family('handwritten');
+            margin: dimensions.margin('md');
+        }
     }
 
     & .subline {
@@ -22,4 +31,5 @@
         color: colors.text('secondary');
         font-size: fonts.size('sm');
     }
+
 }

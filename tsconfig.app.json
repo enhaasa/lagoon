@@ -14,7 +14,8 @@
       "@hooks/*": [ "src/hooks/*"],
       "@contexts/*": [ "src/contexts/*" ],
       "@config/*": [ ".config/*" ],
-      "@types/*": [ "src/@types/*" ]
+      "@types/*": [ "src/@types/*" ],
+      "@service_clients/*": [ "src/service_clients/*" ]
     },
 
     /* Bundler mode */

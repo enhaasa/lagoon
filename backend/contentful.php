@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . '/env.php';
 require __DIR__ . '/cors.php';
-require_once 'vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 $entry_id = isset($_GET['entry_id']) ? htmlspecialchars($_GET['entry_id']) : null;
 $type = isset($_GET['type']) ? htmlspecialchars($_GET['type']) : null;
@@ -36,7 +36,9 @@ try {
             $image = $entry[$name];
             $fileObject = $image->getFile($CONTENTFUL_LOCALE);
             $imageUrl = $fileObject->getUrl();
-            echo $imageUrl;
+            $trimmedUrl = substr($imageUrl, 2);
+
+            echo $trimmedUrl;
 
             break;
     }

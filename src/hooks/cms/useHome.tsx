@@ -2,6 +2,9 @@
 import { ContentfulClient, Entry } from '@service_clients/ContentfulClient';
 import { useState, useEffect, useRef } from 'react';
 
+// Utils
+import { promisesToObject } from '@utils/promises';
+
 export interface IUseHome {
     content: any;
 }
@@ -17,19 +20,13 @@ export default function useHome(client: ContentfulClient) {
         
         const promises = [
             ['background', client.getImage(entry, 'background')],
+            ['heroWords', client.getFieldArray(entry, 'heroWords')]
         ];
 
-        Promise.all(promises.map(p => p[1])).then((data) => {
-            const result: any = {};
-
-            promises.forEach((_, index) => {
-                result[promises[index][0] as string] = data[index];
-            });
-
+        promisesToObject(promises).then(result => {
             setContent(result);
             isLoaded.current = true;
-        });
-        
+        })
     }, [ client ]);
 
     return {

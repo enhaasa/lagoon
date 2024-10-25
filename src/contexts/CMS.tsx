@@ -5,7 +5,7 @@ import { createContext } from 'react';
 import { ContentfulClient } from '@service_clients/ContentfulClient';
 
 // Hooks
-import useHome, { IUseHome } from '@hooks/useCMS';
+import useHome, { IUseHome } from '@hooks/cms/useHome';
 
 export interface ICMSContext {
     home: IUseHome;

@@ -1,15 +1,17 @@
 import styles from './Home.module.scss';
 
-// Components
-import Page from '@components/Page/Page';
+import { useContext } from 'react';
 
-// Images
-import LagoonImg from '@assets/images/teaser_bg.png';
+// Contexts
+import { CMSContext } from '@contexts/CMS';
 
 // Components
 import LagoonTeaser from '@components/lagoon/LagoonTeaser/LagoonTeaser';
+import Page from '@components/Page/Page';
 
 export default function Home() {
+    const { home } = useContext(CMSContext);
+
     /*
         function handleContentModal() {
             modals.add(
@@ -44,7 +46,10 @@ export default function Home() {
 
     return (
         <Page>
-            <div className={styles.container} style={{ backgroundImage: `url("${LagoonImg}")` }} >
+            <div 
+                className={styles.container} 
+                style={{ backgroundImage: `url("${home.content?.background}")` }} 
+            >
                 <LagoonTeaser />
             </div>
         </Page>    

@@ -5,7 +5,11 @@ export enum Entry {
 }
 
 export class ContentfulClient {
-    private client = new ServiceClient('http://localhost:8000');
+    private baseUrl = window.location.hostname === 'localhost' 
+    ? 'http://localhost:8000'
+    : `${window.location.origin}/backend`;
+
+    private client = new ServiceClient(this.baseUrl);
     private endpoint = 'contentful.php';
 
     public async getField(entry: Entry, name: string) {
@@ -14,11 +18,17 @@ export class ContentfulClient {
         );
     }
 
+    public async getFieldArray(entry: Entry, name: string) {
+        return await this.client.get(
+            `${this.endpoint}?entry_id=${entry}&name=${name}&type=fieldArray`,
+            true
+        );
+    }
+
     public async getImage(entry: Entry, name: string) {
         const result = await this.client.get(
             `${this.endpoint}?entry_id=${entry}&name=${name}&type=image`
         );
-
 
         return result;
     }

@@ -14,34 +14,29 @@ import lowerTextImg from '@assets/pngtext/unforgettable.png';
 // Component
 import Button from '@components/Button/Button';
 
-const events = [
-    'Wedding Reception',
-    'Anniversary',
-    'Birthday',
-    'Engagement',
-    'Reunion',
-    'Party'
-];
+// Contexts
+import { CMSContext } from '@contexts/CMS';
 
 const ANIMATION_DELAY = 800;
 const DISPLAY_DURATION = 3000;
 
 export default function LagoonTeaser() {
-
     const { navigator } = useContext(PageContext);
+    const { home } = useContext(CMSContext);
 
     const [ eventIndex, setEventIndex ] = useState(0);
     const handwrittenRef = useRef(null);
 
     useLayoutEffect(() => {
         if (!handwrittenRef.current) return;
+        if (!home?.content?.heroWords) return;
 
         const timer = setInterval(() => {
             gsap.to(handwrittenRef.current, { opacity: 0 });
 
             setTimeout(() => {
                 setEventIndex(prev => (
-                    events.length !== prev +1
+                    home.content.heroWords.length !== prev +1
                     ? prev +1
                     : 0
                 ));
@@ -56,7 +51,7 @@ export default function LagoonTeaser() {
         return () => {
             clearInterval(timer);
         }
-    }, []);
+    }, [ home ]);
 
     return (
         <div className={styles.container}>
@@ -66,7 +61,7 @@ export default function LagoonTeaser() {
                 </div>
 
                 <div className={styles.handwritten} ref={handwrittenRef}>
-                    { events[eventIndex] }
+                    { home?.content?.heroWords[eventIndex] }
                 </div>
 
                 <div className={`${styles.typed} ${styles.lower}`}>

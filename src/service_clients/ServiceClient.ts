@@ -5,9 +5,12 @@ export class ServiceClient {
         this.api = api;
     }
 
-    public async get(endpoint: string) {
+    public async get(endpoint: string, isJson = false) {
         const response = await fetch(`${this.api}/${endpoint}`);
-        const data = await response.text();
+
+        const data = isJson
+            ? await response.json()
+            : await response.text();
 
         return data;
     }

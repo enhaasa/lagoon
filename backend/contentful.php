@@ -32,13 +32,17 @@ try {
             echo $entry[$name];
 
             break;
+        case 'fieldArray':
+            header('Content-Type: application/json');
+            echo json_encode($entry[$name]);
+
+            break;
         case 'image':
             $image = $entry[$name];
             $fileObject = $image->getFile($CONTENTFUL_LOCALE);
             $imageUrl = $fileObject->getUrl();
-            $trimmedUrl = substr($imageUrl, 2);
 
-            echo $trimmedUrl;
+            echo "https:" . $imageUrl;
 
             break;
     }

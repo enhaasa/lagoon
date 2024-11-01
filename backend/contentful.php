@@ -7,11 +7,12 @@ $entry_id = isset($_GET['entry_id']) ? htmlspecialchars($_GET['entry_id']) : nul
 $type = isset($_GET['type']) ? htmlspecialchars($_GET['type']) : null;
 $name = isset($_GET['name']) ? htmlspecialchars($_GET['name']) : null;
 
-if (!$entry_id || !$type || !$name) {
+if (!$type) {
     echo 'Missing parameters';
     return;
 }
 
+$CONTENTFUL_BASE_URL = $_ENV['CONTENTFUL_BASE_URL'];
 $CONTENTFUL_SPACE_ID = $_ENV['CONTENTFUL_SPACE_ID'];
 $CONTENTFUL_ACCESS_TOKEN = $_ENV['CONTENTFUL_ACCESS_TOKEN'];
 $CONTENTFUL_LOCALE = 'en-US';
@@ -25,19 +26,50 @@ try {
         'master' // Defaults to "master" if omitted
     );
 
-    $entry = $client->getEntry($entry_id, $CONTENTFUL_LOCALE);
-
     switch ($type) {
+        case 'entries':
+            $query = $CONTENTFUL_BASE_URL
+                . '/spaces/'
+                . $CONTENTFUL_SPACE_ID
+                . '/environments/master/entries?include=2';
+
+            $options = [
+                "http" => [
+                    "header" => "Authorization: Bearer " . $CONTENTFUL_ACCESS_TOKEN
+                ]
+            ];
+
+            $context = stream_context_create($options);
+            $result = file_get_contents($query, false, $context);
+
+            echo $result;
+
+            break;
+        case 'entry':
+            $entry = $client->getEntry($entry_id, $CONTENTFUL_LOCALE);
+            header('Content-Type: application/json');
+            echo json_encode($entry);
+
+            break;
         case 'field':
+            $entry = $client->getEntry($entry_id, $CONTENTFUL_LOCALE);
             echo $entry[$name];
 
             break;
+        case 'jsonField':
+            $entry = $client->getEntry($entry_id, $CONTENTFUL_LOCALE);
+            header('Content-Type: application/json');
+            echo json_encode($entry[$name]);
+
+            break;
         case 'fieldArray':
+            $entry = $client->getEntry($entry_id, $CONTENTFUL_LOCALE);
             header('Content-Type: application/json');
             echo json_encode($entry[$name]);
 
             break;
         case 'image':
+            $entry = $client->getEntry($entry_id, $CONTENTFUL_LOCALE);
             $image = $entry[$name];
             $fileObject = $image->getFile($CONTENTFUL_LOCALE);
             $imageUrl = $fileObject->getUrl();

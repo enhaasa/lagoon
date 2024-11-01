@@ -1,33 +1,25 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ContentfulClient, Entry } from '@service_clients/ContentfulClient';
 import { useState, useEffect, useRef } from 'react';
-
-// Utils
-import { promisesToObject } from '@utils/promises';
 
 export interface IUseHome {
     content: any;
 }
 
-const entry = Entry.LandingPage;
-
-export default function useHome(client: ContentfulClient) {
+export default function useHome(page: any, assets: any) {
    const [ content, setContent ] = useState<null | any>(null);
    const isLoaded = useRef<boolean>(false);
 
     useEffect(() => {
-        if (isLoaded.current) return;
+        if (isLoaded.current || !page?.fields) return;
         
-        const promises = [
-            ['background', client.getImage(entry, 'background')],
-            ['heroWords', client.getFieldArray(entry, 'heroWords')]
-        ];
+        const { fields } = page;
 
-        promisesToObject(promises).then(result => {
-            setContent(result);
-            isLoaded.current = true;
-        })
-    }, [ client ]);
+        setContent({
+            background: assets[fields.background.sys.id].file.url,
+            heroWords: fields.heroWords
+        });
+
+    }, [ page, assets ]);
 
     return {
         content

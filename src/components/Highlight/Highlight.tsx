@@ -4,12 +4,11 @@ import styles from './Highlight.module.scss';
 import Text from '@components/Text/Text';
 import Title from '@components/Title/Title';
 import Image from '@components/Image/Image';
-import ImageGalleryButton from '@components/ImageGalleryButton/ImageGalleryButton';
 
 interface IHighlight {
     headline: string;
     subline?: string;
-    text: string;
+    text?: string | React.ReactNode;
     images: {src: string}[];
 }
 
@@ -28,9 +27,7 @@ export default function Highlight({ headline, subline, text, images }: IHighligh
 
             <div className={`${styles.image} ${styles.column}`}>
                 {
-                    images.length === 1 
-                    ? <Image src={images[0].src}/> 
-                    : <ImageGalleryButton images={images} size='md' />
+                    <Image src={images[0].src}/> 
                 }
             </div>
         </div>    

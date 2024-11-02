@@ -14,6 +14,8 @@ interface IHighlight {
 
 export default function Highlight({ headline, subline, text, images }: IHighlight) {
 
+    console.log('images', images)
+
     return (
         <div className={styles.container}>
             <div className={`${styles.textContainer} ${styles.column}`}>
@@ -27,7 +29,7 @@ export default function Highlight({ headline, subline, text, images }: IHighligh
 
             <div className={`${styles.image} ${styles.column}`}>
                 {
-                    <Image src={images[0].src}/> 
+                    <Image images={images}/> 
                 }
             </div>
         </div>    

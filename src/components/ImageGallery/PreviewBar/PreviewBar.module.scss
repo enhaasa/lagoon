@@ -45,22 +45,6 @@
             height: 40px;
             display: flex;
             justify-content: center;
-            
-            &.first {
-                border-radius:
-                    decoration.border-radius('md')
-                    0
-                    0
-                    decoration.border-radius('md');
-            }
-    
-            &.last {
-                border-radius:
-                    0
-                    decoration.border-radius('md')
-                    decoration.border-radius('md')
-                    0;
-            }
     
             &:hover {
                 cursor: pointer;

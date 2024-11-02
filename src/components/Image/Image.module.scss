@@ -1,8 +1,15 @@
 @use '@styles/decorations.scss' as decorations;
+@use '@styles/dimensions.scss' as dimensions;
+@use '@styles/colors.scss' as colors;
+@use '@styles/fonts.scss' as fonts;
 
 .container {
     position: relative;
     display: inline-block;
+    outline: none;
+    border: none;
+    background: none;
+    transition: ease 200ms;
 
     & .image {
        position: block;
@@ -18,5 +25,23 @@
         position: absolute;
         top: 0;
         right: 0;
+        z-index: 1;
+        color: colors.text('primary');
+        padding: dimensions.padding('md') dimensions.padding('lg');
+
+        & .additionalImages {
+            display: flex;
+            align-items: center;
+            gap: dimensions.margin('md');
+        }
+    }
+
+    &.fullscreenable {
+        color: colors.text('primary');
+
+        &:hover {
+            transform: scale(1.01);
+            cursor: pointer;
+        }
     }
 }

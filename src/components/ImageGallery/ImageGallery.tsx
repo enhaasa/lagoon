@@ -131,9 +131,10 @@ export default function ImageGallery({ images, isModal = false }: IImageGallery)
                                     style={{ width: imageWidth, height: isModal ? imageMaxHeight : 'auto' }}
                                 >
                                     <Image 
-                                        src={image.src} 
+                                        images={[image]} 
                                         className={styles.image} 
                                         style={{ maxHeight: isModal ? imageMaxHeight : 'auto' }} 
+                                        fullscreenable={false}
                                     />
                                 </span>
                             ))

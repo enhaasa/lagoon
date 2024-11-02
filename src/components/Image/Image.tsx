@@ -1,36 +1,49 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { forwardRef } from 'react';
+import { forwardRef, useContext } from 'react';
 import styles from './Image.module.scss';
 
+// Contexts
+import { UIContext } from '@contexts/UI';
+
 // Components
-import Button from '@components/Button/Button';
+import ImageGalleryModal from '@components/Modal/ImageGalleryModal/ImageGalleryModal';
+import Text from '@components/Text/Text';
+import Icon from '@components/Icon/Icon';
 
 // Icons
 import icon from '@utils/icon';
 
-// Utils
-import useNavigation from '@hooks/useNavigation';
+// Types
+import { GalleryImage } from '@components/ImageGallery/ImageGallery';
 
 interface IImage {
-    src: string;
+    images: GalleryImage[];
     fullscreenable?: boolean;
+
     rounded?: boolean;
     className?: string;
     style?: any;
 }
 
 const Image = forwardRef<HTMLImageElement, IImage>(
-    ({ src, fullscreenable = true, rounded = true, className, style }: IImage, ref) => {
-        const navigator = useNavigation();
+    ({ images, fullscreenable = true, rounded = true, className, style }: IImage, ref) => {
+        const { modals } = useContext(UIContext);
 
-        function onFullscreen() {
-            navigator.externalNavigate(src, true);
+        function onClick() {
+            if (!fullscreenable) return;
+            
+            modals.add(
+                <ImageGalleryModal 
+                    headline={'Images'}
+                    images={images}
+                />
+            )
         }
 
         return (
-            <div className={styles.container}>
+            <button className={`${styles.container} ${fullscreenable && styles.fullscreenable}`} onClick={onClick}>
                 <img 
-                    src={src} 
+                    src={images[0].src} 
                     className={`${styles.image} ${rounded ? styles.rounded : ''} ${className ? className : ''}`} 
                     style={style}
                     draggable={false} 
@@ -39,14 +52,19 @@ const Image = forwardRef<HTMLImageElement, IImage>(
 
                 {fullscreenable &&
                     <div className={styles.overlay}>
-                        <Button 
-                            style={false}
-                                icon={icon.externalLink}                  
-                            onClick={onFullscreen}
-                        />
+                        <div className={styles.additionalImages}>
+                            {
+                                images.length > 1 && 
+                                <Text>
+                                    +{images.length -1} more
+                                </Text>
+                            }
+
+                            <Icon icon={icon.fullscreen} />
+                        </div>
                     </div>
                 }
-            </div>    
+            </button>    
         );
     }
 );

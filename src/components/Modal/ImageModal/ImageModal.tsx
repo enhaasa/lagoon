@@ -21,7 +21,7 @@ export default function ImageModal({ id, headline, src, message }: IImageModal) 
         >
             <div className={styles.container}>
                 <div className={styles.image}>
-                    <Image src={src} />
+                    <Image images={[{src}]} />
                 </div>
             </div>
         </Modal>

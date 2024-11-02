@@ -1,6 +1,9 @@
 @use '@styles/mixins.scss' as mixins;
+@use '@styles/colors.scss' as colors;
 
 .container {
+    filter: brightness(80%);
+
     &.sm {
         @include mixins.sqsize(14px);
     }

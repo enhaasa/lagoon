@@ -1,3 +1,4 @@
+import fullscreen from '@assets/icons/fullscreen.svg';
 import close from '@assets/icons/x.svg';
 import burgerMenu from '@assets/icons/burger-menu.svg';
 import chevronLeft from '@assets/icons/chevron-left.svg';
@@ -8,6 +9,7 @@ import ward from '@assets/icons/ward.svg';
 import plot from '@assets/icons/plot.svg';
 
 export default {
+    fullscreen,
     close,
     burgerMenu,
     chevronLeft,

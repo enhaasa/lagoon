@@ -110,7 +110,7 @@ export default function PreviewBar({
                         >
                             <Image 
                                 className={styles.previewImage}
-                                src={image.src} 
+                                images={[image]} 
                                 fullscreenable={false}
                                 rounded={false}
                             />

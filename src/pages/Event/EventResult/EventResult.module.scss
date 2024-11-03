@@ -62,6 +62,7 @@
                 & .infoWrapper {
                     display: grid;
                     justify-items: center;
+                    gap: dimensions.margin('lg');
 
                     & .countdown {
                         padding: 0;

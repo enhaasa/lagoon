@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import styles from './EventResult.module.scss';
-import { useMemo, useLayoutEffect, useRef, useContext } from 'react';
+import { useMemo, useLayoutEffect, useRef } from 'react';
 
 // Contexts
-import { UIContext } from '@contexts/UI';
+//import { UIContext } from '@contexts/UI';
 
 // Utils
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
@@ -20,12 +20,12 @@ import Title from '@components/Title/Title';
 import Countdown from '@components/Countdown/Countdown';
 import Location from '@components/Location/Location';
 import EventFaq from './EventFaq/EventFaq';
-import LocaleInfo from './LocaleInfo/LocaleInfo';
-import ContentModal from '@components/Modal/ContentModal';
-import Button from '@components/Button/Button';
+//import LocaleInfo from './LocaleInfo/LocaleInfo';
+//import ContentModal from '@components/Modal/ContentModal';
+//import Button from '@components/Button/Button';
 
 // Icons
-import icon from '@utils/icon';
+//import icon from '@utils/icon';
 
 type Event = {
     background: {
@@ -45,7 +45,7 @@ interface IEventResult {
 }
 
 export default function EventResult({ content, assets }: IEventResult) {
-    const { modals } = useContext(UIContext);
+    //const { modals } = useContext(UIContext);
 
     const ref = useRef(null);
 
@@ -69,6 +69,7 @@ export default function EventResult({ content, assets }: IEventResult) {
         return { src: assets[content.background.sys.id]?.file?.url };
     }, [ content, assets]);
 
+    /*
     function onLocaleInfoClick() {
         modals.add(
             <ContentModal
@@ -78,6 +79,7 @@ export default function EventResult({ content, assets }: IEventResult) {
             </ContentModal>
         )
     }
+*/
 
     return (
         <div className={styles.container} ref={ref}>

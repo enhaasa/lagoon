@@ -6,9 +6,11 @@ interface ILocaleInfo {
 
 export default function LocaleInfo({ date }: ILocaleInfo) {
 
+    console.log(date)
+
     return (
         <div className={styles.container}>
-            
+
         </div>    
     );
 }

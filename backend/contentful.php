@@ -32,7 +32,7 @@ try {
             $query = $CONTENTFUL_BASE_URL
                 . '/spaces/'
                 . $CONTENTFUL_SPACE_ID
-                . '/environments/master/entries?include=2';
+                . '/environments/master/entries?include=1';
 
             if ($params) {
                 $decodedParams = json_decode($params, true);
@@ -56,7 +56,13 @@ try {
             $context = stream_context_create($options);
             $result = file_get_contents($query, false, $context);
 
+            file_put_contents(__DIR__ . '/contentful_response.txt', $CONTENTFUL_BASE_URL);
+
             echo $result;
+
+            break;
+        case 'test':
+            echo "Works great!";
 
             break;
     }

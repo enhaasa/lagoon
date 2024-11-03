@@ -13,7 +13,7 @@ import Page from '@components/Page/Page';
 import { ContentfulClient } from '@service_clients/ContentfulClient';
 
 // Config
-import navbar from '@config/navbar';
+//import navbar from '@config/navbar';
 
 const client = new ContentfulClient();
 
@@ -57,16 +57,18 @@ export default function Event() {
             <div className={styles.container}>
                 {
                     content && !noresult 
-                    ? <Page><EventResult content={content} assets={assets} /></Page>
+                    ? <EventResult content={content} assets={assets} />
                     : !noresult 
                     ? <ResultLoading />
-                    : <Page><NoResult /></Page>
+                    : <NoResult />
                 }
             </div>    
         </Page>
     );    
 }
 
+/*
 function _isSlugValid(slug?: string) {
     return !(navbar.map(i => i.target).includes(`/${slug}`));
 }
+*/

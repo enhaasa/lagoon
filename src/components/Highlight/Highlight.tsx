@@ -14,8 +14,6 @@ interface IHighlight {
 
 export default function Highlight({ headline, subline, text, images }: IHighlight) {
 
-    console.log('images', images)
-
     return (
         <div className={styles.container}>
             <div className={`${styles.textContainer} ${styles.column}`}>

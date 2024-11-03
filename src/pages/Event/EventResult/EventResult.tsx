@@ -1,9 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import styles from './EventResult.module.scss';
-import { useMemo } from 'react';
+import { useMemo, useLayoutEffect, useRef } from 'react';
 
 // Utils
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+
+// Animations
+import animate from '@utils/animate';
 
 // Config
 import location from '@config/location';
@@ -32,6 +35,18 @@ interface IEventResult {
 
 export default function EventResult({ content, assets }: IEventResult) {
 
+    const ref = useRef(null);
+
+    useLayoutEffect(() => {
+        if (!ref.current) return;
+
+        const animation = animate.slideIn(ref, 'bottom', {fade: true})
+
+        return () => {
+            animation?.kill();
+        }
+    }, []);
+
     const background = useMemo(() => {
         if (!content?.background?.sys?.id) return null;
 
@@ -39,7 +54,7 @@ export default function EventResult({ content, assets }: IEventResult) {
     }, [ content, assets]);
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container} ref={ref}>
 
             <div className={styles.hero}>
                 <div className={styles.image} style={{ backgroundImage: `url("${background?.src}")` }} />
@@ -77,12 +92,9 @@ export default function EventResult({ content, assets }: IEventResult) {
                 </div>
             </div>
 
-
             <Text>
                 {documentToReactComponents(content?.description)}
             </Text>
-
-
 
         </div>    
     );

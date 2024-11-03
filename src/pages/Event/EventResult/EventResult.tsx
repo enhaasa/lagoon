@@ -1,6 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import styles from './EventResult.module.scss';
-import { useMemo, useLayoutEffect, useRef } from 'react';
+import { useMemo, useLayoutEffect, useRef, useContext } from 'react';
+
+// Contexts
+import { UIContext } from '@contexts/UI';
 
 // Utils
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
@@ -16,6 +19,13 @@ import Text from '@components/Text/Text';
 import Title from '@components/Title/Title';
 import Countdown from '@components/Countdown/Countdown';
 import Location from '@components/Location/Location';
+import EventFaq from './EventFaq/EventFaq';
+import LocaleInfo from './LocaleInfo/LocaleInfo';
+import ContentModal from '@components/Modal/ContentModal';
+import Button from '@components/Button/Button';
+
+// Icons
+import icon from '@utils/icon';
 
 type Event = {
     background: {
@@ -26,6 +36,7 @@ type Event = {
     headline: string;
     subline: string;
     slug: string;
+    dressCode?: string;
 }
 
 interface IEventResult {
@@ -34,6 +45,7 @@ interface IEventResult {
 }
 
 export default function EventResult({ content, assets }: IEventResult) {
+    const { modals } = useContext(UIContext);
 
     const ref = useRef(null);
 
@@ -47,11 +59,25 @@ export default function EventResult({ content, assets }: IEventResult) {
         }
     }, []);
 
+    const date = new Date(content?.date ?? '');
+    const formattedDate = date.toLocaleString().replace(',', ' at').slice(0, -3);
+    const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
     const background = useMemo(() => {
         if (!content?.background?.sys?.id) return null;
 
         return { src: assets[content.background.sys.id]?.file?.url };
     }, [ content, assets]);
+
+    function onLocaleInfoClick() {
+        modals.add(
+            <ContentModal
+                headline={'Locale Info'}
+            >
+                <LocaleInfo date={content?.date} />
+            </ContentModal>
+        )
+    }
 
     return (
         <div className={styles.container} ref={ref}>
@@ -69,12 +95,21 @@ export default function EventResult({ content, assets }: IEventResult) {
                                 isCentered={true}
                             />
 
+                            <div className={styles.separator} />
                             <div className={styles.infoWrapper}>
+
                                 <div className={styles.countdown}>
                                     <div className={styles.title}>
                                         <Text>Event begins in</Text>
                                     </div>
                                     <Countdown date={content?.date} />
+                                    <div className={styles.date}>
+                                        <Text>{formattedDate}</Text>
+
+                                        <div className={styles.timezone}>
+                                            <Text>({userTimezone})</Text>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div className={styles.location}>
@@ -87,15 +122,19 @@ export default function EventResult({ content, assets }: IEventResult) {
                                     />
                                 </div>
                             </div>
+                            <div className={styles.separator} />
+
+                            <div className={styles.description}>
+                                <Text>
+                                    {documentToReactComponents(content?.description)}
+                                </Text>
+                            </div>
                         </>
                     }
                 </div>
             </div>
 
-            <Text>
-                {documentToReactComponents(content?.description)}
-            </Text>
-
+            <EventFaq dressCode={content?.dressCode} />
         </div>    
     );
 }

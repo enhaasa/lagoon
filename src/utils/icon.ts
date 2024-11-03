@@ -7,6 +7,7 @@ import externalLink from '@assets/icons/external-link.svg';
 import aetheryte from '@assets/icons/aetheryte.svg';
 import ward from '@assets/icons/ward.svg';
 import plot from '@assets/icons/plot.svg';
+import question from '@assets/icons/question.svg';
 
 export default {
     fullscreen,
@@ -17,5 +18,6 @@ export default {
     externalLink,
     aetheryte,
     ward,
-    plot
+    plot,
+    question
 }

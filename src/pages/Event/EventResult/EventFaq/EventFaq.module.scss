@@ -1,0 +1,19 @@
+@use '@styles/colors.scss' as colors;
+@use '@styles/dimensions.scss' as dimensions;
+
+.container {
+    display: grid;
+    gap: dimensions.margin('lg');
+    margin: dimensions.margin('lg') 0;
+
+    & .item {
+        display: grid;
+        gap: dimensions.margin('sm');
+
+        & .question {
+            color: colors.text('accent');
+            border-left: 3px solid colors.text('accent');
+            padding-left: dimensions.padding('md');
+        }
+    }
+}

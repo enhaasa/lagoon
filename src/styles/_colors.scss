@@ -18,8 +18,9 @@ $background-colors: (
 };
 
 $text-colors: (
-    "primary": #d8d8d8,
-    "secondary": #a8a8a8
+    "primary": #d6d6d6,
+    "secondary": #a8a8a8,
+    "accent": #bb6877
 );
 
 @function text($name) {

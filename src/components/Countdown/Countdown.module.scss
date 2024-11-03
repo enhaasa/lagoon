@@ -5,6 +5,7 @@
 .container {
     display: flex;
     gap: dimensions.margin('lg');
+    margin: - dimensions.margin('md') 0;
 
     & .item {
         display: flex;

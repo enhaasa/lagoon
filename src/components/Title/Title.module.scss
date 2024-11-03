@@ -1,6 +1,7 @@
 @use '@styles/dimensions.scss' as dimensions;
 @use '@styles/fonts.scss' as fonts;
 @use '@styles/colors.scss' as colors;
+@use '@styles/breakpoints.scss' as breakpoints;
 
 .container {
     & .headline {
@@ -8,12 +9,33 @@
 
         &.lg {
             font-size: fonts.size('lg');
+
+            @media (max-width: breakpoints.screen("tablet")) {
+                font-size: fonts.size('md');
+            }
+            @media (max-width: breakpoints.screen("phone")) {
+                font-size: fonts.size('sm');
+            }
         }
-        & .xl {
+        &.xl {
             font-size: fonts.size('xl');
+            
+            @media (max-width: breakpoints.screen("tablet")) {
+                font-size: fonts.size('lg');
+            }
+            @media (max-width: breakpoints.screen("phone")) {
+                font-size: fonts.size('md');
+            }
         }
-        & .xxl {
+        &.xxl {
             font-size: fonts.size('xxl');
+
+            @media (max-width: breakpoints.screen("tablet")) {
+                font-size: fonts.size('xl');
+            }
+            @media (max-width: breakpoints.screen("phone")) {
+                font-size: fonts.size('lg');
+            }
         }
 
         /* Fonts */
@@ -30,6 +52,10 @@
         margin: 0;
         color: colors.text('secondary');
         font-size: fonts.size('sm');
+    }
+
+    &.centered {
+        text-align: center;
     }
 
 }

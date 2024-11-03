@@ -8,7 +8,7 @@ import Text from '@components/Text/Text';
 // Icons
 import icon from '@utils/icon';
 
-type Area = 
+export type Area = 
     'The Lavender Beds' |
     'Mist' |
     'The Goblet' |
@@ -74,7 +74,7 @@ export default function Location({
                     <div className={styles.row}>
                         <span className={styles.column}>
                             <Icon icon={icon.aetheryte} />
-                            <Text>Aetheryte</Text>
+                            <Text>Aetheryte: </Text>
                         </span>
                         
                         <span className={styles.column}>

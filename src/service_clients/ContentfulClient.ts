@@ -13,36 +13,15 @@ export class ContentfulClient {
     private client = new ServiceClient(this.baseUrl);
     private endpoint = 'contentful.php';
 
-    public async getEntries() {
-        return await this.client.get(
-            `${this.endpoint}?type=entries`,
-            true
-        );
-    }
+    public async getEntries(params?: string) {
+        let target = `${this.endpoint}?type=entries`;
 
-    public async getEntry(entry: Entry) {
-        return await this.client.get(
-            `${this.endpoint}?entry_id=${entry}&type=entry`,
-            true
-        );
-    }
+        if (params) {
+            target = `${target}&params=${params}`
+        }
 
-    public async getField(entry: Entry, name: string) {
         return await this.client.get(
-            `${this.endpoint}?entry_id=${entry}&name=${name}&type=field`
-        );
-    }
-
-    public async getJsonField(entry: Entry, name: string) {
-        return await this.client.get(
-            `${this.endpoint}?entry_id=${entry}&name=${name}&type=jsonField`,
-            true
-        );
-    }
-
-    public async getFieldArray(entry: Entry, name: string) {
-        return await this.client.get(
-            `${this.endpoint}?entry_id=${entry}&name=${name}&type=fieldArray`,
+            target,
             true
         );
     }

@@ -12,6 +12,9 @@ import ModalManager from '@components/ModalManager/ModalManager';
 import Footer from '@components/Footer/Footer';
 import SiteContainer from '@components/SiteContainer/SiteContainer';
 
+// Pages
+import Event from '@pages/Event/Event';
+
 // Config
 import navbar from '@config/navbar';
 
@@ -31,6 +34,7 @@ function App() {
                       <Route key={`Route-${index}`} path={item.target} element={item.component} />
                     ))
                   }
+                  <Route path={'/e/:slug'} element={<Event />}/>
                 </Routes>
                 <Footer />
               </SiteContainer>

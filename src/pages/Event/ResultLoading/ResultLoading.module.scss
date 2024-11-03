@@ -1,0 +1,11 @@
+@use '@styles/dimensions.scss' as dimensions;
+
+.container {
+    width: 100%;
+    height: calc(100vh - 260px);
+    display: grid;
+    place-items: center;
+    margin-top: dimensions.margin('xxl');
+    
+    filter: brightness(0.5);
+}

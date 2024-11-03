@@ -39,12 +39,26 @@
             text-align: center;
             opacity: 1;
         }
+
+        @media (max-width: breakpoints.screen("desktop")) {
+       
+    
+            & .handwritten {
+                font-size: fonts.size('xl');
+            }
+    
+            & .typed{
+                & .textImage {
+                    width: 180px;
+                }
+            }
+        }
         
         @media (max-width: breakpoints.screen("tablet")) {
             gap: dimensions.margin('md');
     
             & .handwritten {
-                font-size: fonts.size('xl');
+                font-size: fonts.size('md');
             }
     
             & .typed{

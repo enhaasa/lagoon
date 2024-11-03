@@ -31,11 +31,12 @@ $fonts: (
 }
 
 $sizes: (
+    "xs": 14px,
     "sm": 18px,
     "md": 22px,
     "lg": 28px,
     "xl": 42px,
-    "xxl": 64px
+    "xxl": 72px
 );
 
 @function size($name) {

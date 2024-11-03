@@ -3,6 +3,9 @@ import { useContext } from 'react';
 import styles from './TheVenue.module.scss';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
+// Config
+import location from '@config/location';
+
 // Contexts
 import { CMSContext } from '@contexts/CMS';
 
@@ -30,12 +33,12 @@ export default function TheVenue() {
         <Page>
             <div className={styles.container}>
                 <div className={styles.teaser}>
-                    <Location 
-                        server={'Odin'}
-                        area={'The Goblet'}
-                        ward={27}
-                        plot={19}
-                        closestAetheryte='The Brimming Heart'
+                    <Location
+                        server={location.server}
+                        area={location.area}
+                        ward={location.ward}
+                        plot={location.plot}
+                        closestAetheryte={location.closestAetheryte}
                     />
                 
                     <ImageGalleryButton 

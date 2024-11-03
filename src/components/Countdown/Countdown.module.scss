@@ -20,6 +20,10 @@
         }
     }
 
+    @media (max-width: breakpoints.screen("tablet")) {
+        margin: 0;
+    }
+
     @media (max-width: breakpoints.screen("phone")) {
         display: grid;
         justify-content: center;

@@ -36,7 +36,7 @@ export default function Location({
             <div className={styles.row}>
                 <span className={styles.column}>
                     <span className={styles.server}>
-                        <Text>{ server }</Text>
+                        <Text size='sm'>{ server }</Text>
                     </span>
                 </span>
             </div>

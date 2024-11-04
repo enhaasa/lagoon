@@ -55,7 +55,7 @@ const Image = forwardRef<HTMLImageElement, IImage>(
                         <div className={styles.additionalImages}>
                             {
                                 images.length > 1 && 
-                                <Text>
+                                <Text size='sm'>
                                     +{images.length -1} more
                                 </Text>
                             }

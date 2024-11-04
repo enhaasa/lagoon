@@ -12,19 +12,8 @@ import { CMSContext } from '@contexts/CMS';
 // Components
 import Page from '@components/Page/Page';
 import Location from '@components/Location/Location';
-import ImageGalleryButton from '@components/ImageGalleryButton/ImageGalleryButton';
 import Highlight from '@components/Highlight/Highlight';
-
-// Images
-import venueImg1 from '@assets/images/lagoon1.png';
-import venueImg2 from '@assets/images/lagoon2.png';
-import venueImg3 from '@assets/images/lucy.jpg';
-
-const venueImages = [
-    {src: venueImg1},
-    {src: venueImg2},
-    {src: venueImg3}
-];
+import VenueDetails from '@components/VenueDetails/VenueDetails';
 
 export default function TheVenue() {
     const { venue } = useContext(CMSContext);
@@ -41,9 +30,7 @@ export default function TheVenue() {
                         closestAetheryte={location.closestAetheryte}
                     />
                 
-                    <ImageGalleryButton 
-                        images={venueImages}
-                    />
+                    <VenueDetails />
                 </div>
 
                 {

@@ -19,4 +19,4 @@ const eventFaq = [
     }
 ]
 
-export default eventFaq
+export default eventFaq;

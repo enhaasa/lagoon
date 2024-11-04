@@ -102,14 +102,14 @@ export default function EventResult({ content, assets }: IEventResult) {
 
                                 <div className={styles.countdown}>
                                     <div className={styles.title}>
-                                        <Text>Event begins in</Text>
+                                        <Text size='sm'>Event begins in</Text>
                                     </div>
                                     <Countdown date={content?.date} />
                                     <div className={styles.date}>
                                         <Text>{formattedDate}</Text>
 
                                         <div className={styles.timezone}>
-                                            <Text>({userTimezone})</Text>
+                                            <Text size='sm'>({userTimezone})</Text>
                                         </div>
                                     </div>
                                 </div>

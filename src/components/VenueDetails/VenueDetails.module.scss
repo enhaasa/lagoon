@@ -1,0 +1,15 @@
+@use '@styles/colors.scss' as colors;
+@use '@styles/dimensions.scss' as dimensions;
+
+.container {
+    display: grid;
+    gap: dimensions.margin('md');
+
+    & .item {
+        text-align: center;
+
+        & .title {
+            color: colors.text('secondary');
+        }
+    }
+}

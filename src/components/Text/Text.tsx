@@ -3,7 +3,7 @@ import styles from './Text.module.scss';
 interface IText {
     children?: React.ReactNode;
     string?: string;
-    size?: 'md' | 'lg' | 'xl' | 'xxl';
+    size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
 }
 
 export default function Text({ children, string, size = 'md' }: IText) {

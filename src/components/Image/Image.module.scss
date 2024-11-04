@@ -39,6 +39,11 @@
     &.fullscreenable {
         color: colors.text('primary');
 
+        & .image {
+            cursor: pointer;
+        }
+        
+
         &:hover {
             transform: scale(1.01);
             cursor: pointer;

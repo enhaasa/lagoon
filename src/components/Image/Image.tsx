@@ -19,17 +19,19 @@ import { GalleryImage } from '@components/ImageGallery/ImageGallery';
 interface IImage {
     images: GalleryImage[];
     fullscreenable?: boolean;
-
+    isPreview?: boolean;
     rounded?: boolean;
     className?: string;
     style?: any;
 }
 
 const Image = forwardRef<HTMLImageElement, IImage>(
-    ({ images, fullscreenable = true, rounded = true, className, style }: IImage, ref) => {
+    ({ images, fullscreenable = true, rounded = true, isPreview = false, className, style }: IImage, ref) => {
         const { modals } = useContext(UIContext);
 
-        function onClick() {
+        function onClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+            if (isPreview) return;
+            event.stopPropagation();
             if (!fullscreenable) return;
             
             modals.add(

@@ -30,6 +30,7 @@ export default function TransparentModal({
     const ref = useRef(null);
 
     function handleModalClick(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+        modals.closeCurrent();
         e.stopPropagation();
     }
 

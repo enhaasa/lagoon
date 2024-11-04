@@ -39,7 +39,7 @@ function paginateImages(images: GalleryImage[]) {
 
 interface IPreviewBar {
     images: GalleryImage[];
-    navigateIndex: (T:number) => void;
+    navigateIndex: (T:number, event: React.MouseEvent<HTMLButtonElement> | React.MouseEvent<HTMLSpanElement>) => void;
     selectedIndex: number;
 }
 
@@ -64,7 +64,8 @@ export default function PreviewBar({
         }
     }
 
-    function navigatePageDirection(direction: HorizontalDirection) {
+    function navigatePageDirection(direction: HorizontalDirection, event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+        event.stopPropagation();
         if (direction === 'left' && canPageNavigate('left')) {
             setPage(page -1);
         } else if (direction === 'right' && canPageNavigate('right')) {
@@ -80,7 +81,7 @@ export default function PreviewBar({
                         <button 
                             key={`PaginatedPreviewImage-${index}`}
                             className={`${styles.dot} ${image.index === selectedIndex ? styles.active : ''}`} 
-                            onClick={() => navigateIndex(image.index)}
+                            onClick={(event: React.MouseEvent<HTMLButtonElement>) => navigateIndex(image.index, event)}
                         />
                     ))
                 }
@@ -93,7 +94,7 @@ export default function PreviewBar({
                         size={'sm'}
                         icon={icon.chevronLeft} 
                         disabled={!canPageNavigate('left')}
-                        onClick={() => navigatePageDirection('left')} 
+                        onClick={(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => navigatePageDirection('left', event)} 
                     />
                 </span>
                 {
@@ -106,12 +107,13 @@ export default function PreviewBar({
                                 ${image.index === 0 ? styles.first : ''}
                                 ${image.index === paginatedImages.length -1 ? styles.last : ''}
                             `} 
-                            onClick={() => navigateIndex(image.index)}
+                            onClick={(event) => navigateIndex(image.index, event)}
                         >
                             <Image 
                                 className={styles.previewImage}
                                 images={[image]} 
                                 fullscreenable={false}
+                                isPreview={true}
                                 rounded={false}
                             />
                         </span>
@@ -123,7 +125,7 @@ export default function PreviewBar({
                         size={'sm'}
                         icon={icon.chevronRight} 
                         disabled={!canPageNavigate('right')}
-                        onClick={() => navigatePageDirection('right')} 
+                        onClick={(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => navigatePageDirection('right', event)} 
                     /> 
                 </span>
             </div>

@@ -43,7 +43,9 @@ export default function ImageGallery({ images, isModal = false }: IImageGallery)
         }
     }
 
-    function navigateDirection(direction: HorizontalDirection) {
+    function navigateDirection(direction: HorizontalDirection, event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+        event.stopPropagation();
+
         if (direction === 'left' && canNavigate('left')) {
             setSelectedIndex(selectedIndex -1);
         } else if (direction === 'right' && canNavigate('right')) {
@@ -105,7 +107,8 @@ export default function ImageGallery({ images, isModal = false }: IImageGallery)
         });
     }, [ isModal ]);
 
-    function navigateIndex(index: number) {
+    function navigateIndex(index: number, event: React.MouseEvent<HTMLButtonElement> | React.MouseEvent<HTMLSpanElement>) {
+        event.stopPropagation();
         setSelectedIndex(index);
     }
 
@@ -115,9 +118,10 @@ export default function ImageGallery({ images, isModal = false }: IImageGallery)
                 <span className={`${styles.navButton} ${!canNavigate('left') && styles.disabled}`}>
                     <Button 
                         style={false}
-                        icon={icon.chevronLeft} 
+                        icon={icon.chevronRight} 
+                        iconRotate={180}
                         disabled={!canNavigate('left')}
-                        onClick={() => navigateDirection('left')} 
+                        onClick={(event: React.MouseEvent<HTMLDivElement, MouseEvent>) => navigateDirection('left', event)} 
                     />
                 </span>
                 
@@ -147,7 +151,7 @@ export default function ImageGallery({ images, isModal = false }: IImageGallery)
                         style={false}
                         icon={icon.chevronRight} 
                         disabled={!canNavigate('right')}
-                        onClick={() => navigateDirection('right')} 
+                        onClick={(event: React.MouseEvent<HTMLDivElement, MouseEvent>) => navigateDirection('right', event)} 
                     />
                 </span>
             </div>

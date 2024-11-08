@@ -56,8 +56,6 @@ try {
             $context = stream_context_create($options);
             $result = file_get_contents($query, false, $context);
 
-            file_put_contents(__DIR__ . '/contentful_response.txt', $CONTENTFUL_BASE_URL);
-
             echo $result;
 
             break;

@@ -2,14 +2,9 @@
 @use '@styles/breakpoints.scss' as breakpoints;
 
 .container {
+
     margin: dimensions.margin('md') 0;
     gap: dimensions.margin('lg');
-
-    display: flex;
-
-    &:nth-child(odd) {
-        flex-direction: row-reverse;
-    }
 
     & .column {
         width: 50%;
@@ -30,6 +25,5 @@
         & .column {
             width: 100%;
         }
-        
     }
 }

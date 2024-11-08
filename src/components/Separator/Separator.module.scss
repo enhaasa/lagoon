@@ -1,0 +1,18 @@
+@use '@styles/dimensions.scss' as dimensions;
+@use '@styles/colors.scss' as colors;
+
+.container {
+
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+
+    & .separator {
+        margin: dimensions.margin('xl');
+        background: colors.text('secondary');
+        height: 1px;
+        width: 50%;
+        opacity: 50%;
+    }
+}

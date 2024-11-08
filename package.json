@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "frontend": "vite",
+    "backend": "cd backend && php -S localhost:8000",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",

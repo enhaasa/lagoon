@@ -1,12 +1,42 @@
 @use '@styles/colors' as colors;
 @use '@styles/dimensions' as dimensions;
+@use '@styles/breakpoints.scss' as breakpoints;
 
 .container {
- & .teaser {
-    background: colors.bg('primary');
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: dimensions.padding('lg');
- }
+   & .highlights {
+      display: grid;
+
+      & > * {
+         display: flex;
+
+         &:nth-child(even) {
+            flex-direction: row-reverse;
+         }
+
+         @media (max-width: breakpoints.screen("tablet")) {
+            display: grid;
+            
+            & .column {
+                width: 100%;
+            }
+         }
+      }
+   }
+
+   & .teaser {
+      background: colors.bg('primary');
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: dimensions.padding('lg');
+
+      @media (max-width: breakpoints.screen("phone")) {
+         display: grid;
+         gap: dimensions.margin('lg');
+     }
+   }
+
+   & .title {
+      margin-top: dimensions.margin('xxl');
+   }
 }

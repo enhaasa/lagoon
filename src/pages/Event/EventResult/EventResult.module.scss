@@ -48,14 +48,6 @@
                 }
             }
 
-            & .separator {
-                margin: dimensions.margin('xl');
-                background: colors.text('secondary');
-                height: 1px;
-                width: 50%;
-                opacity: 50%;
-            }
-
             @media (max-width: breakpoints.screen("desktop")) {
                 padding: dimensions.padding('md') 0;
 

@@ -20,6 +20,7 @@ import Title from '@components/Title/Title';
 import Countdown from '@components/Countdown/Countdown';
 import Location from '@components/Location/Location';
 import EventFaq from './EventFaq/EventFaq';
+import Separator from '@components/Separator/Separator';
 //import LocaleInfo from './LocaleInfo/LocaleInfo';
 //import ContentModal from '@components/Modal/ContentModal';
 //import Button from '@components/Button/Button';
@@ -79,7 +80,7 @@ export default function EventResult({ content, assets }: IEventResult) {
             </ContentModal>
         )
     }
-*/
+    */
 
     return (
         <div className={styles.container} ref={ref}>
@@ -97,7 +98,7 @@ export default function EventResult({ content, assets }: IEventResult) {
                                 isCentered={true}
                             />
 
-                            <div className={styles.separator} />
+                            <Separator />
                             <div className={styles.infoWrapper}>
 
                                 <div className={styles.countdown}>
@@ -124,7 +125,7 @@ export default function EventResult({ content, assets }: IEventResult) {
                                     />
                                 </div>
                             </div>
-                            <div className={styles.separator} />
+                            <Separator />
 
                             <div className={styles.description}>
                                 <Text>

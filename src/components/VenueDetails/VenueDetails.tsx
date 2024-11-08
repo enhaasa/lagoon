@@ -11,8 +11,8 @@ export default function VenueDetails() {
     return (
         <div className={styles.container}>
             {
-                venueDetails.map(item => (
-                    <div className={styles.item}>
+                venueDetails.map((item, index) => (
+                    <div className={styles.item} key={`VenueDetailsItem-${index}`}>
                         <div className={styles.title}>
                            <Text size='sm'>{item.title}</Text>
                         </div>

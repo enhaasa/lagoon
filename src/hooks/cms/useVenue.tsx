@@ -25,6 +25,7 @@ export default function useVenue(page: any, assets: any, components: any) {
         });
 
         setContent({
+            headline: fields.headline,
             highlights: parsedHighlights
         });
         

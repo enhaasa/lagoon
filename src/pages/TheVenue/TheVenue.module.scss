@@ -6,21 +6,6 @@
    & .highlights {
       display: grid;
 
-      & > * {
-         display: flex;
-
-         &:nth-child(even) {
-            flex-direction: row-reverse;
-         }
-
-         @media (max-width: breakpoints.screen("tablet")) {
-            display: grid;
-            
-            & .column {
-                width: 100%;
-            }
-         }
-      }
    }
 
    & .teaser {

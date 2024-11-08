@@ -38,7 +38,7 @@ export default function TheVenue() {
                 <div className={styles.title}>
                     <Title 
                         headline={venue?.content?.headline}
-                        size='lg'
+                        size='xl'
                         style='handwritten'
                         isCentered={true}
                     />

@@ -10,6 +10,7 @@ interface IHighlight {
     subline?: string;
     text?: string | React.ReactNode;
     images: {src: string}[];
+    isNsfw?: boolean;
 }
 
 export default function Highlight({ headline, subline, text, images }: IHighlight) {

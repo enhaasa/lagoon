@@ -7,10 +7,12 @@ import { ContentfulClient } from '@service_clients/ContentfulClient';
 // Hooks
 import useHome, { IUseHome } from '@hooks/cms/useHome';
 import useVenue, { IUseVenue } from '@hooks/cms/useVenue';
+import useServices, { IUseServices } from '@hooks/cms/useServices';
 
 export interface ICMSContext {
     home: IUseHome;
     venue: IUseVenue;
+    services: IUseServices;
     components: any;
     assets: any;
 }
@@ -20,7 +22,8 @@ const client = new ContentfulClient();
 
 const pagesToFetch: any = {
     landingPage: '2JVjG5yd2SmmYD7hfz1nQX',
-    venuePage: '4V4xAQS5MnjbhkOkwk6HBv'
+    venuePage: '4V4xAQS5MnjbhkOkwk6HBv',
+    servicesPage: 'gASSFvwM4G8UcYSFEMXZg'
 };
 
 function CMSContextProvider({ children }: any) {
@@ -64,13 +67,15 @@ function CMSContextProvider({ children }: any) {
 
     const home = useHome(pages.landingPage, assets);
     const venue = useVenue(pages.venuePage, assets, components);
+    const services = useServices(pages.servicesPage, assets, components);
 
     return (
         <CMSContext.Provider value={{
             assets: assets,
             components,
             home,
-            venue
+            venue,
+            services
         }}>
             {children}
         </CMSContext.Provider>

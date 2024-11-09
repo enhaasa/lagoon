@@ -71,6 +71,4 @@ const Image = forwardRef<HTMLImageElement, IImage>(
     }
 );
 
-Image.displayName = 'Image';
-
 export default Image;

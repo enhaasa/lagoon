@@ -24,6 +24,7 @@
 
     &.primary {
         background-color: colors.fg('primary');
+        color: colors.text('tertiary');
     }
 
     &.secondary {

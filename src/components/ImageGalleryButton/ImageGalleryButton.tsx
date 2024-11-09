@@ -66,7 +66,7 @@ export default function ImageGalleryButton({ images, orientation = 'horizontal',
             setTimeout(() => {
                 modalId.current = modals.add(
                     <ImageGalleryModal 
-                        headline={'Images'}
+                        headline={''}
                         images={images}
                     />
                 );

@@ -1,0 +1,58 @@
+@use '@styles/colors.scss' as colors;
+@use '@styles/dimensions.scss' as dimensions;
+@use '@styles/decorations.scss' as decorations;
+
+$SWITCH_SIZE: 20px;
+
+$trackHeight: $SWITCH_SIZE;
+$trackWidth: $SWITCH_SIZE * 2;
+$trackPadding: 2px;
+
+$knobHeight: $SWITCH_SIZE;
+$knobWidth: $SWITCH_SIZE;
+
+.container {
+    display: flex;
+    gap: dimensions.margin('md');
+    align-items: center;
+
+    & .track {
+        all: unset;
+        position: relative;
+        height: $trackHeight;
+        width: $trackWidth;
+        padding: $trackPadding;
+        display: flex;
+        align-items: center;
+        border-radius: $trackHeight;
+        border: decorations.border-width('xxs') solid colors.bg('primary');
+        cursor: pointer;
+        user-select: none;
+
+        & .knob {
+            position: absolute;
+
+            height: $knobHeight;
+            width: $knobWidth;
+            border-radius: 100%;
+            user-select: none;
+            background: colors.bg('primary');
+
+            transition: all 100ms ease-in-out;
+
+            &.left {
+                left: 0 + $trackPadding;
+            }
+            &.right {
+                left: calc(#{$trackWidth} - #{$knobWidth} + #{$trackPadding});
+            }
+        }
+
+        &.off {
+            background: colors.neutral('red');
+        }
+        &.on {
+            background: colors.neutral('green');
+        }
+    }
+}

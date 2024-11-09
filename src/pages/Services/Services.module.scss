@@ -1,3 +1,9 @@
-.container {
+@use '@styles/colors.scss' as colors;
+@use '@styles/dimensions.scss' as dimensions;
 
+.container {
+    & .teaser {
+        background: colors.bg('primary');
+        padding: dimensions.padding('md');
+    }
 }

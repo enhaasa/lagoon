@@ -111,7 +111,7 @@ function darkenBg(ref: Ref, direction: AnimationDirection, options?: IDarkenOpti
     let to: any = {};
 
     from = { background: 'rgba(0, 0, 0, 0)' }
-    to = { background: 'rgba(0, 0, 0, 0.8)' }
+    to = { background: 'rgba(0, 0, 0, 0.7)' }
 
     if (direction === 'in') {
         to.duration = duration;

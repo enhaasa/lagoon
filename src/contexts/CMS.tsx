@@ -45,7 +45,8 @@ function CMSContextProvider({ children }: any) {
             ));
             
             Object.keys(pagesToFetch).forEach(page => {
-                const resultEntryIndex = result.items.findIndex((entry: any) => 
+
+                const resultEntryIndex = result.items.filter((entry: any) => entry).findIndex((entry: any) => 
                     (entry.sys.id === pagesToFetch[page]));
 
                 newPages[page] = result.items[resultEntryIndex];

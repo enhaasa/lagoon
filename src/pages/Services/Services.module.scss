@@ -1,9 +1,17 @@
 @use '@styles/colors.scss' as colors;
 @use '@styles/dimensions.scss' as dimensions;
+@use '@styles/decorations.scss' as decorations;
 
 .container {
     & .teaser {
         background: colors.bg('primary');
         padding: dimensions.padding('md');
+        box-shadow: decorations.box-shadow('md');
+    }
+
+    & .services {
+        & .serviceTitle {
+            color: colors.text('secondary');
+        }
     }
 }

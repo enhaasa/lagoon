@@ -13,21 +13,34 @@ export default function useServices(page: any, assets: any, components: any) {
         if (isLoaded.current || !page?.fields) return;
         
         const { fields } = page;
-        const parsedServices = [ ...fields.services ];
+        
+        const parsedIncludedServices = [ ...fields.includedServices ?? [] ];
+        const parsedPaidServices = [ ...fields.paidServices ?? [] ]; 
 
-        parsedServices.forEach((service: any, index: number) => {
+        parsedIncludedServices?.forEach((service: any, index: number) => {
 
-            parsedServices[index] = {
+            const backgroundId = components[service.sys.id]?.background?.sys?.id;
+
+            parsedIncludedServices[index] = {
                 ...components[service.sys.id],
-                imageGallery: components[service.sys.id].imageGallery.map((image: any) => (
-                    assets[image.sys.id]
-                )) 
+                background: assets[backgroundId]?.file.url
+            };
+        });
+
+        parsedPaidServices?.forEach((service: any, index: number) => {
+
+            const backgroundId = components[service.sys.id]?.background?.sys?.id;
+
+            parsedPaidServices[index] = {
+                ...components[service.sys.id],
+                background: assets[backgroundId]?.file.url
             };
         });
 
         setContent({
             headline: fields.headline,
-            services: parsedServices
+            includedServices: parsedIncludedServices,
+            paidServices: parsedPaidServices
         });
 
     }, [ page, assets, components ]);

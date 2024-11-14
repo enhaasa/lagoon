@@ -12,6 +12,7 @@ import animate, { AnimationDuration } from "@utils/animate";
 
 // Icons
 import icon from "@utils/icon";
+import Icon from "@components/Icon/Icon";
 
 interface IModal {
     id?: number;
@@ -19,6 +20,7 @@ interface IModal {
     message?: string;
     children?: ReactNode;
     closable?: boolean;
+    background?: string;
 }
 
 export default function Modal({
@@ -26,7 +28,8 @@ export default function Modal({
     headline,
     message,
     children,
-    closable = true
+    closable = true,
+    background
 }: IModal) {
     const { modals } = useContext(UIContext);
     const ref = useRef(null);
@@ -67,11 +70,19 @@ export default function Modal({
                 style={{justifyContent: `${closable ? 'space-between' : 'center'}`}}
             >
                 <span>{headline}</span>
-                {closable && <Button style={false} icon={icon.close} onClick={handleClose} />}
+                {closable && 
+                    <button onClick={handleClose} className={styles.closeButton}>
+                        <Icon icon={icon.close} />
+                    </button>
+                }
             </div>
             <div className={styles.message}>{message}</div>
             <div className={styles.content}>
                 {children}
+                <div className={styles.contentOverlay} />
+            </div>
+            <div className={styles.backgroundWrapper}>
+                <div className={styles.background} style={{ backgroundImage: `url("${background}")` }} />
             </div>
         </div>
     )

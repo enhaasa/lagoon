@@ -9,9 +9,13 @@ import { CMSContext } from '@contexts/CMS';
 // Components
 import Page from '@components/Page/Page';
 import Highlight from '@components/Highlight/Highlight';
-import Title from '@components/Title/Title';
 import Text from '@components/Text/Text';
 import Switch from '@components/Switch/Switch';
+import InfoCard from '@components/InfoCard/InfoCard';
+import Column from '@components/Column/Column';
+import Grid from '@components/Grid/Grid';
+import ChainSpawn from '@components/ChainSpawn/ChainSpawn';
+import Title from '@components/Title/Title';
 import Separator from '@components/Separator/Separator';
 
 // Animations
@@ -25,15 +29,25 @@ export default function Services() {
 
     const ref = useRef(null);
 
-    const filteredHighlights = useMemo(() => {
-        if (!services?.content?.services) return []; 
+    const filteredIncludedServices = useMemo(() => {
+        if (!services?.content?.includedServices) return []; 
     
-        return services.content.services.filter((highlight: any) => {
-            if (!showNsfw) return !highlight.isNsfw;
+        return services.content.includedServices.filter((service: any) => {
+            if (!showNsfw) return !service.isNsfw;
     
             return true; 
         });
-    }, [showNsfw, services]);
+    }, [showNsfw, services?.content?.includedServices]);
+
+    const filteredPaidServices = useMemo(() => {
+        if (!services?.content?.paidServices) return []; 
+    
+        return services.content.paidServices.filter((service: any) => {
+            if (!showNsfw) return !service.isNsfw;
+    
+            return true; 
+        });
+    }, [showNsfw, services?.content?.paidServices]);
 
     function onFilterChange(state: boolean) {
         gsap.to(ref.current, { y: '100px', opacity: 0 });
@@ -60,18 +74,55 @@ export default function Services() {
                     </nav>
                 </div>
 
+                <div className={styles.title}>
+                    <Title 
+                        headline={services?.content?.headline}
+                        size='xl'
+                        style='handwritten'
+                        isCentered={true}
+                    />
+                </div>
+
+                <Separator />
+
                 <div className={styles.services} ref={ref}>
-                    {
-                        filteredHighlights.map((highlight: any) => ( 
-                            <Highlight 
-                                key={highlight.internalName}
-                                images={highlight.imageGallery.map((img: any) => ({src: img?.file?.url}))}
-                                headline={highlight.headline}
-                                subline={highlight.subline}
-                                text={documentToReactComponents(highlight.text)}
-                            />
-                        ))
+
+                    {filteredIncludedServices.length > 0 &&
+                        <>
+                            <div className={styles.serviceTitle}>
+                                <Title headline='Included Services' isCentered={true} />
+                            </div>
+
+                            <Grid>
+                                <ChainSpawn items={filteredIncludedServices.map((service: any) => 
+                                    <InfoCard 
+                                        title={service.headline} 
+                                        background={service.background}
+                                        description={service.description}
+                                    />
+                                )} />
+                            </Grid>
+                        </>
                     }
+
+                    {filteredPaidServices.length > 0 &&
+                        <>
+                            <div className={styles.serviceTitle}>
+                                <Title headline='Paid Services' isCentered={true} />
+                            </div>
+                            
+                            <Grid>
+                                <ChainSpawn items={filteredPaidServices.map((service: any) => 
+                                    <InfoCard 
+                                        title={service.headline} 
+                                        background={service.background}
+                                        description={service.description}
+                                    />
+                                )} />
+                            </Grid>
+                        </>
+                    }
+
                 </div>
 
             </div>

@@ -7,9 +7,10 @@ export interface IContentModal {
     message?: string;
     closable?: boolean;
     children?: React.ReactNode;
+    background?: string;
 }
 
-export default function ContentModal({ id, headline, message, closable, children }: IContentModal) {
+export default function ContentModal({ id, headline, message, closable, children, background }: IContentModal) {
     
     return (
         <Modal
@@ -17,6 +18,7 @@ export default function ContentModal({ id, headline, message, closable, children
             headline={headline}
             message={message}
             closable={closable}
+            background={background}
         >
             {children}
         </Modal>

@@ -1,5 +1,6 @@
 @use '@styles/dimensions.scss' as dimensions;
 @use '@styles/breakpoints.scss' as breakpoints;
+@use '@styles/decorations.scss' as decorations;
 @use '@styles/colors.scss' as colors;
 
 .container {
@@ -8,6 +9,7 @@
 
     & .hero {
         position: relative;
+        box-shadow: decorations.box-shadow('md');
 
         & .content {
             position: relative;

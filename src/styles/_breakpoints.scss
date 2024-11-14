@@ -2,6 +2,7 @@ $screen-sizes: (
     "phone": 550px,
     "tablet": 800px,
     "desktop": 1024px,
+    "widescreen": 1440px
 );
 
 @function screen($device) {

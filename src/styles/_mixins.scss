@@ -3,7 +3,7 @@
 @use '@styles/colors.scss' as colors;
 @use '@styles/fonts.scss' as fonts;
 
-@mixin button($size: 'md', $background: 'true') {
+@mixin button($size: 'md', $background: 'true', $padding: 'true') {
     all:unset;
     user-select: none;
     border: decorations.border-width('standard');
@@ -11,6 +11,9 @@
     color: colors.text('primary');
     
     @if $size == 'sm' {
+        @if ($padding) {
+
+        }
         padding: dimensions.padding('sm') dimensions.padding('md');
         font-size: fonts.size('sm');
     } @else if $size == 'md' {

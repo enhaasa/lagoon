@@ -1,6 +1,7 @@
 @use '@styles/colors' as colors;
 @use '@styles/dimensions' as dimensions;
 @use '@styles/breakpoints.scss' as breakpoints;
+@use '@styles/decorations.scss' as decorations;
 
 .container {
    & .highlights {
@@ -14,6 +15,7 @@
       justify-content: space-around;
       align-items: center;
       padding: dimensions.padding('lg');
+      box-shadow: decorations.box-shadow('md');
 
       @media (max-width: breakpoints.screen("phone")) {
          display: grid;

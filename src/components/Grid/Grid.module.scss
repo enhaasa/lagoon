@@ -1,0 +1,21 @@
+@use '@styles/dimensions.scss' as dimensions;
+@use '@styles/breakpoints.scss' as breakpoints;
+
+.container {
+    display: grid;
+    margin: dimensions.margin('xl');
+    grid-template-columns: repeat(5, 1fr);
+    gap: dimensions.margin('xl');
+
+    @media (max-width: breakpoints.screen('desktop')) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    @media (max-width: breakpoints.screen('tablet')) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: breakpoints.screen('phone')) {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

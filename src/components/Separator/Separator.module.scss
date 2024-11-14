@@ -2,11 +2,9 @@
 @use '@styles/colors.scss' as colors;
 
 .container {
-
     display: flex;
     justify-content: center;
     width: 100%;
-
 
     & .separator {
         margin: dimensions.margin('xl');

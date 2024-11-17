@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import styles from './Services.module.scss';
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { useContext, useState, useMemo, useRef } from 'react';
 
 // Contexts
@@ -8,11 +7,9 @@ import { CMSContext } from '@contexts/CMS';
 
 // Components
 import Page from '@components/Page/Page';
-import Highlight from '@components/Highlight/Highlight';
 import Text from '@components/Text/Text';
 import Switch from '@components/Switch/Switch';
 import InfoCard from '@components/InfoCard/InfoCard';
-import Column from '@components/Column/Column';
 import Grid from '@components/Grid/Grid';
 import ChainSpawn from '@components/ChainSpawn/ChainSpawn';
 import Title from '@components/Title/Title';

@@ -9,9 +9,6 @@ import { UIContext } from '@contexts/UI';
 import Text from '@components/Text/Text';
 import InfoCardModal from './InfoCardModal/InfoCardModal';
 
-// Images
-import Background from '@assets/images/lagoon2.png';
-
 // Animations
 import gsap from 'gsap';
 
@@ -47,7 +44,6 @@ export default function InfoCard({ title, background, description }: IInfoCard) 
 
         )
     }
-
 
     return (
         <div className={styles.container} onClick={handleClick} >

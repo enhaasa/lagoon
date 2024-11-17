@@ -70,18 +70,6 @@ export default function EventResult({ content, assets }: IEventResult) {
         return { src: assets[content.background.sys.id]?.file?.url };
     }, [ content, assets]);
 
-    /*
-    function onLocaleInfoClick() {
-        modals.add(
-            <ContentModal
-                headline={'Locale Info'}
-            >
-                <LocaleInfo date={content?.date} />
-            </ContentModal>
-        )
-    }
-    */
-
     return (
         <div className={styles.container} ref={ref}>
 

@@ -12,7 +12,7 @@ export interface IUseModals {
     get: TModal[];
     killAll: any;
     lifeSupportList: number[];
-    add: (modalComponent: TModalComponent) => number;
+    add: (modalComponent: TModalComponent) => number | false;
     kill: (id: number) => void;
     remove: (id: number) => void;
     closeCurrent: () => void;
@@ -21,8 +21,12 @@ export interface IUseModals {
 export default function useModals() {
     const [ modals, setModals ] = useState<TModal[]>([]);
     const [ lifeSupportList, setLifeSupportList ] = useState<number[]>([]);
+    const [ isChangingState, setIsChangingState ] = useState<boolean>(false);
 
     function add(modalComponent: TModalComponent) {
+        if (isChangingState) return false;
+        setIsChangingState(true);
+
         const id = modals.length;
 
         const ModalWithId = React.cloneElement(modalComponent, { id });
@@ -32,14 +36,25 @@ export default function useModals() {
         }, ...prev]);
         setLifeSupportList(prev => [...prev, id]);
 
+        setTimeout(() => {
+            setIsChangingState(false);
+        }, 300);
+
         return id;
     }
 
     function kill(id: number) {
         setModals((prev) => prev.filter((m) => m.id !== id));
+
+        setTimeout(() => {
+            setIsChangingState(false);
+        }, 300);
     }
     
     function unplugLifeSupport(id: number) {
+        if (isChangingState) return false;
+
+        setIsChangingState(true);
         setLifeSupportList((prev) => prev.filter((i) => i !== id));
     }
 

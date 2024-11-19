@@ -38,8 +38,8 @@ export default function TheVenue() {
                 <div className={styles.title}>
                     <Title 
                         headline={venue?.content?.headline}
+                        subline={venue?.content?.subline}
                         size='xl'
-                        style='handwritten'
                         isCentered={true}
                     />
                 </div>
@@ -51,7 +51,7 @@ export default function TheVenue() {
                     venue?.content?.highlights.map((highlight: any) => (
                         <Highlight
                             key={highlight.internalName}
-                            images={highlight.imageGallery.map((img: any) => ({src: img?.file?.url}))}
+                            images={highlight?.imageGallery?.map((img: any) => ({src: img?.file?.url}))}
                             headline={highlight.headline}
                             subline={highlight.subline}
                             text={documentToReactComponents(highlight.text)}

@@ -22,7 +22,7 @@ const DISPLAY_DURATION = 3000;
 
 export default function LagoonTeaser() {
     const { navigator } = useContext(PageContext);
-    const { home } = useContext(CMSContext);
+    const { home, bookings } = useContext(CMSContext);
 
     const [ eventIndex, setEventIndex ] = useState(0);
     const handwrittenRef = useRef(null);
@@ -72,7 +72,7 @@ export default function LagoonTeaser() {
             <div className={styles.navContainer}>
                 <nav className={styles.nav}>
                     <Button style='neutral' name='Check out the venue' onClick={() => {navigator.internalNavigate('/venue')}}/>
-                    <Button style='accent' name='Book an event' onClick={() => {navigator.internalNavigate('/services')}}/>
+                    <Button style='accent' name='Book an event' onClick={() => {navigator.internalNavigate('/bookings')}}/>
                 </nav>
             </div>
         </div>    

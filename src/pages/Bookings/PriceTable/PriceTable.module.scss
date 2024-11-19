@@ -1,0 +1,38 @@
+@use '@styles/colors.scss' as colors;
+@use '@styles/dimensions.scss' as dimensions;
+@use '@styles/breakpoints.scss' as breakpoints;
+
+.container {
+    margin: 0 dimensions.margin('xl');
+
+    display: grid;
+    gap: dimensions.margin('xl');
+
+    & .title {
+        color: colors.text('accent');
+    }
+
+    & .table {
+        & .row {
+            display: grid;
+            grid-auto-flow: column;
+            grid-template-columns: auto 1fr auto;
+            gap: dimensions.margin('md');
+            align-items: end;
+
+            & .separator {
+                margin-bottom: 6px;
+                border-bottom: 1px dotted colors.text('secondary');
+                opacity: 0.7;
+
+                @media (max-width: breakpoints.screen('tablet')) {
+                    margin-bottom: 4px;
+                }
+            }
+
+            & .included {
+                color: colors.text('secondary');
+            }
+        }
+    }
+}

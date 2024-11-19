@@ -6,7 +6,6 @@
 .container {
    & .highlights {
       display: grid;
-
    }
 
    & .teaser {
@@ -24,6 +23,6 @@
    }
 
    & .title {
-      margin-top: dimensions.margin('xxl');
+      margin-top: dimensions.margin('lg');
    }
 }

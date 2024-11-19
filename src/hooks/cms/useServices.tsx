@@ -28,17 +28,23 @@ export default function useServices(page: any, assets: any, components: any) {
         });
 
         parsedPaidServices?.forEach((service: any, index: number) => {
+            const component = components[service.sys.id];
 
-            const backgroundId = components[service.sys.id]?.background?.sys?.id;
+            if (!component) return;
+
+            const price = components[component.price.sys.id]
+            const backgroundId = component?.background?.sys?.id;
 
             parsedPaidServices[index] = {
-                ...components[service.sys.id],
-                background: assets[backgroundId]?.file.url
+                ...component,
+                background: assets[backgroundId]?.file.url,
+                price
             };
         });
 
         setContent({
             headline: fields.headline,
+            subline: fields?.subline,
             includedServices: parsedIncludedServices,
             paidServices: parsedPaidServices
         });

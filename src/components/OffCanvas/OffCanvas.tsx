@@ -54,7 +54,7 @@ export default function OffCanvas() {
         >
             <div className={styles.navbar}>
                 <Button 
-                    size='xl'
+                    size='lg'
                     style={false}
                     icon={icon.close}
                     onClick={close}

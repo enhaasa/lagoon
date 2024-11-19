@@ -3,7 +3,6 @@
 
 .container {
     display: grid;
-    margin: dimensions.margin('xl');
     grid-template-columns: repeat(5, 1fr);
     gap: dimensions.margin('xl');
 

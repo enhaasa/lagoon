@@ -1,0 +1,34 @@
+@use '@styles/colors.scss' as colors;
+@use '@styles/dimensions.scss' as dimensions;
+@use '@styles/decorations.scss' as decorations;
+
+.container {
+    & .teaser {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: decorations.box-shadow('md');
+
+        background: colors.bg('primary');
+        padding: dimensions.padding('md');
+
+        & .baseCost {
+            & .title {
+                color: colors.text('secondary');
+            }
+        }
+    }
+
+    & .content {
+        margin: dimensions.margin('lg') dimensions.margin('xl');
+
+        & .title {
+            display: grid;
+            justify-items: center;
+
+            & .subline {
+                color: colors.text('secondary');
+            }
+        }
+    }
+}

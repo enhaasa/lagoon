@@ -9,9 +9,26 @@
         box-shadow: decorations.box-shadow('md');
     }
 
-    & .services {
-        & .serviceTitle {
-            color: colors.text('secondary');
+    & .content {
+        margin: dimensions.margin('lg') dimensions.margin('xl');
+
+        & .services {
+            display: grid;
+            gap: dimensions.margin('xl');
+            margin: dimensions.margin('lg') 0;
+
+            & .category {
+                & .cards {
+                    background: colors.bg('secondary');
+                    padding: dimensions.padding('xl');
+                    border-radius: decorations.border-radius('md');
+                }
+            }
+
+            & .serviceTitle {
+                color: colors.text('accent');
+            }
         }
     }
+
 }

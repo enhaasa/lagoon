@@ -17,8 +17,8 @@ export default function useVenue(page: any, assets: any, components: any) {
 
         parsedHighlights.forEach((highlight: any, index: number) => {
             parsedHighlights[index] = {
-                ...components[highlight.sys.id],
-                imageGallery: components[highlight.sys.id].imageGallery.map((image: any) => (
+                ...components[highlight.sys.id] ?? {},
+                imageGallery: components[highlight.sys.id]?.imageGallery.map((image: any) => (
                     assets[image.sys.id]
                 ))
             };
@@ -26,6 +26,7 @@ export default function useVenue(page: any, assets: any, components: any) {
 
         setContent({
             headline: fields.headline,
+            subline: fields.subline,
             highlights: parsedHighlights
         });
         

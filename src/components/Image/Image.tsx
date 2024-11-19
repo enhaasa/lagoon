@@ -37,7 +37,7 @@ const Image = forwardRef<HTMLImageElement, IImage>(
             modals.add(
                 <ImageGalleryModal 
                     headline={'Images'}
-                    images={images}
+                    images={images ?? []}
                 />
             )
         }
@@ -45,7 +45,7 @@ const Image = forwardRef<HTMLImageElement, IImage>(
         return (
             <button className={`${styles.container} ${fullscreenable && styles.fullscreenable}`} onClick={onClick}>
                 <img 
-                    src={images[0].src} 
+                    src={images?.[0]?.src} 
                     className={`${styles.image} ${rounded ? styles.rounded : ''} ${className ? className : ''}`} 
                     style={style}
                     draggable={false} 
@@ -56,9 +56,9 @@ const Image = forwardRef<HTMLImageElement, IImage>(
                     <div className={styles.overlay}>
                         <div className={styles.additionalImages}>
                             {
-                                images.length > 1 && 
+                                images?.length > 1 && 
                                 <Text size='sm'>
-                                    +{images.length -1} more
+                                    +{images?.length -1} more
                                 </Text>
                             }
 

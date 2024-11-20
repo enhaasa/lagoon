@@ -1,0 +1,13 @@
+@use '@styles/colors.scss' as colors;
+
+.container {
+    cursor: pointer;
+
+    &:hover {
+        color: colors.text('secondary');                                                                                                                                                                                                                                                                                                                              
+    }
+
+    &.selected {
+        color: colors.fg('primary');
+    }
+}

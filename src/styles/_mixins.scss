@@ -27,7 +27,11 @@
     }
 
     &:hover {
-        filter: contrast(0.8);
+        @if ($background == 'true') {
+            filter: brightness(0.8);
+        } @else {
+            color: colors.text('secondary');
+        }
         cursor: pointer;
     }
 }

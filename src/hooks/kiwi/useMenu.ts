@@ -1,21 +1,23 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect } from "react";
 
 import { KiwiClient } from "@service_clients/KiwiClient";
+import { TDiningItem } from "@enhasa/kiwicore";
 
-export interface IUseMenu {
-    content: any;
+type DiningCategories = {
+    [key: string]: TDiningItem[];
 }
 
+export type UseMenu = null | DiningCategories;
+
 export default function useMenu(client: KiwiClient) {
-    const [ content, setContent ] = useState<null | any>(null);
+    const [ content, setContent ] = useState<null | DiningCategories>(null);
 
     useEffect(() => {
-        client.getMenu().then((result: any) => {
+        client.getMenu().then((result: TDiningItem[]) => {
 
-            const parsedResult: any = {};
+            const parsedResult: DiningCategories = {};
             
-            result.forEach((item: any) => {
+            result.forEach((item) => {
                 if (!parsedResult[item.type]) {
                     parsedResult[item.type] = [];
                 } else {
@@ -23,7 +25,7 @@ export default function useMenu(client: KiwiClient) {
                 }
             });
 
-            setContent(result);
+            setContent(parsedResult);
         });
     }, [client]);
 

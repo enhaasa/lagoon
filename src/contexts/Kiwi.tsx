@@ -5,10 +5,10 @@ import { createContext } from 'react';
 import { KiwiClient } from '@service_clients/KiwiClient';
 
 // Hooks
-import useMenu, { IUseMenu } from '@hooks/kiwi/useMenu';
+import useMenu, { UseMenu } from '@hooks/kiwi/useMenu';
 
 export interface IKiwiContext {
-    menu: IUseMenu;
+    menu: UseMenu;
 }
 
 const KiwiContext = createContext<IKiwiContext>({} as IKiwiContext);

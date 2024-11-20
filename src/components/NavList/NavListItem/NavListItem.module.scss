@@ -11,10 +11,6 @@
     padding: dimensions.padding('sm') dimensions.padding('md');
     border-radius: decorations.border-radius('md');
 
-    &.active {
-        color: red;
-    }
-
     &:hover {
         background-color: colors.bg('secondary');
         cursor: pointer;

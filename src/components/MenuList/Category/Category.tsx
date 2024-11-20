@@ -20,9 +20,17 @@ export default function Category({
     selectCategory 
 }: ICategory) {
 
+    function handleClick() {
+        if (!isSelected) {
+            selectCategory(title);
+        }
+    }
+
     return (
-        <div className={`${styles.container} ${isSelected && styles.selected}`} onClick={() => {selectCategory(title)}}>
-            <Text>{title} ({count})</Text>
+        <div className={`${styles.container} ${isSelected && styles.selected}`} onClick={handleClick}>
+            <div className={styles.title}>
+                <Text size='lg'>{title}</Text>
+            </div>
         </div>    
     );
 }

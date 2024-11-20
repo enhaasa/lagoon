@@ -24,7 +24,7 @@ export default function ChainSpawn({ items }: IChainSpawn) {
     return (
         <>
             {renderList.map((item, index) => (
-                <div key={`ChainSpanItem-${index}`}>
+                <div key={`ChainSpawnItem-${index}`}>
                     {item}
                 </div>
             ))}

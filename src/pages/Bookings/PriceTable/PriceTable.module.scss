@@ -22,7 +22,7 @@
 
             & .separator {
                 margin-bottom: 6px;
-                border-bottom: 1px dotted colors.text('secondary');
+                border-bottom: 1px dashed colors.text('secondary');
                 opacity: 0.7;
 
                 @media (max-width: breakpoints.screen('tablet')) {

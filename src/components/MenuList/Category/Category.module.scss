@@ -1,6 +1,11 @@
 @use '@styles/colors.scss' as colors;
+@use '@styles/dimensions.scss' as dimensions;
 
 .container {
+    display: flex;
+    gap: dimensions.margin('sm');
+    align-items: center;
+
     cursor: pointer;
 
     &:hover {
@@ -10,4 +15,9 @@
     &.selected {
         color: colors.fg('primary');
     }
+
+    & .count {
+        filter: brightness(0.7);
+    }
+
 }

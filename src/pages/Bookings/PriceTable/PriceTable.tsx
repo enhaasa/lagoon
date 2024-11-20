@@ -9,6 +9,7 @@ import { CMSContext } from '@contexts/CMS';
 import Text from '@components/Text/Text';
 import Title from '@components/Title/Title';
 import Switch from '@components/Switch/Switch';
+import ChainFadeIn from '@components/ChainFadeIn/ChainFadeIn';
 
 // Utils
 import { parseCmsPrice } from '@utils/prices';
@@ -62,8 +63,8 @@ export default function PriceTable() {
                     <Title headline='Included' />
                 </div>
                 <div className={styles.table}>
-                    {
-                        filteredIncludedServices.map((service: any, index: number) => (
+                    <ChainFadeIn
+                        items={filteredIncludedServices.map((service: any, index: number) => (
                             <div className={styles.row} key={`PriceTableIncludedService-${index}`}>
                                 <span className={styles.name}>
                                     <Text>{service.headline}</Text>
@@ -75,8 +76,8 @@ export default function PriceTable() {
                                     <Text>Free</Text>
                                 </span>
                             </div>
-                        )) 
-                    }
+                        ))}
+                    />
                 </div>              
             </div>
 
@@ -86,8 +87,8 @@ export default function PriceTable() {
                 </div>
 
                 <div className={styles.table}>
-                    {
-                        filteredPaidServices.map((service: any, index: number) => (
+                    <ChainFadeIn
+                        items={filteredPaidServices.map((service: any, index: number) => (
                             <div className={styles.row} key={`PriceTablePaidService-${index}`}>
                                 <span className={styles.name}>
                                     <Text>{service.headline}</Text>
@@ -99,8 +100,8 @@ export default function PriceTable() {
                                     <Text>{parseCmsPrice(service?.price)}</Text>
                                 </span>
                             </div>
-                        ))
-                    }
+                        ))}
+                    />
                 </div>
             </div>
         </div>    

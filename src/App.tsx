@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { UIContextProvider } from './contexts/UI';
 import { PageContextProvider } from '@contexts/Page';
 import { CMSContextProvider } from '@contexts/CMS';
+import { KiwiContextProvider } from '@contexts/Kiwi';
 
 // Components
 import Header from './components/Header/Header';
@@ -23,22 +24,24 @@ function App() {
     <Router>
       <UIContextProvider>
         <CMSContextProvider>
-          <PageContextProvider>
-            <ModalManager />
-            <OffCanvas />
-              <SiteContainer>
-                <Header />
-                <Routes>
-                  {
-                    navbar.map((item, index) => (
-                      <Route key={`Route-${index}`} path={item.target} element={item.component} />
-                    ))
-                  }
-                  <Route path={'/e/:slug'} element={<Event />}/>
-                </Routes>
-                <Footer />
-              </SiteContainer>
-            </PageContextProvider>
+          <KiwiContextProvider>
+            <PageContextProvider>
+              <ModalManager />
+              <OffCanvas />
+                <SiteContainer>
+                  <Header />
+                  <Routes>
+                    {
+                      navbar.map((item, index) => (
+                        <Route key={`Route-${index}`} path={item.target} element={item.component} />
+                      ))
+                    }
+                    <Route path={'/e/:slug'} element={<Event />}/>
+                  </Routes>
+                  <Footer />
+                </SiteContainer>
+              </PageContextProvider>
+            </KiwiContextProvider>
           </CMSContextProvider>
       </UIContextProvider>
     </Router>

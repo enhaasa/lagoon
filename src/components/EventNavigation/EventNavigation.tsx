@@ -26,7 +26,7 @@ export default function EventNavigation() {
 
     return (
         <div className={styles.container}>
-            {storedEvents?.events?.length &&
+            {storedEvents?.events?.length > 0 &&
                 <>
                     <div className={styles.button}>
                         <LinkButton 

@@ -49,15 +49,11 @@ export default class LocalStorage {
             array.splice(duplicateEntryIndex, 1);
             array.unshift(updatedEntry);
 
-            console.log('replacing the storage with this new array:', array)
-
             this.add(this.EVENT_KEY, array);
             return array;
         }
         
         array.unshift(this._timestampObject(value));
-
-        console.log('replacing the storage with this new array:', array)
         this.add(this.EVENT_KEY, array);
 
         return array;

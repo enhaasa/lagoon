@@ -71,7 +71,6 @@ export default function EventResult({ content, assets }: IEventResult) {
     useEffect(() => {
         if (!content || !storedEvents) return;
 
-        console.log('adding new event to storage')
         const newEvents = LocalStorage.addToEvents(content);
 
         if (newEvents) {

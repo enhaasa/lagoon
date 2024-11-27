@@ -1,5 +1,5 @@
 import styles from './EventNavigation.module.scss';
-import { useContext, useState, useMemo } from 'react';
+import { useContext, useState } from 'react';
 
 // Contexts
 import { PageContext } from '@contexts/Page';

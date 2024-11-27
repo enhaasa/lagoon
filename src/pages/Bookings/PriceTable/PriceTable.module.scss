@@ -40,4 +40,8 @@
             }
         }
     }
+
+    @media (max-width: breakpoints.screen('tablet')) {
+        margin: 0;
+    }
 }

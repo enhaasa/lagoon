@@ -31,7 +31,7 @@
       margin: dimensions.margin('xxl');
 
       @media (max-width: breakpoints.screen("tablet")) {
-         margin: 0;
+         margin: 0 dimensions.margin('md');;
       }
    }
 }

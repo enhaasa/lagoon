@@ -24,6 +24,10 @@
                     padding: dimensions.padding('xl');
                     border-radius: decorations.border-radius('md');
                     box-shadow: decorations.box-shadow('md');
+
+                    @media (max-width: breakpoints.screen('tablet')) {
+                        padding: dimensions.padding('lg');
+                    }
                 }
             }
 
@@ -33,7 +37,7 @@
         }
 
         @media (max-width: breakpoints.screen('tablet')) {
-            margin: dimensions.margin('md') 0;
+            margin: dimensions.margin('md');
         }
     }
 

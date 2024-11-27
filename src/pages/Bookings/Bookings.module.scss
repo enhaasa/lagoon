@@ -1,6 +1,7 @@
 @use '@styles/colors.scss' as colors;
 @use '@styles/dimensions.scss' as dimensions;
 @use '@styles/decorations.scss' as decorations;
+@use '@styles/breakpoints.scss' as breakpoints;
 
 .container {
     & .teaser {
@@ -29,6 +30,10 @@
             & .subline {
                 color: colors.text('secondary');
             }
+        }
+
+        @media (max-width: breakpoints.screen('tablet')) {
+            margin: dimensions.margin('lg') dimensions.margin('md');
         }
     }
 }

@@ -38,6 +38,7 @@ export default function EventNavigation() {
 
                         {storedEvents?.events?.length > 1 &&
                             <img 
+                                draggable={false}
                                 src={icon.chevronDown} 
                                 onClick={handleToggleEventList} 
                                 className={styles.toggleEventsButton}

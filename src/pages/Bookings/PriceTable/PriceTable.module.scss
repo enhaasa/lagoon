@@ -1,6 +1,7 @@
 @use '@styles/colors.scss' as colors;
 @use '@styles/dimensions.scss' as dimensions;
 @use '@styles/breakpoints.scss' as breakpoints;
+@use '@styles/decorations.scss' as decorations;
 
 .container {
     display: grid;
@@ -12,6 +13,11 @@
     }
 
     & .table {
+        background: colors.bg('secondary');
+        padding: dimensions.padding('xl');
+        border-radius: decorations.border-radius('md');
+        box-shadow: decorations.box-shadow('md');
+        
         & .row {
             display: grid;
             grid-auto-flow: column;

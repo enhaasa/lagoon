@@ -1,12 +1,24 @@
 @use '@styles/dimensions.scss' as dimensions;
 @use '@styles/breakpoints.scss' as breakpoints;
 
+@mixin centered($side, $padding) {
+    position: absolute;  
+    #{$side}: $padding;
+
+    top: 50%;
+    transform: translateY(-50%);
+}
+
 .container {
     height: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
 
     & .burger {
         display: none;
         z-index: 0;
+        @include centered(left, 0);
     }
 
     & .nav {
@@ -15,6 +27,10 @@
         align-items: center;
         gap: dimensions.padding('md');
         height: 100%;
+    }
+
+    & .eventNav {
+        @include centered(right, dimensions.padding('lg'));
     }
 
     @media (max-width: breakpoints.screen("tablet")) {

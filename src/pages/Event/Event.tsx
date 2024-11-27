@@ -26,6 +26,9 @@ export default function Event() {
 
     useEffect(() => {
         if (!slug) return;
+        setContent(null);
+        setAssets(null);
+        setNoresult(false);
 
         const params = {
             "content_type": "event",
@@ -47,7 +50,7 @@ export default function Event() {
                 }
             ));
 
-            setContent(result.items[0].fields);
+            setContent({ id: result.items[0].sys.id, ...result.items[0].fields });
             setAssets(newAssets);
         });
     }, [ slug ]);

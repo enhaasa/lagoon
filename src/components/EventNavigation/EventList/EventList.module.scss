@@ -1,0 +1,11 @@
+@use '@styles/colors.scss' as colors;
+@use '@styles/dimensions.scss' as dimensions;
+@use '@styles/decorations.scss' as decorations;
+
+.container {
+    background: colors.bg('secondary');
+    padding: dimensions.padding('md');
+    box-shadow: decorations.box-shadow('md');
+    white-space: nowrap;
+    text-align: right;
+}

@@ -1,0 +1,21 @@
+.container {
+    & .button {
+        position: relative;
+
+        & .toggleEventsButton {
+            margin-left: 5px;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+
+            &:hover {
+                filter: brightness(0.7);
+            }
+        }
+
+        & .eventlist {
+            position: absolute;
+            right: 0;
+        }
+    }
+}

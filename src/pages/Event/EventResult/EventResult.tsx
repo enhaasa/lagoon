@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import styles from './EventResult.module.scss';
-import { useMemo, useLayoutEffect, useRef } from 'react';
+import { useMemo, useLayoutEffect, useRef, useContext, useEffect } from 'react';
 
 // Contexts
-//import { UIContext } from '@contexts/UI';
+import { PageContext } from '@contexts/Page';
 
 // Utils
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
@@ -21,14 +21,12 @@ import Countdown from '@components/Countdown/Countdown';
 import Location from '@components/Location/Location';
 import EventFaq from './EventFaq/EventFaq';
 import Separator from '@components/Separator/Separator';
-//import LocaleInfo from './LocaleInfo/LocaleInfo';
-//import ContentModal from '@components/Modal/ContentModal';
-//import Button from '@components/Button/Button';
 
-// Icons
-//import icon from '@utils/icon';
+// Utils
+import LocalStorage from '@utils/localstorage';
 
-type Event = {
+export type Event = {
+    id: number | string;
     background: {
         sys: {id: string};
     },
@@ -46,7 +44,7 @@ interface IEventResult {
 }
 
 export default function EventResult({ content, assets }: IEventResult) {
-    //const { modals } = useContext(UIContext);
+    const { storedEvents } = useContext(PageContext);
 
     const ref = useRef(null);
 
@@ -68,11 +66,22 @@ export default function EventResult({ content, assets }: IEventResult) {
         if (!content?.background?.sys?.id) return null;
 
         return { src: assets[content.background.sys.id]?.file?.url };
-    }, [ content, assets]);
+    }, [ content, assets ]);
+
+    useEffect(() => {
+        if (!content || !storedEvents) return;
+
+        console.log('adding new event to storage')
+        const newEvents = LocalStorage.addToEvents(content);
+
+        if (newEvents) {
+            storedEvents.setEvents(newEvents);
+        }
+        
+    }, [ content ]);
 
     return (
         <div className={styles.container} ref={ref}>
-
             <div className={styles.hero}>
                 <div className={styles.image} style={{ backgroundImage: `url("${background?.src}")` }} />
                 <div className={styles.content}>

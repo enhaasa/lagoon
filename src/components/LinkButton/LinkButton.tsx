@@ -7,6 +7,9 @@ import { PageContext } from '@contexts/Page';
 // Components
 import Text from '@components/Text/Text';
 
+// Types
+import { Size } from '@utils/sizes';
+
 interface ILinkButton {
     name: string;
     target: string;
@@ -14,6 +17,8 @@ interface ILinkButton {
     isActive?: boolean;
     isExternalLink?: boolean;
     isUnderlined?: boolean;
+    size?: Size;
+    callback?: any;
 }
 
 export default function LinkButton({ 
@@ -22,7 +27,9 @@ export default function LinkButton({
     isNewTab = false, 
     isActive = false,
     isExternalLink,
-    isUnderlined = false
+    isUnderlined = false,
+    size = 'md',
+    callback
 }: ILinkButton ) {
     const { navigator } = useContext(PageContext);
 
@@ -32,6 +39,10 @@ export default function LinkButton({
         } else {
             navigator.dynamicNavigate(target, isNewTab);
         }
+
+        if (callback) {
+            callback();
+        }
     }
 
     return (
@@ -40,7 +51,7 @@ export default function LinkButton({
             style={{ textDecoration: isUnderlined ? 'underline' : ''}}
             onClick={handleClick}
         >
-            <Text>{ name }</Text>
+            <Text size={size}>{ name }</Text>
         </button>
     );
 }

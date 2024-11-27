@@ -14,8 +14,6 @@
         display: grid;
         gap: dimensions.margin('xl');
         
-        
-     
         & .typed {
             font-family: fonts.family('typed');
             font-size: fonts.size('lg');
@@ -40,7 +38,7 @@
             opacity: 1;
         }
 
-        @media (max-width: breakpoints.screen("desktop")) {
+        @media (max-width: breakpoints.screen("tablet")) {
        
     
             & .handwritten {
@@ -54,7 +52,7 @@
             }
         }
         
-        @media (max-width: breakpoints.screen("tablet")) {
+        @media (max-width: breakpoints.screen("phone")) {
             gap: dimensions.margin('md');
     
             & .handwritten {

@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import styles from './ChainFadeIn.module.scss';
 import { useLayoutEffect, useRef } from 'react';
 
 // Animations

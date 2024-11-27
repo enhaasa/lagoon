@@ -4,6 +4,7 @@
 @use '@styles/decorations.scss' as decorations;
 
 .container {
+   
    & .highlights {
       display: grid;
    }
@@ -24,5 +25,13 @@
 
    & .title {
       margin-top: dimensions.margin('lg');
+   }
+
+   & .highlights {
+      margin: dimensions.margin('xxl');
+
+      @media (max-width: breakpoints.screen("tablet")) {
+         margin: 0;
+      }
    }
 }

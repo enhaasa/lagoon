@@ -18,10 +18,12 @@
             margin: dimensions.margin('lg') 0;
 
             & .category {
+                box-shadow: decorations.box-shadow('md');
+
                 & .cards {
                     background: colors.bg('secondary');
                     padding: dimensions.padding('xl');
-                    border-radius: decorations.border-radius('md');
+                    border-radius: decorations.border-radius('sm');
                 }
             }
 

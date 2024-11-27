@@ -30,14 +30,14 @@ const navbar: NavItem[] = [
         component: <Services />
     },
     {
-        name: 'Bookings',
-        target: '/bookings',
-        component: <Bookings />
-    },
-    {
         name: 'Menu',
         target: '/menu',
         component: <Menu />
+    },
+    {
+        name: 'Bookings',
+        target: '/bookings',
+        component: <Bookings />
     },
 ]
 

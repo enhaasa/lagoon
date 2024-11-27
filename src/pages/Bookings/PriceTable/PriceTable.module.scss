@@ -3,10 +3,9 @@
 @use '@styles/breakpoints.scss' as breakpoints;
 
 .container {
-    margin: 0 dimensions.margin('xl');
-
     display: grid;
     gap: dimensions.margin('xl');
+    margin: 0 dimensions.margin('xl');
 
     & .title {
         color: colors.text('accent');

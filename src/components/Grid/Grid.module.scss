@@ -3,10 +3,18 @@
 
 .container {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(7, 1fr);
     gap: dimensions.margin('xl');
 
-    @media (max-width: breakpoints.screen('desktop')) {
+    @media (max-width: breakpoints.screen('widescreen')) {
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    @media (max-width: breakpoints.halfway('widescreen', 'desktop')) {
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    @media (max-width: breakpoints.halfway('desktop', 'tablet')) {
         grid-template-columns: repeat(3, 1fr);
     }
     
@@ -14,7 +22,7 @@
         grid-template-columns: repeat(2, 1fr);
     }
 
-    @media (max-width: breakpoints.screen('phone')) {
+    @media (max-width: breakpoints.halfway('tablet', 'phone')) {
         grid-template-columns: repeat(1, 1fr);
     }
 }

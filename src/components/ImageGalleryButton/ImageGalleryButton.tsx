@@ -34,7 +34,7 @@ const horizontalStyle = {
 
 export default function ImageGalleryButton({ images, orientation = 'horizontal', size = 'sm' }: IImageGalleryButton) {
     const { modals } = useContext(UIContext);
-    const modalId = useRef<null | number>(null);
+    const modalId = useRef<false | number>(false);
 
     const firstRef = useRef(null);
     const secondRef = useRef(null);

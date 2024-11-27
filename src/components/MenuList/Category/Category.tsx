@@ -1,8 +1,5 @@
 import styles from './Category.module.scss';
 
-// Types
-import { TDiningItem } from '@enhasa/kiwicore';
-
 // Components
 import Text from '@components/Text/Text';
 
@@ -15,7 +12,6 @@ interface ICategory {
 
 export default function Category({ 
     title, 
-    count, 
     isSelected, 
     selectCategory 
 }: ICategory) {

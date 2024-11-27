@@ -97,16 +97,21 @@
     }
 
     @media (max-width: breakpoints.screen("widescreen")) {
-        max-width: 60vw;
+        max-width: 50vw;
     }
 
     @media (max-width: breakpoints.screen("desktop")) {
-        max-width: 75vw;
+        max-width: 60vw;
     }
 
     @media (max-width: breakpoints.screen("tablet")) {
+        max-width: 75vw;
+    }
+
+    @media (max-width: breakpoints.screen("phone")) {
         max-width: unset;
         width: 95vw;
-        height: 95vh;
+        max-height: 75vh;
+        
     }
 }

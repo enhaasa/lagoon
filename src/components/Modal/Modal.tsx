@@ -1,9 +1,6 @@
 import { ReactNode, useContext, useEffect, useRef, useLayoutEffect } from "react";
 import styles from './Modal.module.scss';
 
-// Components
-import Button from "@components/Button/Button";
-
 // Contexts
 import { UIContext } from "@contexts/UI";
 

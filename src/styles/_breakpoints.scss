@@ -1,10 +1,17 @@
 $screen-sizes: (
     "phone": 550px,
-    "tablet": 800px,
-    "desktop": 1024px,
-    "widescreen": 1440px
+    "tablet": 1024px,
+    "desktop": 1920px,
+    "widescreen": 2560px
 );
 
 @function screen($device) {
     @return map-get($screen-sizes, $device);
+}
+
+@function halfway($device1, $device2) {
+    $size1: map-get($screen-sizes, $device1);
+    $size2: map-get($screen-sizes, $device2);
+
+    @return ($size1 + $size2) / 2;
 }

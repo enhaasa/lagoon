@@ -22,7 +22,7 @@ const DISPLAY_DURATION = 3000;
 
 export default function LagoonTeaser() {
     const { navigator } = useContext(PageContext);
-    const { home, bookings } = useContext(CMSContext);
+    const { home } = useContext(CMSContext);
 
     const [ eventIndex, setEventIndex ] = useState(0);
     const handwrittenRef = useRef(null);

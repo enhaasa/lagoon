@@ -12,9 +12,6 @@ import Page from '@components/Page/Page';
 // Clients
 import { ContentfulClient } from '@service_clients/ContentfulClient';
 
-// Config
-//import navbar from '@config/navbar';
-
 const client = new ContentfulClient();
 
 export default function Event() {

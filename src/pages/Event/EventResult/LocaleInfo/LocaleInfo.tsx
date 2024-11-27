@@ -4,7 +4,8 @@ interface ILocaleInfo {
     date?: string;
 }
 
-export default function LocaleInfo({ date }: ILocaleInfo) {
+export default function LocaleInfo({ }: ILocaleInfo) {
+
     return (
         <div className={styles.container}>
 

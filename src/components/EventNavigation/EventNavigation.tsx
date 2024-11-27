@@ -13,6 +13,9 @@ import ConfirmDeleteEventModal from './ConfirmDeleteEventModal/ConfirmDeleteEven
 // Icons
 import icon from '@utils/icon';
 
+// Types
+import { Event } from '@pages/Event/EventResult/EventResult';
+
 export default function EventNavigation() {
     const { storedEvents, navigator } = useContext(PageContext);
     const { modals } = useContext(UIContext);
@@ -27,13 +30,13 @@ export default function EventNavigation() {
         setEventListOpen(false);
     }
 
-    function handleDeleteEvent() {
+    function handleDeleteEvent(event: Event) {
         modals.add(
-        <ConfirmDeleteEventModal 
-            headline='Are you sure?'
-            event={storedEvents?.events?.[0]}
-        />
-    );
+            <ConfirmDeleteEventModal 
+                headline='Are you sure?'
+                event={event}
+            />
+        );
     }
 
     return (
@@ -53,7 +56,7 @@ export default function EventNavigation() {
                             <img 
                                 draggable={false}
                                 src={icon.trash} 
-                                onClick={handleDeleteEvent} 
+                                onClick={() => {handleDeleteEvent(storedEvents?.events?.[0])}} 
                                 className={styles.trashButton}
                             />
 

@@ -8,9 +8,13 @@ import ContentModal from '@components/Modal/ContentModal';
 
 // Contexts
 import { UIContext } from '@contexts/UI';
+import { PageContext } from '@contexts/Page';
 
 // Types
 import { Event } from '@pages/Event/EventResult/EventResult';
+
+// Utils
+import LocalStorage from '@utils/localstorage';
 
 export interface IConfirmDeleteEventModal {
     id?: number;
@@ -21,10 +25,15 @@ export interface IConfirmDeleteEventModal {
 export default function ConfirmDeleteEventModal({ headline, event, id }: IConfirmDeleteEventModal) {
     
     const { modals } = useContext(UIContext);
+    const { storedEvents } = useContext(PageContext);
 
     function handleDelete() {
+        if (!event) return;
+
         modals.closeCurrent();
-        alert('TODO: Delete event');
+        
+        const updatedEvents = LocalStorage.removeEventById(event?.id as string);
+        storedEvents.setEvents(updatedEvents);
     }
 
     function handleClose() {

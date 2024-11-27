@@ -12,7 +12,7 @@ import icon from '@utils/icon';
 interface IEventList {
     events?: Event[];
     closeEventList: () => void;
-    handleDeleteEvent: () => void;
+    handleDeleteEvent: (event: Event) => void;
 }
 
 export default function EventList({ events = [], closeEventList, handleDeleteEvent }: IEventList) {
@@ -31,7 +31,7 @@ export default function EventList({ events = [], closeEventList, handleDeleteEve
                     <img 
                         draggable={false}
                         src={icon.trash} 
-                        onClick={handleDeleteEvent} 
+                        onClick={() => {handleDeleteEvent(event)}} 
                         className={styles.trashButton}
                     />
                 </div>

@@ -16,7 +16,7 @@ export default class LocalStorage {
         return JSON.parse(localStorage.getItem(key) ?? '[]');
     }
 
-    public static add(key: string, value: string | object | any[]) {
+    public static write(key: string, value: string | object | any[]) {
 
         // This does also cover arrays because they are caught as typeof object
         // Source: trust me bro
@@ -49,13 +49,27 @@ export default class LocalStorage {
             array.splice(duplicateEntryIndex, 1);
             array.unshift(updatedEntry);
 
-            this.add(this.EVENT_KEY, array);
+            this.write(this.EVENT_KEY, array);
             return array;
         }
         
         array.unshift(this._timestampObject(value));
-        this.add(this.EVENT_KEY, array);
+        this.write(this.EVENT_KEY, array);
 
+        return array;
+    }
+
+    public static removeEventById(id: string) {
+        const array = this.getArray(this.EVENT_KEY);
+        const duplicateEntryIndex = array.findIndex((item: any) => item.id === id);
+
+        if (duplicateEntryIndex !== -1) {
+            array.splice(duplicateEntryIndex, 1);
+
+            this.write(this.EVENT_KEY, array);
+            return array;
+        }
+        
         return array;
     }
 }

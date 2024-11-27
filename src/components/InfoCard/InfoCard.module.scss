@@ -1,9 +1,14 @@
 @use '@styles/colors.scss' as colors;
 @use '@styles/dimensions.scss' as dimensions;
 @use '@styles/decorations.scss' as decorations;
+@use '@styles/breakpoints.scss' as breakpoints;
+
+$cardHeightStandard: 400px;
+$cardHeightBig: 480px;
+$cardHeightBigger: 600px;
 
 .container {
-    perspective: 400px;
+    perspective: $cardHeightStandard;
     cursor: pointer;
 
     &:hover .card {
@@ -13,7 +18,7 @@
     & .card {
         position: relative;
         padding: dimensions.padding('md');
-        min-height: 400px;
+        min-height: $cardHeightStandard;
         border: 1px solid rgb(26, 26, 26);
         overflow: hidden;
         box-shadow: decorations.box-shadow('md');
@@ -72,6 +77,21 @@
                 width: 50%;
                 opacity: 50%;
             }
+        }
+    }
+
+    @media (max-width: breakpoints.screen('tablet')) {
+        perspective: $cardHeightBigger;
+
+        & .card {
+            min-height: $cardHeightBigger;
+        }
+    }
+    @media (max-width: breakpoints.screen('phone')) {
+        perspective: $cardHeightBig;
+
+        & .card {
+            min-height: $cardHeightBig;
         }
     }
 }

@@ -1,6 +1,7 @@
 @use '@styles/colors.scss' as colors;
 @use '@styles/dimensions.scss' as dimensions;
 @use '@styles/decorations.scss' as decorations;
+@use '@styles/breakpoints.scss' as breakpoints;
 
 .container {
     & .teaser {
@@ -30,6 +31,10 @@
             & .serviceTitle {
                 color: colors.text('accent');
             }
+        }
+
+        @media (max-width: breakpoints.screen('tablet')) {
+            margin: dimensions.margin('md') 0;
         }
     }
 

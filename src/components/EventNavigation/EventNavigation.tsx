@@ -11,7 +11,6 @@ import LinkButton from '@components/LinkButton/LinkButton';
 // Icons
 import icon from '@utils/icon';
 
-
 export default function EventNavigation() {
     const { storedEvents, navigator } = useContext(PageContext);
     const [ eventListOpen, setEventListOpen ] = useState(false);
@@ -47,7 +46,10 @@ export default function EventNavigation() {
 
                         {eventListOpen &&
                             <div className={styles.eventlist}>
-                                <EventList events={storedEvents.events.filter((_, index) => index !== 0)} closeEventList={closeEventList} />
+                                <EventList 
+                                    events={storedEvents.events.filter((_, index) => index !== 0)} 
+                                    closeEventList={closeEventList} 
+                                />
                             </div>
                         }
                     </div>

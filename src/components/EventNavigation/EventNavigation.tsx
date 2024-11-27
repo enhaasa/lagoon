@@ -1,5 +1,5 @@
 import styles from './EventNavigation.module.scss';
-import { useContext, useState } from 'react';
+import { useContext, useState, useRef } from 'react';
 
 // Contexts
 import { PageContext } from '@contexts/Page';
@@ -16,18 +16,45 @@ import icon from '@utils/icon';
 // Types
 import { Event } from '@pages/Event/EventResult/EventResult';
 
+// Animations
+import gsap from 'gsap';
+
 export default function EventNavigation() {
     const { storedEvents, navigator } = useContext(PageContext);
     const { modals } = useContext(UIContext);
 
+    const eventListRef = useRef(null);
+
     const [ eventListOpen, setEventListOpen ] = useState(false);
 
     function handleToggleEventList() {
-        setEventListOpen(prev => !prev);
+        animateAndToggleEventList(!eventListOpen);
+    }
+
+    function animateAndToggleEventList(targetState: boolean) {
+        console.log(eventListRef)
+        if (!eventListRef.current) return;
+
+        if (targetState) {
+            toggleEventList(true);
+            gsap.fromTo(eventListRef.current, 
+                { y: '-20px', opacity: 0 }, 
+                { y: 0, opacity: 1 }
+            );
+        } else {
+            gsap.fromTo(eventListRef.current, 
+                { y: 0, opacity: 1 }, 
+                { y: '-20px', opacity: 0, onComplete: () => {toggleEventList(false)} }
+            );
+        }
+    }
+
+    function toggleEventList(targetState: boolean) {
+        setEventListOpen(targetState);
     }
 
     function closeEventList() {
-        setEventListOpen(false);
+        animateAndToggleEventList(false);
     }
 
     function handleDeleteEvent(event: Event) {
@@ -65,20 +92,22 @@ export default function EventNavigation() {
                                     draggable={false}
                                     src={icon.chevronDown} 
                                     onClick={handleToggleEventList} 
-                                    className={styles.toggleEventsButton}
+                                    className={`${styles.toggleEventsButton} ${eventListOpen && styles.turned}`}
                                 />
                             }
                         </div>
 
-                        {eventListOpen &&
-                            <div className={styles.eventlist}>
-                                <EventList 
-                                    events={storedEvents.events.filter((_, index) => index !== 0)} 
-                                    closeEventList={closeEventList} 
-                                    handleDeleteEvent={handleDeleteEvent}
-                                />
+                        
+                            <div ref={eventListRef} className={styles.eventlist}>
+                                {eventListOpen &&
+                                    <EventList 
+                                        events={storedEvents.events.filter((_, index) => index !== 0)} 
+                                        closeEventList={closeEventList} 
+                                        handleDeleteEvent={handleDeleteEvent}
+                                    />
+                                }
                             </div>
-                        }
+                        
                     </div>
                 </>
             }

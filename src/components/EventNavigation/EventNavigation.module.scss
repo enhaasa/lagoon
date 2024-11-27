@@ -9,9 +9,14 @@
             gap: dimensions.margin('sm');
     
             & .trashButton, & .toggleEventsButton {
+                transition: 200ms ease-in-out;
                 width: 24px;
                 height: 24px;
                 cursor: pointer; 
+
+                &.turned {
+                    transform: rotate(180deg);
+                }
                 
                 &:hover {
                     filter: brightness(0.7);
@@ -22,6 +27,7 @@
         & .eventlist {
             position: absolute;
             right: 0;
+            z-index: -1;
         }
     }
 }

@@ -16,7 +16,6 @@ interface IEventList {
 }
 
 export default function EventList({ events = [], closeEventList, handleDeleteEvent }: IEventList) {
-
     return (
         <div className={styles.container}>
             {Array.isArray(events) && events?.map((event, index) => (

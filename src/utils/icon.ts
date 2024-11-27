@@ -10,6 +10,7 @@ import aetheryte from '@assets/icons/aetheryte.svg';
 import ward from '@assets/icons/ward.svg';
 import plot from '@assets/icons/plot.svg';
 import question from '@assets/icons/question.svg';
+import trash from '@assets/icons/trash.svg';
 
 export default {
     fullscreen,
@@ -23,5 +24,6 @@ export default {
     aetheryte,
     ward,
     plot,
-    question
+    question,
+    trash
 }

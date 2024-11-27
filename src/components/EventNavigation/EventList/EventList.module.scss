@@ -8,4 +8,20 @@
     box-shadow: decorations.box-shadow('md');
     white-space: nowrap;
     text-align: right;
+
+    & .link {
+        display: flex;
+        align-items: center;
+        gap: dimensions.margin('sm');
+
+        & .trashButton {
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+
+            &:hover {
+                filter: brightness(0.7);
+            }
+        }
+    }
 }

@@ -1,15 +1,21 @@
+@use '@styles/dimensions.scss' as dimensions;
+
 .container {
-    & .button {
-        position: relative;
-
-        & .toggleEventsButton {
-            margin-left: 5px;
-            width: 16px;
-            height: 16px;
-            cursor: pointer;
-
-            &:hover {
-                filter: brightness(0.7);
+    & .buttonWrapper {
+        & .button {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: dimensions.margin('sm');
+    
+            & .trashButton, & .toggleEventsButton {
+                width: 24px;
+                height: 24px;
+                cursor: pointer; 
+                
+                &:hover {
+                    filter: brightness(0.7);
+                }
             }
         }
 

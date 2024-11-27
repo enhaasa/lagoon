@@ -1,0 +1,17 @@
+@use '@styles/colors.scss' as colors;
+@use '@styles/dimensions.scss' as dimensions;
+
+.container {
+    padding: dimensions.padding('md');
+    display: grid;
+    gap: dimensions.margin('md');
+
+    & .navigation {
+        display: flex;
+        justify-content: space-between;
+
+        & .no {
+            text-decoration: underline;
+        }
+    }
+}

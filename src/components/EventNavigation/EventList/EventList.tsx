@@ -6,12 +6,16 @@ import LinkButton from '@components/LinkButton/LinkButton';
 // Types
 import { Event } from '@pages/Event/EventResult/EventResult';
 
+// Icons
+import icon from '@utils/icon';
+
 interface IEventList {
     events?: Event[];
     closeEventList: () => void;
+    handleDeleteEvent: () => void;
 }
 
-export default function EventList({ events = [], closeEventList }: IEventList) {
+export default function EventList({ events = [], closeEventList, handleDeleteEvent }: IEventList) {
 
     return (
         <div className={styles.container}>
@@ -22,6 +26,13 @@ export default function EventList({ events = [], closeEventList }: IEventList) {
                         target={`/e/${event?.slug}`}
                         size='sm'
                         callback={closeEventList}
+                    />
+                    
+                    <img 
+                        draggable={false}
+                        src={icon.trash} 
+                        onClick={handleDeleteEvent} 
+                        className={styles.trashButton}
                     />
                 </div>
             ))}

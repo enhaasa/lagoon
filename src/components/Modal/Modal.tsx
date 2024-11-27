@@ -4,6 +4,9 @@ import styles from './Modal.module.scss';
 // Contexts
 import { UIContext } from "@contexts/UI";
 
+// Components
+import Text from "@components/Text/Text";
+
 // Animations
 import animate, { AnimationDuration } from "@utils/animate";
 
@@ -17,7 +20,7 @@ interface IModal {
     message?: string;
     children?: ReactNode;
     closable?: boolean;
-    background?: string;
+    background?: string | null;
 }
 
 export default function Modal({
@@ -26,10 +29,12 @@ export default function Modal({
     message,
     children,
     closable = true,
-    background
+    background = null
 }: IModal) {
     const { modals } = useContext(UIContext);
     const ref = useRef(null);
+
+    console.log(background)
 
     function handleModalClick(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
         e.stopPropagation();
@@ -73,13 +78,18 @@ export default function Modal({
                     </button>
                 }
             </div>
-            <div className={styles.message}>{message}</div>
-            <div className={styles.content}>
+            <div className={styles.message}><Text>{message}</Text></div>
+            <div 
+                className={styles.content}
+            >
                 {children}
                 <div className={styles.contentOverlay} />
             </div>
             <div className={styles.backgroundWrapper}>
-                <div className={styles.background} style={{ backgroundImage: `url("${background}")` }} />
+                <div 
+                    className={styles.background} 
+                    style={{ backgroundImage: `url("${background}")` }}
+                />
             </div>
         </div>
     )

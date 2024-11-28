@@ -10,8 +10,8 @@
     
             & .trashButton, & .toggleEventsButton {
                 transition: 200ms ease-in-out;
-                width: 24px;
-                height: 24px;
+                height: dimensions.icon-size('xl');
+                width: dimensions.icon-size('xl');
                 cursor: pointer; 
 
                 &.turned {

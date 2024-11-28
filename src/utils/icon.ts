@@ -11,6 +11,7 @@ import ward from '@assets/icons/ward.svg';
 import plot from '@assets/icons/plot.svg';
 import question from '@assets/icons/question.svg';
 import trash from '@assets/icons/trash.svg';
+import house from '@assets/icons/house.svg';
 
 export default {
     fullscreen,
@@ -25,5 +26,6 @@ export default {
     ward,
     plot,
     question,
-    trash
+    trash,
+    house
 }

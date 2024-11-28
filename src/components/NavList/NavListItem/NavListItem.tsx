@@ -23,9 +23,13 @@ export default function NavListItem({ item }: INavListItem) {
             className={`${styles.container} ${item.isActive ? styles.active : ''}`} 
             onClick={() => navigator.dynamicNavigate(item.target, item.isNewTab || false)}
         >
-            <span className={styles.name}>{ item.name }</span>
-            <span className={styles.icon}>
-                <img src={icon.chevronRight} />
+            <span>
+                <img className={styles.icon} src={item.icon} />
+                <span className={styles.name}>{ item.name }</span>
+            </span>
+
+            <span className={styles.iconWrapper}>
+                <img className={styles.icon} src={icon.chevronRight} />
             </span>
         </button>    
     );

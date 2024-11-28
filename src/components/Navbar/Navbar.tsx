@@ -52,6 +52,7 @@ export default function Navbar() {
                     <LinkButton 
                         key={`NavbarItem${index}`}
                         name={item.name}
+                        icon={item.icon}
                         target={item.target}
                         isActive={getIsCurrentPathByIndex(item.target)}
                     />

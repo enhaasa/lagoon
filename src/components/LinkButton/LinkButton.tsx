@@ -11,7 +11,8 @@ import Text from '@components/Text/Text';
 import { Size } from '@utils/sizes';
 
 interface ILinkButton {
-    name: string;
+    name?: string;
+    icon?: string;
     target: string;
     isNewTab?: boolean;
     isActive?: boolean;
@@ -23,6 +24,7 @@ interface ILinkButton {
 
 export default function LinkButton({ 
     name, 
+    icon,
     target, 
     isNewTab = false, 
     isActive = false,
@@ -51,7 +53,10 @@ export default function LinkButton({
             style={{ textDecoration: isUnderlined ? 'underline' : ''}}
             onClick={handleClick}
         >
-            <Text size={size}>{ name }</Text>
+            <div className={styles.wrapper}>
+                {icon && <img className={styles.icon} src={icon} />}
+                {name && <Text size={size}>{ name }</Text>}
+            </div>
         </button>
     );
 }

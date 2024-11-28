@@ -75,7 +75,6 @@ export default function EventNavigation() {
                             <LinkButton 
                                 name={storedEvents?.events?.[0]?.headline}
                                 target={`/e/${storedEvents?.events?.[0]?.slug}`}
-                                isUnderlined={true}
                                 isActive={_getIsCurrentPathByIndex(`/e/${storedEvents?.events?.[0]?.slug}`)}
                                 callback={closeEventList}
                             />
@@ -96,7 +95,6 @@ export default function EventNavigation() {
                                 />
                             }
                         </div>
-
                         
                             <div ref={eventListRef} className={styles.eventlist}>
                                 {eventListOpen &&

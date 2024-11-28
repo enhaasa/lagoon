@@ -5,8 +5,12 @@ import Services from "@pages/Services/Services";
 import TheVenue from "@pages/TheVenue/TheVenue";
 import Bookings from "@pages/Bookings/Bookings";
 
+// Icons
+import icon from "@utils/icon";
+
 export type NavItem = {
-    name: string;
+    name?: string;
+    icon?: string;
     target: string;
     component: JSX.Element;
     isNewTab?: boolean;
@@ -15,7 +19,7 @@ export type NavItem = {
 
 const navbar: NavItem[] = [
     {
-        name: 'Home',
+        icon: icon.house,
         target: '/',
         component: <Home />
     },

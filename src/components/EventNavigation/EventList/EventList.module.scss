@@ -16,8 +16,8 @@
 
         & .trashButton {
             cursor: pointer;
-            width: 20px;
-            height: 20px;
+            height: dimensions.icon-size('lg');
+            width: dimensions.icon-size('lg');
 
             &:hover {
                 filter: brightness(0.7);

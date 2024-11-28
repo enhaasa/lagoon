@@ -19,7 +19,7 @@ export type NavItem = {
 
 const navbar: NavItem[] = [
     {
-        icon: icon.house,
+        name: 'Home',
         target: '/',
         component: <Home />
     },

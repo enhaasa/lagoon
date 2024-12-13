@@ -2,6 +2,8 @@
 @use '@styles/colors.scss' as colors;
 @use '@styles/dimensions.scss' as dimensions;
 @use '@styles/breakpoints.scss' as breakpoints;
+@use '@styles/gradients.scss' as gradients;
+@use '@styles/color-loops.scss' as color-loops;
 
 .container {
     display: grid;
@@ -34,8 +36,17 @@
             font-family: fonts.family('handwritten');
             transform: rotate(-3deg);
             margin-bottom: dimensions.margin('md');
+
+            // this is such a stupid hack I don't wanna talk about it
+            padding: 100px;
+            margin: -100px;
+            
             text-align: center;
             opacity: 1;
+
+            //@include gradients.default();
+            @include color-loops.default();
+            
         }
 
         @media (max-width: breakpoints.screen("tablet")) {

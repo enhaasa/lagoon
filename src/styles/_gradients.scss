@@ -1,0 +1,9 @@
+@mixin background-clip {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@mixin default {
+    background: linear-gradient(90deg, rgb(241, 75, 186) 0%, rgb(226, 243, 77) 100%);
+    @include background-clip();
+}

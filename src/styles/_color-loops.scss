@@ -1,0 +1,29 @@
+@use '@styles/gradients' as gradients;
+
+@mixin default($duration: 4s) {
+  $COLOR_ONE: rgb(93, 126, 236);
+  $COLOR_TWO: rgb(219, 243, 154);
+  $COLOR_THREE: rgb(241, 122, 106);
+  $COLOR_FOUR: rgb(245, 237, 123);
+
+  background: linear-gradient(45deg, $COLOR_ONE, $COLOR_TWO, $COLOR_THREE, $COLOR_FOUR);
+  background-size: 200% 200%;
+  
+  @include gradients.background-clip();
+
+  animation: colorLoop $duration infinite linear;
+
+  @keyframes colorLoop {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    50% {
+        background-position: 115% 50%;
+    }
+
+    100% {
+        background-position: 0% 0%;
+    }
+  }
+}

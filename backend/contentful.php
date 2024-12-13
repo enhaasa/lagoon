@@ -32,7 +32,7 @@ try {
             $query = $CONTENTFUL_BASE_URL
                 . '/spaces/'
                 . $CONTENTFUL_SPACE_ID
-                . '/environments/master/entries?include=1';
+                . '/environments/master/entries?include=10';
 
             if ($params) {
                 $decodedParams = json_decode($params, true);

@@ -32,7 +32,7 @@ jobs:
 
       # Backend
       - name: Deploy backend to Hostinger
-        uses: SamKirkland/FTP-Deploy-Action@v4
+        uses: SamKirkland/ftp-deploy-action@v4.3.4
         with:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}

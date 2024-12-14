@@ -18,7 +18,7 @@ export default function DiningItem({ item }: IDiningItem) {
                 <Text size='lg'>{item?.name}</Text>
 
                 <div className={styles.price}>
-                    <Text>{item?.price?.toLocaleString('en-US')} gil</Text>
+                    {/*<Text>{item?.price?.toLocaleString('en-US')} gil</Text>*/}
                 </div>
             </div>
             

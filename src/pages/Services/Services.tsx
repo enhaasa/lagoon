@@ -13,6 +13,7 @@ import Grid from '@components/Grid/Grid';
 import ChainSpawn from '@components/ChainSpawn/ChainSpawn';
 import Title from '@components/Title/Title';
 import Separator from '@components/Separator/Separator';
+import PageCTA from '@components/PageCTA/PageCTA';
 
 // Animations
 import gsap from 'gsap';
@@ -122,8 +123,16 @@ export default function Services() {
 
                     </div>
 
-                </div>
+                    <PageCTA 
+                        title='Ready to make your event a reality?'
+                        description='Proceed to'
+                        button={{
+                            target: '/bookings',
+                            text: 'Bookings'
+                        }}
+                    />
 
+                </div>
             </div>
         </Page>    
     );

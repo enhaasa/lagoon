@@ -16,6 +16,7 @@ import Highlight from '@components/Highlight/Highlight';
 import VenueDetails from '@components/VenueDetails/VenueDetails';
 import Title from '@components/Title/Title';
 import Separator from '@components/Separator/Separator';
+import PageCTA from '@components/PageCTA/PageCTA';
 
 export default function TheVenue() {
     const { venue } = useContext(CMSContext);
@@ -59,6 +60,14 @@ export default function TheVenue() {
                     ))
                 }
                 </div>
+                <PageCTA 
+                    title='Looks like a good fit for your event?'
+                    description='Check out our'
+                    button={{
+                        target: '/services',
+                        text: 'Services'
+                    }}
+                />
             </div>    
         </Page>
     );

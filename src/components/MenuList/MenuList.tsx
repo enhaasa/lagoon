@@ -47,8 +47,6 @@ export default function MenuList() {
                             isSelected={selectedCategory === category}
                             selectCategory={selectCategory}
                         />
-
-  
                     </>
                 ))}
             </nav>
@@ -57,7 +55,6 @@ export default function MenuList() {
                 {selectedCategory &&
                     <ChainFadeIn
                         items={categories?.[selectedCategory]?.map(item => <DiningItem item={item} />)}
-        
                     />
                 }
             </div>

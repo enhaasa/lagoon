@@ -1,3 +1,14 @@
-.container {
+@use '@styles/dimensions.scss' as dimensions;
 
+.container {
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+    margin-bottom: dimensions.margin('xl');
+
+    & .nav {
+        display: flex;
+        align-items: center;
+        gap: dimensions.margin('md');
+    }
 }

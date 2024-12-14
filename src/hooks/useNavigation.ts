@@ -21,7 +21,7 @@ export interface IUseNavigation {
     isCurrentPath: (T: string) => boolean;
     internalNavigate: (T: string) => void;
     externalNavigate: (T: string, R: boolean) => void;
-    dynamicNavigate: (T: string, R: boolean) => void;
+    dynamicNavigate: (path: string, isNewTab: boolean) => void;
     getPageIndexByPath: (T: string) => number;
 }
 

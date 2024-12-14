@@ -4,6 +4,8 @@
 @use '@styles/breakpoints.scss' as breakpoints;
 
 .container {
+    height: 100vh;
+
     & .teaser {
         display: flex;
         justify-content: space-between;

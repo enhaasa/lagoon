@@ -5,9 +5,6 @@ import Services from "@pages/Services/Services";
 import TheVenue from "@pages/TheVenue/TheVenue";
 import Bookings from "@pages/Bookings/Bookings";
 
-// Icons
-import icon from "@utils/icon";
-
 export type NavItem = {
     name?: string;
     icon?: string;

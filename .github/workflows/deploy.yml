@@ -3,7 +3,7 @@ name: Deploy to Hostinger
 on:
   push:
     branches:
-      - naster 
+      - master 
 
 jobs:
   deploy:

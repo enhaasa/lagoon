@@ -1,4 +1,5 @@
 .container {
     display: grid;
-    grid-template-rows: auto calc(100vh - 42px - 42px) auto;
+    height: 100vh;
+    
 }

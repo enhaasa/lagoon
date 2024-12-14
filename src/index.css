@@ -21,3 +21,7 @@ img {
   vertical-align: middle;
   user-select: none;
 }
+
+a, a:visited {
+  color: #bb6877;
+}

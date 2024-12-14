@@ -9,11 +9,12 @@
     display: grid;
     gap: dimensions.margin('xxl');
     width: 100%;
-    height: 100%;
+    height: calc(100vh - 42px);
     align-content: center;
     
     & .teaser {
         display: grid;
+        height: 100%;
         gap: dimensions.margin('xl');
         
         & .typed {

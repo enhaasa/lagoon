@@ -1,6 +1,9 @@
 @use '@styles/colors.scss' as colors;
 
 .container {
+    position: sticky;
+    top: 0;
+    left: 0;    
     background: colors.bg('secondary');
     height: 42px;
     z-index: 2;

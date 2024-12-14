@@ -16,7 +16,6 @@ jobs:
       # Build frontend
       - name: Install dependencies and build frontend
         run: |
-          cd frontend
           npm install
           npm run build
           

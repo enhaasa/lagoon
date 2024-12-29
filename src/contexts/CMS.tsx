@@ -56,7 +56,7 @@ function CMSContextProvider({ children }: any) {
                     (entry.sys.id === pagesToFetch[page]));
 
                 newPages[page] = result.items[resultEntryIndex];
-                delete result.items[resultEntryIndex];
+                result.items.splice(resultEntryIndex, 1); 
             });
 
             // Remaining results after deleting the page matches

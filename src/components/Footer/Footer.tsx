@@ -4,12 +4,15 @@ import styles from './Footer.module.scss';
 import LinkButton from '@components/LinkButton/LinkButton';
 import Text from '@components/Text/Text';
 
+// Utils
+import { getCurrentYear } from '@utils/time';
+
 export default function Footer() {
 
     return (
         <div className={styles.container}>
             <nav className={styles.nav}>
-                <span><Text>©2022-2024 Lagoon</Text></span>
+                <span><Text>©2022-{getCurrentYear()} Lagoon</Text></span>
                 <span>&bull;</span>
                 <span>
                     <Text>Subvenue of</Text> &nbsp;

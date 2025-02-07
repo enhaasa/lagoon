@@ -120,8 +120,6 @@ function CMSContextProvider({ children }: any) {
                 })
             }
 
-            console.log('events', result.items)
-
             setAssets(newAssets);
             setComponents(newComponents);
             setPages(newPages);
@@ -132,7 +130,7 @@ function CMSContextProvider({ children }: any) {
     const home = useHome(pages.landingPage, assets);
     const venue = useVenue(pages.venuePage, assets, components);
     const services = useServices(pages.servicesPage, assets, components);
-    const bookings = useBookings(pages.reservationsPage);
+    const bookings = useBookings(pages.bookingsPage);
     const menu = useMenu(pages.menuPage, assets);
 
     return (

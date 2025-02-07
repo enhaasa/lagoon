@@ -15,11 +15,11 @@ const KiwiContext = createContext<IKiwiContext>({} as IKiwiContext);
 const client = new KiwiClient();
 
 function KiwiContextProvider({ children }: any) {
-   const menu = useMenu(client);
+    const menu = useMenu(client);
 
     return (
         <KiwiContext.Provider value={{
-            menu
+            menu,
         }}>
             {children}
         </KiwiContext.Provider>

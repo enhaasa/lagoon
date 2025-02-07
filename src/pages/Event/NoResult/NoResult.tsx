@@ -7,7 +7,11 @@ import animate from '@utils/animate';
 // Components
 import Text from '@components/Text/Text';
 
-export default function NoResult() {
+interface INoResult {
+    text: string;
+}
+
+export default function NoResult({ text }: INoResult) {
     const ref = useRef(null);
 
     useLayoutEffect(() => {
@@ -22,7 +26,7 @@ export default function NoResult() {
 
     return (
         <div className={styles.container} ref={ref}>
-            <Text>Hmm, it seems this event has expired...</Text>
+            <Text>{text}</Text>
         </div>    
     );
 }

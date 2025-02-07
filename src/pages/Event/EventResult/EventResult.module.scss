@@ -24,7 +24,7 @@
                 justify-content: space-around;
                 align-items: center;
                 width: 100%;
-
+                
                 & .countdown {
                     
                     & .title {
@@ -34,20 +34,48 @@
 
                     & .date {
                         text-align: center;
-
+            
                         & .timezone {
                             color: colors.text('secondary');
                             display: flex;
                             justify-content: center;
                             align-items: center;
-
+                            margin-top: dimensions.margin('sm');
+            
                             & .localeInfoButton {
                                 margin: 0;
                                 padding: 0;
                             }
                         }
+            
+                        & .timeunit {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            gap: dimensions.margin('sm');
+            
+                            img {
+                                height: 22px;
+            
+                                @media (max-width: breakpoints.screen('tablet')) {
+                                    height: 16px;
+                                }
+                                @media (max-width: breakpoints.screen('phone')) {
+                                    height: 14px;
+                                }
+                            }
+                        }
                     }
                 }
+            }
+
+            & .description {
+                margin: dimensions.margin('xl');
+
+                background: rgba(0, 0, 0, 0.75);
+                padding: dimensions.padding('xl');
+                border-radius: decorations.border-radius('md');
+                box-shadow: decorations.box-shadow('md');
             }
 
             @media (max-width: breakpoints.screen("desktop")) {

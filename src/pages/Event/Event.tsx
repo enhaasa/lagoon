@@ -1,7 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import styles from './Event.module.scss';
 import { useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+
+// Contexts
+import { CMSContext, ContentfulEvent } from '@contexts/CMS';
 
 // Components
 import EventResult from './EventResult/EventResult';
@@ -9,66 +12,50 @@ import NoResult from './NoResult/NoResult';
 import ResultLoading from './ResultLoading/ResultLoading';
 import Page from '@components/Page/Page';
 
-// Clients
-import { ContentfulClient } from '@service_clients/ContentfulClient';
+// Types
+import type { Event as EventType } from '@pages/Event/EventResult/EventResult';
 
-const client = new ContentfulClient();
+interface IEvent {
+    manualSlug?: string;
+}
 
-export default function Event() {
+export default function Event({ manualSlug }: IEvent) {
+    const { events } = useContext(CMSContext);
     const { slug } = useParams();
 
-    const [ assets, setAssets ] = useState(null);
-    const [ content, setContent ] = useState(null);
+    const [ content, setContent ] = useState<null | EventType>(null);
     const [ noresult, setNoresult ] = useState(false);
 
     useEffect(() => {
-        if (!slug) return;
-        setContent(null);
-        setAssets(null);
-        setNoresult(false);
+        const slugToUse = manualSlug ?? slug;
 
-        const params = {
-            "content_type": "event",
-            "fields.slug": slug
+        if (!slugToUse) return;
+        setContent(null);
+
+        const event: undefined | ContentfulEvent = events?.find(e => e.slug === slugToUse);
+
+        if (!events) {
+            return;
         }
 
-        client.getEntries(JSON.stringify(params)).then(result => {
-            if (result.items.length === 0) {
-                setNoresult(true);
-                return;
-            }
-
-            const newAssets: any = {};
-
-            result.includes.Asset.forEach((asset: any) => (
-                newAssets[asset.sys.id] = { 
-                    ...asset.fields, 
-                    file: { ...asset.fields.file, url: `https:${asset.fields.file.url}` } 
-                }
-            ));
-
-            setContent({ id: result.items[0].sys.id, ...result.items[0].fields });
-            setAssets(newAssets);
-        });
-    }, [ slug ]);
+        if (event) {
+            setContent(event);
+        } else {
+            setNoresult(true);
+        }
+    }, [ manualSlug, slug, events ]);
 
     return (
         <Page>
             <div className={styles.container}>
                 {
                     content && !noresult 
-                    ? <EventResult content={content} assets={assets} />
+                    ? <EventResult event={content} />
                     : !noresult 
                     ? <ResultLoading />
-                    : <NoResult />
+                    : <NoResult text='Hmm, it seems this event has expired...' />
                 }
             </div>    
         </Page>
     );    
 }
-
-/*
-function _isSlugValid(slug?: string) {
-    return !(navbar.map(i => i.target).includes(`/${slug}`));
-}
-*/

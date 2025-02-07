@@ -5,7 +5,7 @@ export interface IUseMenu {
     content: any;
 }
 
-export default function useMenu(page: any) {
+export default function useMenu(page: any, assets: any) {
     const [ content, setContent ] = useState<null | any>(null);
     const isLoaded = useRef<boolean>(false);
 
@@ -16,9 +16,9 @@ export default function useMenu(page: any) {
 
         setContent({
             headline: fields.headline,
-            subline: fields.subline
+            subline: fields.subline,
+            background: assets[fields?.background?.sys?.id]?.file?.url ?? '',
         });
-
     }, [ page ]);
 
     return {

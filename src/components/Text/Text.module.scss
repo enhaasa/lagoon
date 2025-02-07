@@ -4,6 +4,17 @@
 .container {
     font-size: fonts.size('md');
 
+    &.xs {
+        font-size: fonts.size('xs');
+
+        @media (max-width: breakpoints.screen("tablet")) {
+            font-size: fonts.size('xs');
+        }
+        @media (max-width: breakpoints.screen("phone")) {
+            font-size: fonts.size('xs');
+        }
+    }
+
     &.sm {
         font-size: fonts.size('sm');
 

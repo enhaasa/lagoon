@@ -1,0 +1,81 @@
+@use '@styles/colors.scss' as colors;
+@use '@styles/dimensions.scss' as dimensions;
+@use '@styles/decorations.scss' as decorations;
+@use '@styles/mixins.scss' as mixins;
+@use '@styles/gradients.scss' as gradients;
+@use '@styles/breakpoints.scss' as breakpoints;
+
+.container {
+    & nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: decorations.box-shadow('md');
+        border-radius: decorations.border-radius('lg');
+
+        & .option {
+            border: none;
+            outline: none;
+            background: none;
+            
+            cursor: pointer;
+            color: colors.text('primary');
+            background: rgba(0, 0, 0, 0.75);
+            padding: dimensions.padding('md') dimensions.padding('xl');
+
+            &.xs {
+                padding: dimensions.padding('xs') dimensions.padding('sm');
+            }
+            &.sm {
+                padding: dimensions.padding('sm') dimensions.padding('md');
+            }
+            &.md {
+                padding: dimensions.padding('md') dimensions.padding('xl');
+            }
+            &.lg {
+                padding: dimensions.padding('lg') dimensions.padding('xl');
+            }
+
+            &:first-child {
+                border-radius: 
+                    decorations.border-radius('lg')
+                    0
+                    0
+                    decorations.border-radius('lg');
+            }
+            &:last-child {
+                border-radius: 
+                    0
+                    decorations.border-radius('lg')
+                    decorations.border-radius('lg')
+                    0;
+            }
+
+            &.selected {
+                box-shadow: decorations.box-shadow('lg');
+                color: colors.text('tertiary');
+
+                &.gold {
+                    @include gradients.gold();
+                }
+                &.silver {
+                    @include gradients.silver();
+                }
+                &.blue {
+                    @include gradients.blue();
+                    color: colors.text('primary');
+                }
+            }
+
+            &:not(.selected) {
+                filter: brightness(0.6);
+
+                &:hover {
+                    filter: brightness(0.7);
+                }
+            }
+        }
+
+
+    }
+}

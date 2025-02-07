@@ -1,6 +1,8 @@
 @use '@styles/dimensions.scss' as dimensions;
 
 .container {
+    height: 100vh;
+
     & .teaser {
         margin-top: dimensions.margin('xl');
     }

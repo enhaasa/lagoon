@@ -7,3 +7,35 @@
     background: linear-gradient(90deg, rgb(241, 75, 186) 0%, rgb(226, 243, 77) 100%);
     @include background-clip();
 }
+
+@mixin wine {
+    background:  linear-gradient(to bottom right, rgb(107, 0, 0), rgb(49, 0, 0));
+}
+
+@mixin grape {
+    background: linear-gradient(to bottom right, #712E5F, #290d21);
+}
+
+@mixin dark-grape {
+    background: linear-gradient(to bottom right, #803A5C, #27121c);
+}
+
+@mixin dark {
+    background: linear-gradient(to bottom right, #58545a, #1b1a1b);
+}
+
+@mixin gold {
+    background: linear-gradient(to bottom right, #D1B464, #8A6E2F);
+}
+
+@mixin silver {
+    background: linear-gradient(to bottom right, lightgrey, grey);
+}
+
+@mixin steel {
+    background: linear-gradient(to bottom right,rgb(49, 49, 49), black);
+}
+
+@mixin blue {
+    background: linear-gradient(to bottom right, rgb(74, 96, 194), rgb(40, 54, 129));
+}

@@ -9,35 +9,54 @@
     padding: dimensions.padding('lg');
     gap: dimensions.margin('xl');
 
-    & .nav {
+    & .navWrapper {
         display: flex;
         align-content: center;
         justify-content: center;
-        gap: dimensions.margin('md');
 
-        & .bullet {
-            align-self: center;
-        }
+        & .nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-        @media (max-width: breakpoints.screen('phone')) {
-            display: grid;
-            gap: dimensions.margin('xs');
+            @media (max-width: breakpoints.screen('phone')) {
+                display: grid;
+            }
         }
     }
-
+    
     & .results {
-        display: flex;
-        flex-direction: column;
         gap: dimensions.margin('lg');
 
         border-radius: decorations.border-radius('md');
         margin-bottom: dimensions.margin('xl');
         padding: dimensions.padding('xl');
-        background: colors.bg('secondary');
+        background: rgba(0, 0, 0, 0.75);
         box-shadow: decorations.box-shadow('md');
+
+        column-count: 2;
+        column-gap: dimensions.margin('lg');  
+
+        & .title {
+            column-span: all;
+            margin-top: dimensions.margin('sm');
+            margin-bottom: dimensions.margin('lg');
+        }
+
+        & * {
+            break-inside: avoid;
+        }
+
+        @media (max-width: breakpoints.screen('tablet')) {
+            display: flex;
+            flex-direction: column;
+        }
     }
     
     @media (max-width: breakpoints.screen('tablet')) {
+        display: flex;
+        flex-direction: column;
         margin: 0;
+        gap: dimensions.margin('lg');
     }
 }

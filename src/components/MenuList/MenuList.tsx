@@ -5,17 +5,20 @@ import { useContext, useState, useEffect, useRef } from 'react';
 import { KiwiContext } from '@contexts/Kiwi';
 
 // Components
-import Category from './Category/Category';
 import DiningItem from './DiningItem/DiningItem';
 import ChainFadeIn from '@components/ChainFadeIn/ChainFadeIn';
+import Title from '@components/Title/Title';
+import MultiToggle from '@components/MultiToggle/MultiToggle';
 
 // Animations
 import animate from '@utils/animate';
-
+//import dining_icon from '@utils/dining_icon';
 
 export default function MenuList() {
-    const { menu: categories } = useContext(KiwiContext);
+    const { menu } = useContext(KiwiContext);
     const [ selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
+    const { categories } = menu;
 
     const resultsRef = useRef(null);
 
@@ -37,29 +40,31 @@ export default function MenuList() {
 
     return (
         <div className={styles.container}>
-            <nav className={styles.nav}>
-                {Object.keys(categories ?? {}).map((category, index) => (
-                    <>
-                        <Category 
-                            title={category} 
-                            count={categories?.[category].length} 
-                            key={`MenuListCategory-${index}`} 
-                            isSelected={selectedCategory === category}
-                            selectCategory={selectCategory}
-                        />
-                    </>
-                ))}
-            </nav>
+            <div className={styles.navWrapper}>
+                <MultiToggle 
+                    options={Object.keys(categories ?? {})}
+                    initSelected={selectedCategory ?? ''}
+                    onSelect={selectCategory} 
+                />
+            </div>
 
             <div className={styles.results} ref={resultsRef}>
-                {selectedCategory &&
-                    <ChainFadeIn
-                        items={categories?.[selectedCategory]?.map(item => <DiningItem item={item} />)}
-                    />
-                }
+                <>
+                    <div className={styles.title}>
+                        <Title 
+                            headline={selectedCategory ?? ''} 
+                            isCentered={true}
+                            style='handwritten' 
+                        />
+                    </div>
+                    
+                    {selectedCategory &&
+                        <ChainFadeIn
+                            items={categories?.[selectedCategory]?.map(item => <DiningItem item={item} />)}
+                        />
+                    }
+                </>
             </div>
-            
-
         </div>    
     );
 }

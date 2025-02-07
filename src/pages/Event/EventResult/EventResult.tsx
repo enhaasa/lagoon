@@ -1,36 +1,37 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import styles from './EventResult.module.scss';
-import { useMemo, useLayoutEffect, useRef, useContext, useEffect } from 'react';
+import { useState, useLayoutEffect, useRef, useEffect, useContext } from 'react';
 
 // Contexts
 import { PageContext } from '@contexts/Page';
 
-// Utils
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-
 // Animations
 import animate from '@utils/animate';
-
-// Config
-import location from '@config/location';
 
 // Components
 import Text from '@components/Text/Text';
 import Title from '@components/Title/Title';
 import Countdown from '@components/Countdown/Countdown';
-import Location from '@components/Location/Location';
+import LagoonLocation from '@components/Location/LagoonLocation/LagoonLocation';
 import EventFaq from './EventFaq/EventFaq';
 import Separator from '@components/Separator/Separator';
+import MultiToggle from '@components/MultiToggle/MultiToggle';
+import RichTextRenderer from '@components/RichTextRenderer';
 
 // Utils
+import icon from '@utils/icon';
 import LocalStorage from '@utils/localstorage';
+import { getLocalTimeOnly, getServerTimeOnly } from '@utils/time';
+
+type Timezone = 'Local Time' | 'Server Time';
 
 export type Event = {
     id: number | string;
     background: {
         sys: {id: string};
     },
-    date: string;
+    startTime: string,
+    endTime: string,
     description: any;
     headline: string;
     subline: string;
@@ -39,11 +40,11 @@ export type Event = {
 }
 
 interface IEventResult {
-    content: Event | null;
-    assets: any;
+    event: any | null;
 }
 
-export default function EventResult({ content, assets }: IEventResult) {
+export default function EventResult({ event }: IEventResult) {
+    const [ timezone, setTimezone ] = useState<Timezone>('Local Time');
     const { storedEvents } = useContext(PageContext);
 
     const ref = useRef(null);
@@ -58,37 +59,29 @@ export default function EventResult({ content, assets }: IEventResult) {
         }
     }, []);
 
-    const date = new Date(content?.date ?? '');
-    const formattedDate = date.toLocaleString().replace(',', ' at').slice(0, -3);
-    const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
-    const background = useMemo(() => {
-        if (!content?.background?.sys?.id) return null;
-
-        return { src: assets[content.background.sys.id]?.file?.url };
-    }, [ content, assets ]);
-
     useEffect(() => {
-        if (!content || !storedEvents) return;
+        if (!event || !storedEvents) return;
 
-        const newEvents = LocalStorage.addToEvents(content);
+        const newEvents = LocalStorage.addToEvents(event);
 
         if (newEvents) {
             storedEvents.setEvents(newEvents);
         }
         
-    }, [ content ]);
+    }, [ event ]);
+
+    console.log(event)
 
     return (
         <div className={styles.container} ref={ref}>
             <div className={styles.hero}>
-                <div className={styles.image} style={{ backgroundImage: `url("${background?.src}")` }} />
+                <div className={styles.image} style={{ backgroundImage: `url("${event?.background}")` }} />
                 <div className={styles.content}>
-                    {content &&
+                    {event &&
                         <>
                             <Title 
-                                headline={content?.headline}
-                                subline={content?.subline}
+                                headline={event?.headline}
+                                subline={event?.subline}
                                 style={'handwritten'}
                                 size={'xl'}
                                 isCentered={true}
@@ -97,43 +90,61 @@ export default function EventResult({ content, assets }: IEventResult) {
                             <Separator />
                             <div className={styles.infoWrapper}>
 
+                                <div className={styles.location}>
+                                    <LagoonLocation isCentered={true} />
+                                </div>
+
                                 <div className={styles.countdown}>
                                     <div className={styles.title}>
                                         <Text size='sm'>Event begins in</Text>
                                     </div>
-                                    <Countdown date={content?.date} />
+                                    <Countdown date={event?.startTime} />
+                                    
                                     <div className={styles.date}>
-                                        <Text>{formattedDate}</Text>
+                                        <div className={styles.timeunit}>
+                                            <img src={icon.calendar} />
+                                            <Text>
+                                                {timezone === 'Local Time' 
+                                                    ? event?.local_start_time.time
+                                                    : event?.server_start_time
+                                                }
+                                            </Text>
+                                        </div>
 
-                                        <div className={styles.timezone}>
-                                            <Text size='sm'>({userTimezone})</Text>
+                                        <div className={styles.timeunit}>
+                                            <img src={icon.clock} />
+                                            <Text>
+                                                {timezone === 'Local Time' 
+                                                    ? `${getLocalTimeOnly(event?.raw_start_time)} - ${getLocalTimeOnly(event?.raw_end_time)}`
+                                                    : `${getServerTimeOnly(event?.raw_start_time)} - ${getServerTimeOnly(event?.raw_end_time) }`
+                                                }
+                                            </Text>
+                                        </div>
+
+                                        <div className={styles.timezone}>  
+                                            <MultiToggle 
+                                                options={['Local Time', 'Server Time']} 
+                                                initSelected='Local Time'
+                                                onSelect={(timezone: string) => {setTimezone(timezone as Timezone)}} 
+                                                activeColor='blue'
+                                                size='xs' 
+                                            />
                                         </div>
                                     </div>
                                 </div>
-
-                                <div className={styles.location}>
-                                    <Location
-                                        server={location.server}
-                                        area={location.area}
-                                        ward={location.ward}
-                                        plot={location.plot}
-                                        closestAetheryte={location.closestAetheryte}
-                                    />
-                                </div>
                             </div>
+
                             <Separator />
 
                             <div className={styles.description}>
-                                <Text>
-                                    {documentToReactComponents(content?.description)}
-                                </Text>
+                                <RichTextRenderer richTextDocument={event?.description} />
                             </div>
                         </>
                     }
                 </div>
             </div>
 
-            <EventFaq dressCode={content?.dressCode} />
+            <EventFaq dressCode={event?.dressCode} />
         </div>    
     );
 }

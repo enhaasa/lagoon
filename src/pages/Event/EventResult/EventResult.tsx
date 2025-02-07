@@ -70,8 +70,6 @@ export default function EventResult({ event }: IEventResult) {
         
     }, [ event ]);
 
-    console.log(event)
-
     return (
         <div className={styles.container} ref={ref}>
             <div className={styles.hero}>

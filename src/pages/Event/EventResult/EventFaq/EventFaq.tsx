@@ -2,6 +2,7 @@ import styles from './EventFaq.module.scss';
 
 // Import 
 import Text from '@components/Text/Text';
+import Title from '@components/Title/Title';
 
 // Config
 import eventFaq from '@config/eventFaq';
@@ -14,6 +15,8 @@ export default function EventFaq({dressCode}: IEventFaq) {
 
     return (
         <div className={styles.container}>
+            <Title isCentered={true} headline='Event FAQ' size='xl' />
+
             <div className={styles.item}>
                 <div className={styles.question}>
                     <Text>Is there a dress code?</Text>

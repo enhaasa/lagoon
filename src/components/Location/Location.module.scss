@@ -12,11 +12,16 @@
             display: flex;
             justify-content: space-between;
             gap: dimensions.margin('sm');
+
+            &.centered {
+                justify-content: center;
+            }
     
             & .column {
                 display: flex;
                 align-items: center;
                 gap: dimensions.margin('sm');
+
 
                 & .aetheryte {
                     font-style: italic;
@@ -27,5 +32,10 @@
 
     & .server {
         color: colors.text('secondary');
+
+        &.centered {
+            text-align: center;
+        }
     }
+
 }

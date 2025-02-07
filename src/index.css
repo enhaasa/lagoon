@@ -7,6 +7,18 @@
   font-style: normal;
 }
 
+b, strong {
+  font-weight: 800;
+}
+
+u {
+  text-decoration: underline;
+}
+
+i {
+  font-style: italic;
+}
+
 body {
   margin: 0;
   background: rgb(8, 8, 8);

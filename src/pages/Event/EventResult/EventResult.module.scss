@@ -18,6 +18,10 @@
             padding: dimensions.padding('md');
             z-index: 2;
 
+            & .eventTitle {
+                margin-top: dimensions.margin('xxl');
+            }
+
             & .infoWrapper {
                 display: flex;
                 flex-direction: row-reverse;
